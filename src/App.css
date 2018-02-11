@@ -1,32 +1,57 @@
-.App {
-    text-align: center;
+nav {
+    margin-bottom: 50px;
+    background-color: #37B77B;
 }
 
-.App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
-}
-
-.App-header {
-    background-color: #222;
-    height: 150px;
-    padding: 20px;
+button {
+    background-color: #37B77B;
     color: white;
 }
 
-.App-title {
-    font-size: 1.5em;
+.navbar-brand img {
+    width: 80px;
 }
 
-.App-intro {
-    font-size: large;
+.navbar-nav .active {
+    color: #d4ffec !important;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.container {
+    margin-bottom: 40px;
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .checkbox {
+    font-weight: 400;
+}
+
+.form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+
+.form-signin h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.form-signin input {
+    border-radius: 8px;
+    margin-bottom: 10px;
 }

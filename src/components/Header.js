@@ -14,12 +14,13 @@ import {
     DropdownMenu,
     DropdownItem
 } from 'reactstrap';
-import {NavLink as RRNavLink} from 'react-router-dom';
+import {Link, NavLink as RRNavLink} from 'react-router-dom';
 
 
 class Header extends Component {
     static propTypes = {
-        isLoggedIn: PropTypes.bool.isRequired
+        isLoggedIn: PropTypes.bool.isRequired,
+        currentUser: PropTypes.object
     };
 
     constructor(props) {
@@ -45,15 +46,15 @@ class Header extends Component {
                 </NavItem>
                 <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav caret>
-                        Email
+                        {this.props.currentUser.email}
                     </DropdownToggle>
                     <DropdownMenu>
                         <DropdownItem>
-                            Products
+                            <Link to="/products">Products</Link>
                         </DropdownItem>
                         <DropdownItem divider/>
                         <DropdownItem>
-                            Logout
+                            <Link to="/logout">Log Out</Link>
                         </DropdownItem>
                     </DropdownMenu>
                 </UncontrolledDropdown>
@@ -70,7 +71,7 @@ class Header extends Component {
                     <NavLink to="/register" tag={RRNavLink}>Register</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink to="/login" tag={RRNavLink}>Login</NavLink>
+                    <NavLink to="/login" tag={RRNavLink}>Log In</NavLink>
                 </NavItem>
             </Nav>
         }

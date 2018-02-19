@@ -1,26 +1,35 @@
 import * as AuthActionTypes from '../actiontypes/auth.actiontypes';
 
 const initialState = {
-    isLoggingIn: false,
-    isLoggedIn: false,
+    isLoginPending: false,
+    isLoginSuccess: false,
+    isLoginError: false,
     currentUser: null
 };
 
 export default function Auth(state = initialState, action) {
     switch (action.type) {
-        case AuthActionTypes.LOGIN_REQUEST:
+        case AuthActionTypes.SET_LOGIN_PENDING:
             return {
                 ...state,
-                isLoggingIn: true
+                isLoginPending: true,
+                isLoginSuccess: false,
+                isLoginError: false
             };
-        case AuthActionTypes.LOGIN_SUCCESS:
+        case AuthActionTypes.SET_LOGIN_SUCCESS:
             return {
                 ...state,
-                isLoggedIn: true,
-                currentUser: action.user
+                isLoginPending: false,
+                isLoginSuccess: true,
+                isLoginError: false
             };
-        case AuthActionTypes.LOGIN_FAILURE:
-            return state;
+        case AuthActionTypes.SET_LOGIN_ERROR:
+            return {
+                ...state,
+                isLoginPending: false,
+                isLoginSuccess: false,
+                isLoginError: true
+            };
         default:
             return state;
     }

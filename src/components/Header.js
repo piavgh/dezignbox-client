@@ -19,8 +19,7 @@ import {Link, NavLink as RRNavLink} from 'react-router-dom';
 
 class Header extends Component {
     static propTypes = {
-        isLoggedIn: PropTypes.bool.isRequired,
-        currentUser: PropTypes.object
+
     };
 
     constructor(props) {

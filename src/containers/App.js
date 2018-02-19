@@ -15,21 +15,35 @@ import NotFound from '../components/NotFound';
 import * as AuthActionCreators from '../actions/auth.actions';
 
 class App extends Component {
+
+    loginAction = (email, password) => {
+        console.log("5555");
+        console.log(email + password);
+    };
+
     render() {
 
-        const {dispatch, isLoggingIn, isLoggedIn, currentUser} = this.props;
-        const loginRequest = bindActionCreators(AuthActionCreators.loginRequest, dispatch);
-        const loginSuccess = bindActionCreators(AuthActionCreators.loginSuccess, dispatch);
-        const loginFailure = bindActionCreators(AuthActionCreators.loginFailure, dispatch);
+        const {dispatch, isLoginPending, isLoginSuccess, isLoginError, currentUser} = this.props;
+        const setLoginAction = bindActionCreators(this.loginAction);
+        const setLoginPending = bindActionCreators(AuthActionCreators.setLoginPending, dispatch);
+        const setLoginSuccess = bindActionCreators(AuthActionCreators.setLoginSuccess, dispatch);
+        const setLoginError = bindActionCreators(AuthActionCreators.setLoginError, dispatch);
 
         return (
             <BrowserRouter>
                 <div>
-                    <Header isLoggedIn={isLoggedIn} currentUser={currentUser}/>
+                    <Header/>
                     <div className="container">
                         <Switch>
                             <Route exact path={"/"} component={Home}/>
-                            <Route path={"/login"} component={Login} loginRequest={loginRequest}/>
+                            <Route path={"/login"} render={
+                                () => <Login
+                                    loginAction={this.loginAction}
+                                    isLoginPending={isLoginPending}
+                                    isLoginSuccess={isLoginSuccess}
+                                    isLoginError={isLoginError}
+                                />
+                            }/>
                             <Route path={"/register"} component={Register}/>
                             <Route path={"/aboutUs"} component={AboutUs}/>
                             <Route path={"/start-design"} component={Design}/>
@@ -45,10 +59,17 @@ class App extends Component {
 
 const mapStateToProps = state => (
     {
-        isLoggingIn: state.isLoggingIn,
-        isLoggedIn: state.isLoggedIn,
+        isLoginPending: state.isLoginPending,
+        isLoginSuccess: state.isLoginSuccess,
+        isLoginError: state.isLoginError,
         currentUser: state.currentUser
     }
 );
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        login: (email, password) => dispatch(AuthActionCreators.login(email, password))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

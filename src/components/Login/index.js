@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Row,
     Col
@@ -12,8 +13,20 @@ const Login = props =>
 
         </Col>
         <Col xs={12} md={4}>
-            <LoginForm/>
+            <LoginForm
+                loginAction={props.loginAction}
+                isLoginPending={props.isLoginPending}
+                isLoginSuccess={props.isLoginSuccess}
+                isLoginError={props.isLoginError}
+            />
         </Col>
     </Row>;
+
+Login.propTypes = {
+    loginAction: PropTypes.func.isRequired,
+    isLoginPending: PropTypes.bool.isRequired,
+    isLoginSuccess: PropTypes.bool.isRequired,
+    isLoginError: PropTypes.bool.isRequired
+};
 
 export default Login;

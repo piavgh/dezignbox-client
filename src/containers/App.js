@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 import './App.css';
 import Home from '../components/Home';
-import Header from '../components/Header';
+import Header from '../components/Header/index';
 import Login from '../components/Login';
 import Register from '../components/Register';
 import AboutUs from "../components/AboutUs";
@@ -13,35 +13,42 @@ import Design from "../components/Design";
 import Products from "../components/Products";
 import NotFound from '../components/NotFound';
 import * as AuthActionCreators from '../actions/auth.actions';
+import AuthService from '../services/auth.services';
 
 class App extends Component {
 
-    loginAction = (email, password) => {
-        console.log("5555");
-        console.log(email + password);
-    };
-
     render() {
 
-        const {dispatch, isLoginPending, isLoginSuccess, isLoginError, currentUser} = this.props;
-        const setLoginAction = bindActionCreators(this.loginAction);
-        const setLoginPending = bindActionCreators(AuthActionCreators.setLoginPending, dispatch);
-        const setLoginSuccess = bindActionCreators(AuthActionCreators.setLoginSuccess, dispatch);
-        const setLoginError = bindActionCreators(AuthActionCreators.setLoginError, dispatch);
+        const {isLoginPending, isLoginSuccess, isLoginError, currentUser} = this.props;
+
+        const handleLoginSubmit = (email, password) => {
+            this.props.boundSetLoginPending(true);
+
+            AuthService.login(email, password, (error, currentUser = null) => {
+                this.props.boundSetLoginPending(false);
+                if (!error) {
+                    this.props.boundSetLoginSuccess(true);
+                    this.props.boundSetCurrentUser(currentUser);
+                } else {
+                    this.props.boundSetLoginError(true);
+                }
+            });
+        };
 
         return (
             <BrowserRouter>
                 <div>
-                    <Header/>
+                    <Header currentUser={currentUser}/>
                     <div className="container">
                         <Switch>
                             <Route exact path={"/"} component={Home}/>
                             <Route path={"/login"} render={
                                 () => <Login
-                                    loginAction={this.loginAction}
+                                    handleLoginSubmit={handleLoginSubmit}
                                     isLoginPending={isLoginPending}
                                     isLoginSuccess={isLoginSuccess}
                                     isLoginError={isLoginError}
+                                    currentUser={currentUser}
                                 />
                             }/>
                             <Route path={"/register"} component={Register}/>
@@ -66,10 +73,16 @@ const mapStateToProps = state => (
     }
 );
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        login: (email, password) => dispatch(AuthActionCreators.login(email, password))
-    };
-};
+const mapDispatchToProps = dispatch => (
+    {
+        boundSetLoginPending: bindActionCreators(AuthActionCreators.setLoginPending, dispatch),
+        boundSetLoginSuccess: bindActionCreators(AuthActionCreators.setLoginSuccess, dispatch),
+        boundSetLoginError: bindActionCreators(AuthActionCreators.setLoginError, dispatch),
+        boundSetCurrentUser: bindActionCreators(AuthActionCreators.setCurrentUser, dispatch)
+    }
+);
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App);

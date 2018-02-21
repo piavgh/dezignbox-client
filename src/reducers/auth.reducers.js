@@ -14,7 +14,8 @@ export default function Auth(state = initialState, action) {
                 ...state,
                 isLoginPending: true,
                 isLoginSuccess: false,
-                isLoginError: false
+                isLoginError: false,
+                currentUser: null
             };
         case AuthActionTypes.SET_LOGIN_SUCCESS:
             return {
@@ -28,7 +29,13 @@ export default function Auth(state = initialState, action) {
                 ...state,
                 isLoginPending: false,
                 isLoginSuccess: false,
-                isLoginError: true
+                isLoginError: true,
+                currentUser: null
+            };
+        case AuthActionTypes.SET_CURRENT_USER:
+            return {
+                ...state,
+                currentUser: action.currentUser
             };
         default:
             return state;

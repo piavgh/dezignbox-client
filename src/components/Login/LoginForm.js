@@ -7,7 +7,7 @@ import {
 
 class LoginForm extends Component {
     static propTypes = {
-        loginAction: PropTypes.func.isRequired,
+        handleLoginSubmit: PropTypes.func.isRequired,
         isLoginPending: PropTypes.bool.isRequired,
         isLoginSuccess: PropTypes.bool.isRequired,
         isLoginError: PropTypes.bool.isRequired
@@ -23,8 +23,7 @@ class LoginForm extends Component {
         return (
             <Form className="form-signin" role="form" onSubmit={(e) => {
                 e.preventDefault();
-                console.log("1234");
-                this.props.loginAction(this.state.email, this.state.password)
+                this.props.handleLoginSubmit(this.state.email, this.state.password);
             }}>
                 <h1>Login</h1>
                 <Label for="inputEmail" className="sr-only">Email address</Label>

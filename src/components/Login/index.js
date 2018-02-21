@@ -14,7 +14,7 @@ const Login = props =>
         </Col>
         <Col xs={12} md={4}>
             <LoginForm
-                loginAction={props.loginAction}
+                handleLoginSubmit={props.handleLoginSubmit}
                 isLoginPending={props.isLoginPending}
                 isLoginSuccess={props.isLoginSuccess}
                 isLoginError={props.isLoginError}
@@ -23,7 +23,7 @@ const Login = props =>
     </Row>;
 
 Login.propTypes = {
-    loginAction: PropTypes.func.isRequired,
+    handleLoginSubmit: PropTypes.func.isRequired,
     isLoginPending: PropTypes.bool.isRequired,
     isLoginSuccess: PropTypes.bool.isRequired,
     isLoginError: PropTypes.bool.isRequired

@@ -19,7 +19,7 @@ import {Link, NavLink as RRNavLink} from 'react-router-dom';
 
 class Header extends Component {
     static propTypes = {
-
+        currentUser: PropTypes.object
     };
 
     constructor(props) {
@@ -38,7 +38,7 @@ class Header extends Component {
     }
 
     renderRightMenu() {
-        if (this.props.isLoggedIn) {
+        if (this.props.currentUser) {
             return <Nav className="ml-auto" navbar>
                 <NavItem>
                     <NavLink to="/start-design" tag={RRNavLink}>Start Designing</NavLink>

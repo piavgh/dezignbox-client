@@ -15,6 +15,7 @@ import {
     DropdownItem
 } from 'reactstrap';
 import {Link, NavLink as RRNavLink} from 'react-router-dom';
+import {connect} from "react-redux";
 
 
 class Header extends Component {
@@ -89,4 +90,15 @@ class Header extends Component {
     }
 }
 
-export default Header;
+const mapStateToProps = state => (
+    {
+        isLoginPending: state.isLoginPending,
+        isLoginSuccess: state.isLoginSuccess,
+        isLoginError: state.isLoginError,
+        currentUser: state.currentUser
+    }
+);
+
+export default connect(
+    mapStateToProps
+)(Header);

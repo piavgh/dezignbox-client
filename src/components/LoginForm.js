@@ -10,7 +10,8 @@ class LoginForm extends Component {
         handleLoginSubmit: PropTypes.func.isRequired,
         isLoginPending: PropTypes.bool.isRequired,
         isLoginSuccess: PropTypes.bool.isRequired,
-        isLoginError: PropTypes.bool.isRequired
+        isLoginError: PropTypes.object.isRequired,
+        currentUser: PropTypes.object
     };
 
     state = {

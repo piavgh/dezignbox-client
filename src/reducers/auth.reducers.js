@@ -3,7 +3,7 @@ import * as AuthActionTypes from '../actiontypes/auth.actiontypes';
 const initialState = {
     isLoginPending: false,
     isLoginSuccess: false,
-    isLoginError: false,
+    isLoginError: {},
     currentUser: null
 };
 
@@ -14,7 +14,7 @@ export default function Auth(state = initialState, action) {
                 ...state,
                 isLoginPending: true,
                 isLoginSuccess: false,
-                isLoginError: false,
+                isLoginError: {},
                 currentUser: null
             };
         case AuthActionTypes.SET_LOGIN_SUCCESS:
@@ -22,14 +22,14 @@ export default function Auth(state = initialState, action) {
                 ...state,
                 isLoginPending: false,
                 isLoginSuccess: true,
-                isLoginError: false
+                isLoginError: {}
             };
         case AuthActionTypes.SET_LOGIN_ERROR:
             return {
                 ...state,
                 isLoginPending: false,
                 isLoginSuccess: false,
-                isLoginError: true,
+                isLoginError: action.error,
                 currentUser: null
             };
         case AuthActionTypes.SET_CURRENT_USER:

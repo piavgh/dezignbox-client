@@ -28,3 +28,23 @@ export const setCurrentUser = currentUser => {
     }
 };
 
+export const setRegisterPending = isRegisterPending => {
+    return {
+        type: AuthActionTypes.SET_REGISTER_PENDING,
+        isRegisterPending
+    }
+};
+
+export const setRegisterSuccess = isRegisterSuccess => {
+    return {
+        type: AuthActionTypes.SET_REGISTER_SUCCESS,
+        isRegisterSuccess
+    }
+};
+
+export const setRegisterError = isRegisterError => {
+    return {
+        type: AuthActionTypes.SET_REGISTER_ERROR,
+        isRegisterError
+    }
+};

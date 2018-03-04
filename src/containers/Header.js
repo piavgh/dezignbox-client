@@ -38,6 +38,10 @@ class Header extends Component {
         });
     }
 
+    logOut = () => {
+        console.log("log out");
+    };
+
     renderRightMenu() {
         if (this.props.currentUser) {
             return <Nav className="ml-auto" navbar>
@@ -54,7 +58,7 @@ class Header extends Component {
                         </DropdownItem>
                         <DropdownItem divider/>
                         <DropdownItem>
-                            <Link to="/logout">Log Out</Link>
+                            <a onClick={this.logOut}>Log Out</a>
                         </DropdownItem>
                     </DropdownMenu>
                 </UncontrolledDropdown>

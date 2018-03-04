@@ -10,6 +10,19 @@ const AuthService = {
         }).catch(function (error) {
             return callback('Invalid email and password');
         });
+    },
+
+    register: (email, password, callback) => {
+        axios.post('/register', {
+            email: email,
+            password: password
+        }).then(function (response) {
+            console.log(response.data);
+            return callback(null, 'OK');
+        }).catch(function (error) {
+            console.log(error.response.data);
+            return callback('Register failed');
+        });
     }
 };
 

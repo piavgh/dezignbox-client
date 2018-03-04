@@ -20,7 +20,7 @@ button {
     margin-bottom: 40px;
 }
 
-.form-signin {
+.form-signin, .form-register {
     width: 100%;
     max-width: 330px;
     padding: 15px;
@@ -31,7 +31,7 @@ button {
     font-weight: 400;
 }
 
-.form-signin .form-control {
+.form-signin .form-control, .form-register .form-control {
     position: relative;
     box-sizing: border-box;
     height: auto;
@@ -39,11 +39,11 @@ button {
     font-size: 16px;
 }
 
-.form-signin .form-control:focus {
+.form-signin .form-control:focus, .form-register .form-control:focus {
     z-index: 2;
 }
 
-.form-signin h1 {
+.form-signin h1, .form-register h1 {
     text-align: center;
     margin-bottom: 20px;
     font-family: 'Open Sans', Helvetica, sans-serif;
@@ -51,7 +51,7 @@ button {
     font-weight: bold;
 }
 
-.form-signin input {
+.form-signin input, .form-register input {
     border-radius: 8px;
     margin-bottom: 10px;
 }

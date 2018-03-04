@@ -21,11 +21,6 @@ class LoginPage extends Component {
             if (!error) {
                 this.props.boundSetLoginSuccess(true);
                 this.props.boundSetCurrentUser(currentUser);
-                try {
-                    this.props.history.push("/");
-                } catch (err) {
-                    console.log(err);
-                }
             } else {
                 this.props.boundSetLoginError({message: error});
             }

@@ -4,7 +4,10 @@ const initialState = {
     isLoginPending: false,
     isLoginSuccess: false,
     isLoginError: {},
-    currentUser: null
+    currentUser: null,
+    isRegisterPending: false,
+    isRegisterSuccess: false,
+    isRegisterError: {},
 };
 
 export default function Auth(state = initialState, action) {
@@ -36,6 +39,29 @@ export default function Auth(state = initialState, action) {
             return {
                 ...state,
                 currentUser: action.currentUser
+            };
+        case AuthActionTypes.SET_REGISTER_PENDING:
+            return {
+                ...state,
+                isRegisterPending: true,
+                isRegisterSuccess: false,
+                isRegisterError: {},
+                currentUser: null
+            };
+        case AuthActionTypes.SET_REGISTER_SUCCESS:
+            return {
+                ...state,
+                isRegisterPending: false,
+                isRegisterSuccess: true,
+                isRegisterError: {}
+            };
+        case AuthActionTypes.SET_REGISTER_ERROR:
+            return {
+                ...state,
+                isRegisterPending: false,
+                isRegisterSuccess: false,
+                isRegisterError: action.error,
+                currentUser: null
             };
         default:
             return state;

@@ -96,10 +96,10 @@ class Header extends Component {
 
 const mapStateToProps = state => (
     {
-        isLoginPending: state.isLoginPending,
-        isLoginSuccess: state.isLoginSuccess,
-        isLoginError: state.isLoginError,
-        currentUser: state.currentUser
+        isLoginPending: state.auth.isLoginPending,
+        isLoginSuccess: state.auth.isLoginSuccess,
+        isLoginError: state.auth.isLoginError,
+        currentUser: state.auth.currentUser
     }
 );
 

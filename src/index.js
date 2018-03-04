@@ -7,10 +7,10 @@ import registerServiceWorker from './registerServiceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import App from './containers/App';
-import AuthReducer from './reducers/auth.reducers';
+import reducers from './reducers';
 
 const store = createStore(
-    AuthReducer,
+    reducers,
     window.devToolsExtension && window.devToolsExtension()
 );
 

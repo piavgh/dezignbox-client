@@ -10,16 +10,20 @@ import AboutUs from "../components/AboutUs";
 import Design from "../components/Design";
 import Products from "../components/Products";
 import NotFound from '../components/NotFound';
+import {connect} from "react-redux";
+import Alert from "../components/Alert";
 
 class App extends Component {
 
     render() {
+        const {alert} = this.props;
 
         return (
             <BrowserRouter>
                 <div>
                     <Header/>
                     <div className="container">
+                        <Alert alert={alert}/>
                         <Switch>
                             <Route exact path={"/"} component={Home}/>
                             <Route path={"/login"} component={LoginPage}/>
@@ -36,4 +40,12 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapStateToProps = state => (
+    {
+        alert: state.alert,
+    }
+);
+
+export default connect(
+    mapStateToProps
+)(App);

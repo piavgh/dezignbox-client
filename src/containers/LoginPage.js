@@ -11,6 +11,7 @@ import {Redirect} from 'react-router-dom';
 import LoginForm from "../components/LoginForm";
 import AuthService from "../services/auth.services";
 import * as AuthActionCreators from "../actions/auth.actions";
+import {alertActionCreators} from '../actions/alert.actions';
 
 class LoginPage extends Component {
     handleLoginSubmit = (email, password) => {
@@ -21,8 +22,10 @@ class LoginPage extends Component {
             if (!error) {
                 this.props.boundSetLoginSuccess(true);
                 this.props.boundSetCurrentUser(currentUser);
+                this.props.boundSetAlertSuccess(`Welcome back ${currentUser.email}`);
             } else {
                 this.props.boundSetLoginError({message: error});
+                this.props.boundSetAlertError(error);
             }
         });
     };
@@ -60,10 +63,11 @@ LoginPage.propTypes = {
 
 const mapStateToProps = state => (
     {
-        isLoginPending: state.isLoginPending,
-        isLoginSuccess: state.isLoginSuccess,
-        isLoginError: state.isLoginError,
-        currentUser: state.currentUser
+        isLoginPending: state.auth.isLoginPending,
+        isLoginSuccess: state.auth.isLoginSuccess,
+        isLoginError: state.auth.isLoginError,
+        currentUser: state.auth.currentUser,
+        alert: state.alert
     }
 );
 
@@ -72,7 +76,10 @@ const mapDispatchToProps = dispatch => (
         boundSetLoginPending: bindActionCreators(AuthActionCreators.setLoginPending, dispatch),
         boundSetLoginSuccess: bindActionCreators(AuthActionCreators.setLoginSuccess, dispatch),
         boundSetLoginError: bindActionCreators(AuthActionCreators.setLoginError, dispatch),
-        boundSetCurrentUser: bindActionCreators(AuthActionCreators.setCurrentUser, dispatch)
+        boundSetCurrentUser: bindActionCreators(AuthActionCreators.setCurrentUser, dispatch),
+        boundSetAlertSuccess: bindActionCreators(alertActionCreators.setAlertSuccess, dispatch),
+        boundSetAlertError: bindActionCreators(alertActionCreators.setAlertError, dispatch),
+        boundClearAlert: bindActionCreators(alertActionCreators.clearAlert, dispatch)
     }
 );
 

@@ -32,7 +32,7 @@ export default function Auth(state = initialState, action) {
                 ...state,
                 isLoginPending: false,
                 isLoginSuccess: false,
-                isLoginError: action.error,
+                isLoginError: action.isLoginError,
                 currentUser: null
             };
         case AuthActionTypes.SET_CURRENT_USER:
@@ -60,7 +60,7 @@ export default function Auth(state = initialState, action) {
                 ...state,
                 isRegisterPending: false,
                 isRegisterSuccess: false,
-                isRegisterError: action.error,
+                isRegisterError: action.isRegisterError,
                 currentUser: null
             };
         default:

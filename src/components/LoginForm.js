@@ -58,10 +58,8 @@ class LoginForm extends Component {
                     </Label>
                 </div>
                 <button className="btn btn-lg btn-block" type="submit">Login</button>
-                <div className="message">
+                <div className="loading">
                     {this.props.isLoginPending && <div>Please wait...</div>}
-                    {this.props.isLoginSuccess && <div>Success.</div>}
-                    {this.props.isLoginError && <div>{this.props.isLoginError.message}</div>}
                 </div>
             </Form>
         );

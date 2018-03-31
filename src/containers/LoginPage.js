@@ -11,7 +11,7 @@ import {Redirect} from 'react-router-dom';
 import LoginForm from "../components/LoginForm";
 import AuthService from "../services/auth.services";
 import * as AuthActionCreators from "../actions/auth.actions";
-import {alertActionCreators} from '../actions/alert.actions';
+import {AlertActionCreators} from '../actions/alert.actions';
 
 class LoginPage extends Component {
     handleLoginSubmit = (email, password) => {
@@ -77,9 +77,9 @@ const mapDispatchToProps = dispatch => (
         boundSetLoginSuccess: bindActionCreators(AuthActionCreators.setLoginSuccess, dispatch),
         boundSetLoginError: bindActionCreators(AuthActionCreators.setLoginError, dispatch),
         boundSetCurrentUser: bindActionCreators(AuthActionCreators.setCurrentUser, dispatch),
-        boundSetAlertSuccess: bindActionCreators(alertActionCreators.setAlertSuccess, dispatch),
-        boundSetAlertError: bindActionCreators(alertActionCreators.setAlertError, dispatch),
-        boundClearAlert: bindActionCreators(alertActionCreators.clearAlert, dispatch)
+        boundSetAlertSuccess: bindActionCreators(AlertActionCreators.setAlertSuccess, dispatch),
+        boundSetAlertError: bindActionCreators(AlertActionCreators.setAlertError, dispatch),
+        boundClearAlert: bindActionCreators(AlertActionCreators.clearAlert, dispatch)
     }
 );
 

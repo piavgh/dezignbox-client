@@ -11,6 +11,7 @@ import {Redirect} from 'react-router-dom';
 import RegisterForm from "../components/RegisterForm";
 import AuthService from "../services/auth.services";
 import * as AuthActionCreators from "../actions/auth.actions";
+import {AlertActionCreators} from "../actions/alert.actions";
 
 class RegisterPage extends Component {
     handleRegisterSubmit = (email, password) => {
@@ -20,8 +21,10 @@ class RegisterPage extends Component {
             this.props.boundSetRegisterPending(false);
             if (!error) {
                 this.props.boundSetRegisterSuccess(true);
+                this.props.boundSetAlertSuccess(`You've successfully registered!`);
             } else {
                 this.props.boundSetRegisterError({message: error});
+                this.props.boundSetAlertError(error);
             }
         });
     };
@@ -56,9 +59,10 @@ RegisterPage.propTypes = {
 
 const mapStateToProps = state => (
     {
-        isRegisterPending: state.isRegisterPending,
-        isRegisterSuccess: state.isRegisterSuccess,
-        isRegisterError: state.isRegisterError
+        isRegisterPending: state.auth.isRegisterPending,
+        isRegisterSuccess: state.auth.isRegisterSuccess,
+        isRegisterError: state.auth.isRegisterError,
+        alert: state.alert.alert
     }
 );
 
@@ -66,7 +70,10 @@ const mapDispatchToProps = dispatch => (
     {
         boundSetRegisterPending: bindActionCreators(AuthActionCreators.setRegisterPending, dispatch),
         boundSetRegisterSuccess: bindActionCreators(AuthActionCreators.setRegisterSuccess, dispatch),
-        boundSetRegisterError: bindActionCreators(AuthActionCreators.setRegisterError, dispatch)
+        boundSetRegisterError: bindActionCreators(AuthActionCreators.setRegisterError, dispatch),
+        boundSetAlertSuccess: bindActionCreators(AlertActionCreators.setAlertSuccess, dispatch),
+        boundSetAlertError: bindActionCreators(AlertActionCreators.setAlertError, dispatch),
+        boundClearAlert: bindActionCreators(AlertActionCreators.clearAlert, dispatch)
     }
 );
 

@@ -1,6 +1,6 @@
 import {AlertActionTypes} from '../actiontypes/alert.actiontypes';
 
-export const alertActionCreators = {
+export const AlertActionCreators = {
     setAlertSuccess,
     setAlertError,
     clearAlert

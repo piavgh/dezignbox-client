@@ -6,11 +6,16 @@ import {
 } from 'reactstrap';
 
 const Alert = ({alert}) => {
-    return <Row>
-        <Col xs={12}>
-            {alert.message && <div className={`alert ${alert.type}`}>{alert.message}</div>}
-        </Col>
-    </Row>
+    if (alert.message) {
+        return <Row>
+            <Col xs={12}>
+                {alert.message && <div className={`alert ${alert.type}`}>{alert.message}</div>}
+            </Col>
+        </Row>
+    }
+
+    // If there is no alert message, hide the Alert div
+    return null;
 };
 
 Alert.propTypes = {

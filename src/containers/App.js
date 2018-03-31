@@ -7,7 +7,7 @@ import Header from './Header';
 import LoginPage from './LoginPage';
 import RegisterPage from './RegsisterPage';
 import AboutUs from "../components/AboutUs";
-import Design from "../components/Design";
+import DesignPage from "./DesignPage";
 import Products from "../components/Products";
 import NotFound from '../components/NotFound';
 import {connect} from "react-redux";
@@ -29,7 +29,7 @@ class App extends Component {
                             <Route path={"/login"} component={LoginPage}/>
                             <Route path={"/register"} component={RegisterPage}/>
                             <Route path={"/aboutUs"} component={AboutUs}/>
-                            <Route path={"/start-design"} component={Design}/>
+                            <Route path={"/start-design"} component={DesignPage}/>
                             <Route path={"/products"} component={Products}/>
                             <Route component={NotFound}/>
                         </Switch>

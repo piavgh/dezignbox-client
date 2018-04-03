@@ -55,3 +55,46 @@ button {
     border-radius: 8px;
     margin-bottom: 10px;
 }
+
+/* Design page START */
+
+.tab-content {
+    margin-top: 30px;
+}
+
+.dropzone-container {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.dropzone-container p {
+    padding: 10px;
+}
+
+.canvas-container {
+    text-align: center;
+    background-color: white;
+}
+
+.object-container {
+    width: 100%;
+}
+
+.object-img {
+    width: 70%;
+}
+
+.drawing-area {
+    position: absolute;
+    top: 80px;
+    left: 115px;
+    z-index: 1000;
+    width: 50%;
+    height: 80%;
+}
+
+.drawing-area:hover {
+    border: 2px dashed black;
+}
+
+/* Design page END */

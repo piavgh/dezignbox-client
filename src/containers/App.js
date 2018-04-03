@@ -12,6 +12,7 @@ import Products from "../components/Products";
 import NotFound from '../components/NotFound';
 import {connect} from "react-redux";
 import Alert from "../components/Alert";
+import PrivateRoute from "./PrivateRoute";
 
 class App extends Component {
 
@@ -29,8 +30,8 @@ class App extends Component {
                             <Route path={"/login"} component={LoginPage}/>
                             <Route path={"/register"} component={RegisterPage}/>
                             <Route path={"/aboutUs"} component={AboutUs}/>
-                            <Route path={"/start-design"} component={DesignPage}/>
-                            <Route path={"/products"} component={Products}/>
+                            <PrivateRoute path={"/start-design"} component={DesignPage}/>
+                            <PrivateRoute path={"/products"} component={Products}/>
                             <Route component={NotFound}/>
                         </Switch>
                     </div>

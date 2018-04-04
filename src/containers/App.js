@@ -1,18 +1,11 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 
 import './App.css';
-import Home from '../components/Home';
 import Header from './Header';
-import LoginPage from './LoginPage';
-import RegisterPage from './RegsisterPage';
-import AboutUs from "../components/AboutUs";
-import DesignPage from "./DesignPage";
-import Products from "../components/Products";
-import NotFound from '../components/NotFound';
 import {connect} from "react-redux";
 import Alert from "../components/Alert";
-import PrivateRoute from "./PrivateRoute";
+import Routes from "./Routes";
 
 class App extends Component {
 
@@ -25,15 +18,7 @@ class App extends Component {
                     <Header/>
                     <div className="container">
                         <Alert alert={alert}/>
-                        <Switch>
-                            <Route exact path={"/"} component={Home}/>
-                            <Route path={"/login"} component={LoginPage}/>
-                            <Route path={"/register"} component={RegisterPage}/>
-                            <Route path={"/aboutUs"} component={AboutUs}/>
-                            <PrivateRoute path={"/start-design"} component={DesignPage}/>
-                            <PrivateRoute path={"/products"} component={Products}/>
-                            <Route component={NotFound}/>
-                        </Switch>
+                        <Routes />
                     </div>
                 </div>
             </BrowserRouter>

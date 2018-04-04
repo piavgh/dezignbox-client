@@ -44,7 +44,7 @@ class LoginForm extends Component {
                 this.props.handleLoginSubmit(this.state.email, this.state.password);
             }}>
                 <h1>Login</h1>
-                <Label for="inputEmail" className="sr-only">Email address</Label>
+                <Label for="email" className="sr-only">Email address</Label>
                 <input type="email" id="email" className="form-control" name="email"
                        placeholder="Email"
                        required
@@ -52,7 +52,7 @@ class LoginForm extends Component {
                        value={this.state.email}
                        onChange={this.handleInputChange}
                 />
-                <Label for="inputPassword" className="sr-only">Password</Label>
+                <Label for="password" className="sr-only">Password</Label>
                 <input type="password"
                        id="password"
                        className="form-control"
@@ -74,9 +74,6 @@ class LoginForm extends Component {
                 <button className="btn btn-lg btn-block"
                         type="submit"
                         disabled={!this.validateForm()}>Login</button>
-                <div className="loading">
-                    {this.props.isLoginPending && <div>Please wait...</div>}
-                </div>
             </Form>
         );
     }

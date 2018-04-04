@@ -19,6 +19,16 @@ class RegisterForm extends Component {
         rePassword: ''
     };
 
+    handleInputChange = event => {
+        this.setState({
+            [event.target.id]: event.target.value
+        });
+    };
+
+    validateForm() {
+        return this.state.email.length > 0 && this.state.password.length > 0 && this.state.password === this.state.rePassword;
+    }
+
     render() {
         return (
             <Form className="form-register" role="form" onSubmit={(e) => {
@@ -26,41 +36,37 @@ class RegisterForm extends Component {
                 this.props.handleRegisterSubmit(this.state.email, this.state.password);
             }}>
                 <h1>Register</h1>
-                <Label for="inputEmail" className="sr-only">Email address</Label>
+                <Label for="email" className="sr-only">Email address</Label>
                 <input type="email"
-                       id="inputEmail"
+                       id="email"
                        className="form-control"
                        name="email"
                        placeholder="Email"
                        required
                        autoFocus
-                       onChange={(e) => {
-                           this.setState({email: e.target.value});
-                       }}
+                       onChange={this.handleInputChange}
                 />
-                <Label for="inputPassword" className="sr-only">Password</Label>
+                <Label for="password" className="sr-only">Password</Label>
                 <input type="password"
-                       id="inputPassword"
+                       id="password"
                        className="form-control"
                        name="password"
                        placeholder="Password"
                        required
-                       onChange={(e) => {
-                           this.setState({password: e.target.value});
-                       }}
+                       onChange={this.handleInputChange}
                 />
-                <Label for="inputRePassword" className="sr-only">Re-Password</Label>
+                <Label for="rePassword" className="sr-only">Re-Password</Label>
                 <input type="password"
-                       id="inputRePassword"
+                       id="rePassword"
                        className="form-control"
                        name="rePassword"
                        placeholder="Re-Password"
                        required
-                       onChange={(e) => {
-                           this.setState({rePassword: e.target.value});
-                       }}
+                       onChange={this.handleInputChange}
                 />
-                <button className="btn btn-lg btn-block" type="submit">Register</button>
+                <button className="btn btn-lg btn-block"
+                        type="submit"
+                        disabled={!this.validateForm()}>Register</button>
             </Form>
         );
     }

@@ -30,6 +30,15 @@ class RegisterForm extends Component {
     }
 
     render() {
+        // Render register button based on state value
+        let registerButton = this.props.isRegisterPending
+            ?
+            <button className={"btn btn-lg btn-block"}><i className="fas fa-spinner fa-spin"/></button>
+            :
+            <button className="btn btn-lg btn-block"
+                    type="submit"
+                    disabled={!this.validateForm()}>Register</button>;
+
         return (
             <Form className="form-register" role="form" onSubmit={(e) => {
                 e.preventDefault();
@@ -64,9 +73,7 @@ class RegisterForm extends Component {
                        required
                        onChange={this.handleInputChange}
                 />
-                <button className="btn btn-lg btn-block"
-                        type="submit"
-                        disabled={!this.validateForm()}>Register</button>
+                {registerButton}
             </Form>
         );
     }

@@ -6,3 +6,5 @@ export const SET_CURRENT_USER = 'auth/SET_CURRENT_USER';
 export const SET_REGISTER_PENDING = 'auth/SET_REGISTER_PENDING';
 export const SET_REGISTER_SUCCESS = 'auth/SET_REGISTER_SUCCESS';
 export const SET_REGISTER_ERROR = 'auth/SET_REGISTER_ERROR';
+
+export const LOGOUT = 'auth/LOGOUT';

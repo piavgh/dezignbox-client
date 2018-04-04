@@ -15,7 +15,8 @@ import {
 } from 'reactstrap';
 import {Link, NavLink as RRNavLink} from 'react-router-dom';
 import {connect} from "react-redux";
-
+import {bindActionCreators} from "redux";
+import * as AuthActionCreators from "../actions/auth.actions";
 
 class Header extends Component {
     static propTypes = {
@@ -38,7 +39,7 @@ class Header extends Component {
     }
 
     logOut = () => {
-        console.log("log out");
+        this.props.boundLogout();
     };
 
     renderRightMenu() {
@@ -102,6 +103,12 @@ const mapStateToProps = state => (
     }
 );
 
+const mapDispatchToProps = dispatch => (
+    {
+        boundLogout: bindActionCreators(AuthActionCreators.logout, dispatch)
+    }
+);
+
 export default connect(
-    mapStateToProps, null, null, {pure: false}
+    mapStateToProps, mapDispatchToProps, null, {pure: false}
 )(Header);

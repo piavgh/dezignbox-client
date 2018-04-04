@@ -48,3 +48,9 @@ export const setRegisterError = isRegisterError => {
         isRegisterError
     }
 };
+
+export const logout = () => {
+    return {
+        type: AuthActionTypes.LOGOUT
+    }
+};

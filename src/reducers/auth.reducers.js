@@ -63,6 +63,14 @@ export default function Auth(state = initialState, action) {
                 isRegisterError: action.isRegisterError,
                 currentUser: null
             };
+        case AuthActionTypes.LOGOUT:
+            return {
+                ...state,
+                isLoginPending: false,
+                isLoginSuccess: false,
+                isLoginError: {},
+                currentUser: null,
+            };
         default:
             return state;
     }

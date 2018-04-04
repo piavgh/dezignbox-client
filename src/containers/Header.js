@@ -84,7 +84,7 @@ class Header extends Component {
     render() {
         return (
             <Navbar color="faded" light expand="md">
-                <NavbarBrand href="/"><img src={"/images/dezignbox_logo.png"} alt={"Dezignbox Logo"}/></NavbarBrand>
+                <Link className={"navbar-brand"} to={"/"}><img src={"/images/dezignbox_logo.png"} alt={"Dezignbox Logo"}/></Link>
                 <NavbarToggler onClick={this.toggle}/>
                 <Collapse isOpen={this.state.isOpen} navbar>
                     {this.renderRightMenu()}

@@ -98,3 +98,12 @@ button {
 }
 
 /* Design page END */
+
+/* Not found page START */
+
+.not-found {
+    padding-top: 30px;
+    text-align: center;
+}
+
+/* Not found page END */

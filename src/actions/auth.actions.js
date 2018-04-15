@@ -2,8 +2,6 @@ import * as AuthActionTypes from '../actiontypes/auth.actiontypes';
 import * as AlertActionCreators from './alert.actions';
 import AuthService from "../services/auth.services";
 import Auth from "../helpers/auth";
-import {setAlertSuccess} from "./alert.actions";
-import {setAlertError} from "./alert.actions";
 
 export const setLoginPending = isLoginPending => {
     return {
@@ -88,10 +86,10 @@ export const register = (email, password) => {
             dispatch(setRegisterPending(false));
             if (!error) {
                 dispatch(setRegisterSuccess(true));
-                dispatch(setAlertSuccess(`You've successfully registered!`));
+                dispatch(AlertActionCreators.setAlertSuccess(`You've successfully registered!`));
             } else {
                 dispatch(setRegisterError({message: error}));
-                dispatch(setAlertError(error));
+                dispatch(AlertActionCreators.setAlertError(error));
             }
         });
     }

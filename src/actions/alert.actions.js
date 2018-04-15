@@ -1,27 +1,21 @@
 import {AlertActionTypes} from '../actiontypes/alert.actiontypes';
 
-export const AlertActionCreators = {
-    setAlertSuccess,
-    setAlertError,
-    clearAlert
-};
-
-function setAlertSuccess(message) {
+export const setAlertSuccess = (message) => {
     return {
         type: AlertActionTypes.SUCCESS,
         message
     };
-}
+};
 
-function setAlertError(message) {
+export const setAlertError = (message) => {
     return {
         type: AlertActionTypes.ERROR,
         message
     };
-}
+};
 
-function clearAlert() {
+export const clearAlert = () => {
     return {
         type: AlertActionTypes.CLEAR
     };
-}
+};

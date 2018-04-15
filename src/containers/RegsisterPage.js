@@ -9,24 +9,11 @@ import {connect} from "react-redux";
 import {Redirect} from 'react-router-dom';
 
 import RegisterForm from "../components/RegisterForm";
-import AuthService from "../services/auth.services";
 import * as AuthActionCreators from "../actions/auth.actions";
-import {AlertActionCreators} from "../actions/alert.actions";
 
 class RegisterPage extends Component {
     handleRegisterSubmit = (email, password) => {
-        this.props.boundSetRegisterPending(true);
-
-        AuthService.register(email, password, (error) => {
-            this.props.boundSetRegisterPending(false);
-            if (!error) {
-                this.props.boundSetRegisterSuccess(true);
-                this.props.boundSetAlertSuccess(`You've successfully registered!`);
-            } else {
-                this.props.boundSetRegisterError({message: error});
-                this.props.boundSetAlertError(error);
-            }
-        });
+        this.props.boundRegister(email, password);
     };
 
     render() {
@@ -68,12 +55,7 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
     {
-        boundSetRegisterPending: bindActionCreators(AuthActionCreators.setRegisterPending, dispatch),
-        boundSetRegisterSuccess: bindActionCreators(AuthActionCreators.setRegisterSuccess, dispatch),
-        boundSetRegisterError: bindActionCreators(AuthActionCreators.setRegisterError, dispatch),
-        boundSetAlertSuccess: bindActionCreators(AlertActionCreators.setAlertSuccess, dispatch),
-        boundSetAlertError: bindActionCreators(AlertActionCreators.setAlertError, dispatch),
-        boundClearAlert: bindActionCreators(AlertActionCreators.clearAlert, dispatch)
+        boundRegister: bindActionCreators(AuthActionCreators.register, dispatch)
     }
 );
 

@@ -9,27 +9,11 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
 import LoginForm from "../components/LoginForm";
-import AuthService from "../services/auth.services";
 import * as AuthActionCreators from "../actions/auth.actions";
-import {AlertActionCreators} from '../actions/alert.actions';
-import Auth from '../helpers/auth';
 
 class LoginPage extends Component {
     handleLoginSubmit = (email, password) => {
-        this.props.boundSetLoginPending(true);
-
-        AuthService.login(email, password, (error, data) => {
-            this.props.boundSetLoginPending(false);
-            if (!error) {
-                this.props.boundSetLoginSuccess(true);
-                this.props.boundSetCurrentUser(data.currentUser);
-                Auth.authenticateUser(data.token);
-                this.props.boundSetAlertSuccess(`Welcome back ${data.currentUser.email}`);
-            } else {
-                this.props.boundSetLoginError({message: error});
-                this.props.boundSetAlertError(error);
-            }
-        });
+        this.props.boundLogin(email, password);
     };
 
     render() {
@@ -75,13 +59,7 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
     {
-        boundSetLoginPending: bindActionCreators(AuthActionCreators.setLoginPending, dispatch),
-        boundSetLoginSuccess: bindActionCreators(AuthActionCreators.setLoginSuccess, dispatch),
-        boundSetLoginError: bindActionCreators(AuthActionCreators.setLoginError, dispatch),
-        boundSetCurrentUser: bindActionCreators(AuthActionCreators.setCurrentUser, dispatch),
-        boundSetAlertSuccess: bindActionCreators(AlertActionCreators.setAlertSuccess, dispatch),
-        boundSetAlertError: bindActionCreators(AlertActionCreators.setAlertError, dispatch),
-        boundClearAlert: bindActionCreators(AlertActionCreators.clearAlert, dispatch)
+        boundLogin: bindActionCreators(AuthActionCreators.login, dispatch),
     }
 );
 

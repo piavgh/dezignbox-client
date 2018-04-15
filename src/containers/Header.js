@@ -17,6 +17,7 @@ import {Link, NavLink as RRNavLink} from 'react-router-dom';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import * as AuthActionCreators from "../actions/auth.actions";
+import Auth from "../helpers/auth";
 
 class Header extends Component {
     static propTypes = {
@@ -43,7 +44,7 @@ class Header extends Component {
     };
 
     renderRightMenu() {
-        if (this.props.currentUser) {
+        if (Auth.isUserAuthenticated() && this.props.currentUser) {
             return <Nav className="ml-auto" navbar>
                 <NavItem>
                     <NavLink to="/start-design" tag={RRNavLink}>Start Designing</NavLink>

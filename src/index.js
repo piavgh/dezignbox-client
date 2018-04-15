@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
-import logger from 'redux-logger';
+import loggerMiddleware from 'redux-logger';
+import thunkMiddleware from 'redux-thunk'
 
 import registerServiceWorker from './registerServiceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -13,7 +14,10 @@ import reducers from './reducers';
 const store = createStore(
     reducers,
     window.devToolsExtension && window.devToolsExtension(),
-    applyMiddleware(logger)
+    applyMiddleware(
+        thunkMiddleware, // lets us dispatch() functions
+        loggerMiddleware // neat middleware that logs actions
+    )
 );
 
 ReactDOM.render(

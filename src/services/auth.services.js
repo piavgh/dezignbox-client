@@ -2,18 +2,18 @@ import axios from 'axios';
 
 const AuthService = {
     login: (email, password, callback) => {
-        axios.post('/login', {
+        axios.post('/auth/login', {
             email: email,
             password: password
         }).then(function (response) {
-            return callback(null, response.data.currentUser);
+            return callback(null, response.data);
         }).catch(function (error) {
             return callback('Invalid email and password');
         });
     },
 
     register: (email, password, callback) => {
-        axios.post('/register', {
+        axios.post('/auth/register', {
             email: email,
             password: password
         }).then(function (response) {

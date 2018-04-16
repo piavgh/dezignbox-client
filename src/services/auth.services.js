@@ -23,6 +23,19 @@ const AuthService = {
             console.log(error.response.data);
             return callback('Register failed');
         });
+    },
+
+    loadUserFromToken: (token, callback) => {
+        axios.get('/auth/me', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }).then((response) => {
+            return callback(null, response.data);
+        }).catch((err) => {
+            console.log(err.response);
+            return callback(err.response);
+        });
     }
 };
 

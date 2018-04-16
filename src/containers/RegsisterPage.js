@@ -13,7 +13,7 @@ import * as AuthActionCreators from "../actions/auth.actions";
 
 class RegisterPage extends Component {
     handleRegisterSubmit = (email, password) => {
-        this.props.boundRegister(email, password);
+        this.props.boundRegisterAction(email, password);
     };
 
     render() {
@@ -55,7 +55,7 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
     {
-        boundRegister: bindActionCreators(AuthActionCreators.register, dispatch)
+        boundRegisterAction: bindActionCreators(AuthActionCreators.registerAction, dispatch)
     }
 );
 

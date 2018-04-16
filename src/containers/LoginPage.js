@@ -13,7 +13,7 @@ import * as AuthActionCreators from "../actions/auth.actions";
 
 class LoginPage extends Component {
     handleLoginSubmit = (email, password) => {
-        this.props.boundLogin(email, password);
+        this.props.boundLoginAction(email, password);
     };
 
     render() {
@@ -59,7 +59,7 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
     {
-        boundLogin: bindActionCreators(AuthActionCreators.login, dispatch),
+        boundLoginAction: bindActionCreators(AuthActionCreators.loginAction, dispatch),
     }
 );
 

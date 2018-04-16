@@ -59,7 +59,7 @@ export const logout = () => {
     }
 };
 
-export const login = (email, password) => {
+export const loginAction = (email, password) => {
 
     return (dispatch) => {
         dispatch(setLoginPending(true));
@@ -89,7 +89,7 @@ export const login = (email, password) => {
     };
 };
 
-export const register = (email, password) => {
+export const registerAction = (email, password) => {
     return (dispatch) => {
         dispatch(setRegisterPending(true));
 
@@ -101,6 +101,27 @@ export const register = (email, password) => {
             } else {
                 dispatch(setRegisterError({message: error}));
                 dispatch(AlertActionCreators.setAlertError(error));
+            }
+        });
+    }
+};
+
+
+export const loadUserFromToken = () => {
+    return (dispatch) => {
+        let token = localStorage.getItem('token');
+        if (!token || token === '') {//if there is no token, dont bother
+            return;
+        }
+
+        AuthService.loadUserFromToken(token, (err, data) => {
+            if (!err) {
+                dispatch(setLoginSuccess(true));
+                dispatch(setCurrentUser(data.user))
+            } else {
+                dispatch(setLoginError({
+                    message: err
+                }));
             }
         });
     }

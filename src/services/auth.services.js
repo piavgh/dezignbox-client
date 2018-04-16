@@ -8,7 +8,7 @@ const AuthService = {
         }).then(function (response) {
             return callback(null, response.data);
         }).catch(function (error) {
-            return callback('Invalid email and password');
+            return callback(error);
         });
     },
 

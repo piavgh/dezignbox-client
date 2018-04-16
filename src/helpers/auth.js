@@ -19,10 +19,10 @@ class Auth {
     }
 
     /**
-     * Deauthenticate a user. Remove a token from Local Storage.
+     * DeAuthenticate a user. Remove a token from Local Storage.
      *
      */
-    static deauthenticateUser() {
+    static deAuthenticateUser() {
         localStorage.removeItem('token');
     }
 

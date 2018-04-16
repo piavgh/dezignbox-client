@@ -2,8 +2,8 @@ import * as AuthActionTypes from '../actiontypes/auth.actiontypes';
 
 const initialState = {
     isLoginPending: false,
-    isLoginSuccess: false,
-    isLoginError: {},
+    isAuthenticated: false,
+    loginError: {},
     currentUser: null,
     isRegisterPending: false,
     isRegisterSuccess: false,
@@ -16,23 +16,23 @@ export default function Auth(state = initialState, action) {
             return {
                 ...state,
                 isLoginPending: true,
-                isLoginSuccess: false,
-                isLoginError: {},
+                isAuthenticated: false,
+                loginError: {},
                 currentUser: null
             };
         case AuthActionTypes.SET_LOGIN_SUCCESS:
             return {
                 ...state,
                 isLoginPending: false,
-                isLoginSuccess: true,
-                isLoginError: {}
+                isAuthenticated: true,
+                loginError: {}
             };
         case AuthActionTypes.SET_LOGIN_ERROR:
             return {
                 ...state,
                 isLoginPending: false,
-                isLoginSuccess: false,
-                isLoginError: action.isLoginError,
+                isAuthenticated: false,
+                loginError: action.loginError,
                 currentUser: null
             };
         case AuthActionTypes.SET_CURRENT_USER:
@@ -67,8 +67,8 @@ export default function Auth(state = initialState, action) {
             return {
                 ...state,
                 isLoginPending: false,
-                isLoginSuccess: false,
-                isLoginError: {},
+                isAuthenticated: false,
+                loginError: {},
                 currentUser: null,
             };
         default:

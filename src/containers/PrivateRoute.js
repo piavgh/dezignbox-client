@@ -2,12 +2,12 @@ import React from 'react';
 import {Route, Redirect, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-const PrivateRoute = ({component: Component, isLoginSuccess, ...rest}) => {
+const PrivateRoute = ({component: Component, isAuthenticated, ...rest}) => {
     return <Route
         {...rest}
         render={
             props => {
-                return isLoginSuccess ?
+                return isAuthenticated ?
                     (
                         <Component {...props} />
                     )
@@ -27,7 +27,7 @@ const PrivateRoute = ({component: Component, isLoginSuccess, ...rest}) => {
 
 const mapStateToProps = state => (
     {
-        isLoginSuccess: state.auth.isLoginSuccess
+        isAuthenticated: state.auth.isAuthenticated
     }
 );
 

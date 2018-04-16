@@ -17,9 +17,9 @@ class LoginPage extends Component {
     };
 
     render() {
-        const {isLoginPending, isLoginSuccess, isLoginError, currentUser} = this.props;
+        const {isLoginPending, isAuthenticated, loginError, currentUser} = this.props;
 
-        if (isLoginSuccess) {
+        if (isAuthenticated) {
             return <Redirect to='/'/>
         }
 
@@ -31,8 +31,8 @@ class LoginPage extends Component {
                 <LoginForm
                     handleLoginSubmit={this.handleLoginSubmit}
                     isLoginPending={isLoginPending}
-                    isLoginSuccess={isLoginSuccess}
-                    isLoginError={isLoginError}
+                    isAuthenticated={isAuthenticated}
+                    loginError={loginError}
                     currentUser={currentUser}
                 />
             </Col>
@@ -43,15 +43,15 @@ class LoginPage extends Component {
 
 LoginPage.propTypes = {
     isLoginPending: PropTypes.bool.isRequired,
-    isLoginSuccess: PropTypes.bool.isRequired,
-    isLoginError: PropTypes.object.isRequired
+    isAuthenticated: PropTypes.bool.isRequired,
+    loginError: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => (
     {
         isLoginPending: state.auth.isLoginPending,
-        isLoginSuccess: state.auth.isLoginSuccess,
-        isLoginError: state.auth.isLoginError,
+        isAuthenticated: state.auth.isAuthenticated,
+        loginError: state.auth.loginError,
         currentUser: state.auth.currentUser,
         alert: state.alert
     }

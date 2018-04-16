@@ -10,17 +10,17 @@ export const setLoginPending = isLoginPending => {
     }
 };
 
-export const setLoginSuccess = isLoginSuccess => {
+export const setLoginSuccess = isAuthenticated => {
     return {
         type: AuthActionTypes.SET_LOGIN_SUCCESS,
-        isLoginSuccess
+        isAuthenticated
     }
 };
 
-export const setLoginError = isLoginError => {
+export const setLoginError = loginError => {
     return {
         type: AuthActionTypes.SET_LOGIN_ERROR,
-        isLoginError
+        loginError
     }
 };
 
@@ -53,6 +53,7 @@ export const setRegisterError = isRegisterError => {
 };
 
 export const logout = () => {
+    Auth.deAuthenticateUser();
     return {
         type: AuthActionTypes.LOGOUT
     }
@@ -71,8 +72,18 @@ export const login = (email, password) => {
                 Auth.authenticateUser(data.token);
                 dispatch(AlertActionCreators.setAlertSuccess(`Welcome back ${data.currentUser.email}`));
             } else {
-                dispatch(setLoginError({message: error}));
-                dispatch(AlertActionCreators.setAlertError(error));
+                if (error.response.status === 401) {
+                    let message = 'Invalid email and password';
+                    dispatch(setLoginError({
+                        message: message
+                    }));
+                    dispatch(AlertActionCreators.setAlertError(message));
+                } else {
+                    dispatch(setLoginError({
+                        message: error.response.data
+                    }));
+                    dispatch(AlertActionCreators.setAlertError(error.response.data));
+                }
             }
         });
     };

@@ -9,8 +9,8 @@ class LoginForm extends Component {
     static propTypes = {
         handleLoginSubmit: PropTypes.func.isRequired,
         isLoginPending: PropTypes.bool.isRequired,
-        isLoginSuccess: PropTypes.bool.isRequired,
-        isLoginError: PropTypes.object.isRequired,
+        isAuthenticated: PropTypes.bool.isRequired,
+        loginError: PropTypes.object.isRequired,
         currentUser: PropTypes.object
     };
 
@@ -41,7 +41,7 @@ class LoginForm extends Component {
         // Render login button based on state value
         let loginButton = this.props.isLoginPending
             ?
-            <button className={"btn btn-lg btn-block"}><i className="fas fa-spinner fa-spin"/></button>
+            <button className={"btn btn-lg btn-block"}><span><i className="fas fa-spinner fa-spin"/></span></button>
             :
             <button className="btn btn-lg btn-block"
                     type="submit"

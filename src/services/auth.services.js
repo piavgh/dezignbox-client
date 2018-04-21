@@ -6,7 +6,7 @@ const AuthService = {
             email: email,
             password: password
         }).then(function (response) {
-            return callback(null, response.data);
+            return callback(null, response.data.data);
         }).catch(function (error) {
             return callback(error);
         });

@@ -114,10 +114,10 @@ export const loadUserFromToken = () => {
             return;
         }
 
-        AuthService.loadUserFromToken(token, (err, data) => {
+        AuthService.loadUserFromToken(token, (err, response) => {
             if (!err) {
                 dispatch(setLoginSuccess(true));
-                dispatch(setCurrentUser(data.user))
+                dispatch(setCurrentUser(response.data.user))
             } else {
                 dispatch(setLoginError({
                     message: err

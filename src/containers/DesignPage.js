@@ -30,22 +30,29 @@ class DesignPage extends Component {
     };
 
     render() {
-        return <Row>
-            <Col xs={12} md={4}>
-                <Tools
-                    files={this.state.files}
-                    onTextChange={this.handleTextChange}
-                    onFileDrop={this.handleFileDrop}/>
-            </Col>
-            <Col xs={12} md={5}>
-                <Canvas
-                    text={this.state.text}
-                    image={this.state.image}/>
-            </Col>
-            <Col xs={12} md={3}>
-                <Styles/>
-            </Col>
-        </Row>;
+        return <div>
+            <Row>
+                <Col xs={12}>
+
+                </Col>
+            </Row>
+            <Row>
+                <Col xs={12} lg={3}>
+                    <Tools
+                        files={this.state.files}
+                        onTextChange={this.handleTextChange}
+                        onFileDrop={this.handleFileDrop}/>
+                </Col>
+                <Col xs={12} lg={6}>
+                    <Canvas
+                        text={this.state.text}
+                        image={this.state.image}/>
+                </Col>
+                <Col xs={12} lg={3}>
+                    <Styles/>
+                </Col>
+            </Row>
+        </div>
     }
 }
 

@@ -76,7 +76,8 @@ class Tools extends Component {
                                 <Col sm="12">
                                     <FormGroup>
                                         <div className="dropzone-container">
-                                            <Dropzone onDrop={this.props.onFileDrop}>
+                                            <Dropzone onDrop={this.props.onFileDrop}
+                                                      multiple={false}>
                                                 <p>Drop a design here, or click to select design to upload.</p>
                                             </Dropzone>
                                         </div>

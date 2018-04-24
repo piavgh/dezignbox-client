@@ -32,7 +32,9 @@ class DesignImage extends Component {
     }
 
     render() {
-        return <Image image={this.state.image} draggable={true}/>;
+        return <Image name="user-design"
+                      image={this.state.image}
+                      draggable={true}/>;
     }
 }
 

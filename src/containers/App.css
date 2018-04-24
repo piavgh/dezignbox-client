@@ -58,12 +58,18 @@ button {
 
 /* Design page START */
 
+/*Tools Component START*/
+
 .tab-content {
-    margin-top: 30px;
+    background-color: #F3F5F6;
+    padding: 25px 15px 15px;
 }
 
 .dropzone-container {
-    width: 50%;
+
+}
+
+.dropzone-container div {
     margin: 0 auto;
 }
 
@@ -71,31 +77,35 @@ button {
     padding: 10px;
 }
 
+/*Tools Component END*/
+
+/*Canvas Component START*/
 .canvas-container {
     text-align: center;
     background-color: white;
-}
-
-.object-container {
-    width: 100%;
-}
-
-.object-img {
-    width: 70%;
+    min-height: 300px;
 }
 
 .drawing-area {
     position: absolute;
-    top: 80px;
-    left: 115px;
+    top: 0;
+    left: 5%;
+    right: 5%;
     z-index: 1000;
-    width: 50%;
-    height: 80%;
+    width: 90%;
+    margin: 0 auto;
 }
 
 .drawing-area:hover {
     border: 2px dashed black;
 }
+
+.drawing-area div {
+    width: 100%;
+    height: 100%;
+}
+
+/*Canvas Component END*/
 
 /* Design page END */
 

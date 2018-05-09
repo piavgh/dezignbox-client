@@ -94,10 +94,7 @@ button {
     z-index: 1000;
     width: 90%;
     margin: 0 auto;
-}
-
-.drawing-area:hover {
-    border: 2px dashed black;
+    border: 2px solid black;
 }
 
 .drawing-area div {

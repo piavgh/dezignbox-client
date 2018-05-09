@@ -7,7 +7,7 @@ import {
 const Styles = props => {
     return <Row>
         <Col xs={12}>
-            Styles
+            <button>Buy this</button>
         </Col>
     </Row>;
 };

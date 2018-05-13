@@ -1,8 +1,8 @@
-import axios from 'axios';
+import BaseService from './base.service';
 
 const AuthService = {
     login: (email, password, callback) => {
-        axios.post('/auth/login', {
+        return BaseService.post('/auth/login', {
             email: email,
             password: password
         }).then(function (response) {
@@ -13,7 +13,7 @@ const AuthService = {
     },
 
     register: (email, password, callback) => {
-        axios.post('/auth/register', {
+        BaseService.post('/auth/register', {
             email: email,
             password: password
         }).then(function (response) {
@@ -26,7 +26,7 @@ const AuthService = {
     },
 
     loadUserFromToken: (token, callback) => {
-        axios.get('/auth/me', {
+        return BaseService.get('/auth/me', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

@@ -7,11 +7,20 @@ import {connect} from "react-redux";
 import Alert from "../components/Alert";
 import Routes from "./Routes";
 import * as AuthActionCreators from "../actions/auth.actions";
+import * as AlertActionCreators from '../actions/alert.actions';
 
 class App extends Component {
 
     componentWillMount() {
         this.props.boundLoadUserFromToken();
+        this.unlisten = this.props.history.listen((location, action) => {
+            console.log("on route change");
+            this.props.boundClearAlert();
+        });
+    }
+
+    componentWillUnmount() {
+        this.unlisten();
     }
 
     render() {
@@ -38,6 +47,7 @@ const mapStateToProps = state => (
 const mapDispatchToProps = dispatch => (
     {
         boundLoadUserFromToken: bindActionCreators(AuthActionCreators.loadUserFromToken, dispatch),
+        boundClearAlert: bindActionCreators(AlertActionCreators.clearAlert, dispatch)
     }
 );
 

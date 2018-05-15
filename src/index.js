@@ -1,15 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
 import {createStore, applyMiddleware} from 'redux';
-import {Provider} from 'react-redux';
 import loggerMiddleware from 'redux-logger';
-import thunkMiddleware from 'redux-thunk'
+import thunkMiddleware from 'redux-thunk';
 
 import registerServiceWorker from './registerServiceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
-import App from './containers/App';
+
 import reducers from './reducers';
+import Root from './containers/Root';
 
 const store = createStore(
     reducers,
@@ -20,10 +20,9 @@ const store = createStore(
     )
 );
 
-ReactDOM.render(
-    <Provider store={store}>
-        <App/>
-    </Provider>,
+render(
+    <Root store={store}/>,
     document.getElementById('root')
 );
+
 registerServiceWorker();

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router} from 'react-router-dom';
 import {bindActionCreators} from "redux";
 
 import './App.css';
@@ -19,15 +18,13 @@ class App extends Component {
         const {alert} = this.props;
 
         return (
-            <Router>
-                <div>
-                    <Header/>
-                    <div className="container">
-                        <Alert alert={alert}/>
-                        <Routes />
-                    </div>
+            <div>
+                <Header/>
+                <div className="container">
+                    <Alert alert={alert}/>
+                    <Routes/>
                 </div>
-            </Router>
+            </div>
         );
     }
 }

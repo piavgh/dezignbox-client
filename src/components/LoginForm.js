@@ -5,6 +5,8 @@ import {
     Label
 } from 'reactstrap';
 
+import LoaderButton from './LoaderButton';
+
 class LoginForm extends Component {
     static propTypes = {
         handleLoginSubmit: PropTypes.func.isRequired,
@@ -38,15 +40,6 @@ class LoginForm extends Component {
     }
 
     render() {
-        // Render login button based on state value
-        let loginButton = this.props.isLoginPending
-            ?
-            <button className={"btn btn-lg btn-block"}><span><i className="fas fa-spinner fa-spin"/></span></button>
-            :
-            <button className="btn btn-lg btn-block"
-                    type="submit"
-                    disabled={!this.validateForm()}>Login</button>;
-
         return (
             <Form className="form-signin" role="form" onSubmit={(e) => {
                 e.preventDefault();
@@ -80,7 +73,14 @@ class LoginForm extends Component {
                         /> Remember Me
                     </Label>
                 </div>
-                {loginButton}
+                <LoaderButton
+                    block
+                    className="btn-success"
+                    disabled={!this.validateForm()}
+                    isLoading={this.props.isLoginPending}
+                    text="Login"
+                    loadingText="Logging in…"
+                />
             </Form>
         );
     }

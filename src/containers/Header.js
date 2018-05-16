@@ -47,7 +47,7 @@ class Header extends Component {
         if (Auth.isUserAuthenticated() && this.props.currentUser) {
             return <Nav className="ml-auto" navbar>
                 <NavItem>
-                    <NavLink to="/start-design" tag={RRNavLink}>Start Designing</NavLink>
+                    <NavLink to="/start-design/design" tag={RRNavLink}>Start Designing</NavLink>
                 </NavItem>
                 <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav caret>

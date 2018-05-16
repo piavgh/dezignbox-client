@@ -5,6 +5,7 @@ import {
     Col
 } from 'reactstrap';
 
+import './DesignPage.css';
 import Tools from "../components/DesignPage/Tools";
 import Canvas from "../components/DesignPage/Canvas";
 import Styles from "../components/DesignPage/Styles";
@@ -14,7 +15,8 @@ class DesignPage extends Component {
     state = {
         text: '',
         image: '',
-        files: []
+        files: [],
+        isUploadingImage: false
     };
 
     static propTypes = {};
@@ -24,6 +26,7 @@ class DesignPage extends Component {
     };
 
     handleFileDrop = files => {
+        this.setState({isUploadingImage: true});
         const uploaders = files.map(file => {
             // Initial FormData
             const formData = new FormData();
@@ -35,12 +38,13 @@ class DesignPage extends Component {
 
             // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
             return axios.post("https://api.cloudinary.com/v1_1/dezignbox/image/upload", formData, {
-                headers: { "X-Requested-With": "XMLHttpRequest" },
+                headers: {"X-Requested-With": "XMLHttpRequest"},
             }).then(response => {
                 const data = response.data;
                 const fileURL = data.secure_url; // You should store this URL for future references in your app
                 console.log(data);
                 console.log(fileURL);
+                this.setState({isUploadingImage: false});
             })
         });
 
@@ -56,24 +60,28 @@ class DesignPage extends Component {
 
     render() {
         return <div>
-            <Row>
-                <Col xs={12}>
+            {
+                this.state.isUploadingImage && <Row>
+                    <Col xs={{size: 10, offset: 1}} lg={{size: 12, offset: 0}} className="uploading-image-container">
+                        <p className="sending-image">Sending image</p>
+                        <p className="please-wait">Please wait...</p>
+                    </Col>
+                </Row>
+            }
 
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={12} lg={3}>
+            <Row className="campaign-design-container">
+                <Col xs={{size: 10, offset: 1}} lg={{size: 3, offset: 0}}>
                     <Tools
                         files={this.state.files}
                         onTextChange={this.handleTextChange}
                         onFileDrop={this.handleFileDrop}/>
                 </Col>
-                <Col xs={12} lg={6}>
+                <Col xs={{size: 10, offset: 1}} lg={{size: 6, offset: 0}}>
                     <Canvas
                         text={this.state.text}
                         image={this.state.image}/>
                 </Col>
-                <Col xs={12} lg={3}>
+                <Col xs={{size: 10, offset: 1}} lg={{size: 3, offset: 0}}>
                     <Styles/>
                 </Col>
             </Row>

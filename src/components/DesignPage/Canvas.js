@@ -37,8 +37,8 @@ class Canvas extends Component {
 
     checkSize = () => {
         const width = this.container.offsetWidth;
-        this.container.style.width = width * 3/4;
-        const height = width * 3/4;
+        this.container.style.width = width * 0.6;
+        const height = width * 0.6;
         this.setState({
             stageWidth: width,
             stageHeight: height

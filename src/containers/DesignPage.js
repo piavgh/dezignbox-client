@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Route, Switch} from "react-router-dom";
 import axios from 'axios';
 import {
     Row,
@@ -8,7 +9,7 @@ import {
 import './DesignPage.css';
 import Tools from "../components/DesignPage/Tools";
 import Canvas from "../components/DesignPage/Canvas";
-import Styles from "../components/DesignPage/Styles";
+import CampaignInfo from "./CampaignInfo";
 
 class DesignPage extends Component {
 
@@ -63,26 +64,28 @@ class DesignPage extends Component {
             {
                 this.state.isUploadingImage && <Row>
                     <Col xs={{size: 10, offset: 1}} lg={{size: 12, offset: 0}} className="uploading-image-container">
-                        <p className="sending-image">Sending image</p>
-                        <p className="please-wait">Please wait...</p>
+                        <p className="sending-image-text">Sending image</p>
+                        <p className="please-wait-text">Please wait...</p>
                     </Col>
                 </Row>
             }
 
             <Row className="campaign-design-container">
-                <Col xs={{size: 10, offset: 1}} lg={{size: 3, offset: 0}}>
-                    <Tools
-                        files={this.state.files}
-                        onTextChange={this.handleTextChange}
-                        onFileDrop={this.handleFileDrop}/>
+                <Col xs={{size: 10, offset: 1}} lg={{size: 4, offset: 0}}>
+                    <Switch>
+                        <Route path="/start-design/design" render={() => {
+                            return <Tools
+                                files={this.state.files}
+                                onTextChange={this.handleTextChange}
+                                onFileDrop={this.handleFileDrop}/>
+                        }}/>
+                        <Route path="/start-design/campaign-info" component={CampaignInfo}/>
+                    </Switch>
                 </Col>
-                <Col xs={{size: 10, offset: 1}} lg={{size: 6, offset: 0}}>
+                <Col xs={{size: 10, offset: 1}} lg={{size: 8, offset: 0}}>
                     <Canvas
                         text={this.state.text}
                         image={this.state.image}/>
-                </Col>
-                <Col xs={{size: 10, offset: 1}} lg={{size: 3, offset: 0}}>
-                    <Styles/>
                 </Col>
             </Row>
         </div>

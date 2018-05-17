@@ -9,7 +9,7 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
 import LoginForm from "../components/LoginForm";
-import * as AuthActionCreators from "../actions/auth.actions";
+import * as AuthActionCreators from "../redux/actions/auth.actions";
 
 class LoginPage extends Component {
     handleLoginSubmit = (email, password) => {

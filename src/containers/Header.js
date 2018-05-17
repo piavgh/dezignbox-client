@@ -16,7 +16,7 @@ import {
 import {Link, NavLink as RRNavLink} from 'react-router-dom';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import * as AuthActionCreators from "../actions/auth.actions";
+import * as AuthActionCreators from "../redux/actions/auth.actions";
 import Auth from "../helpers/auth";
 
 class Header extends Component {

@@ -9,7 +9,7 @@ import {connect} from "react-redux";
 import {Redirect} from 'react-router-dom';
 
 import RegisterForm from "../components/RegisterForm";
-import * as AuthActionCreators from "../actions/auth.actions";
+import * as AuthActionCreators from "../redux/actions/auth.actions";
 
 class RegisterPage extends Component {
     handleRegisterSubmit = (email, password) => {

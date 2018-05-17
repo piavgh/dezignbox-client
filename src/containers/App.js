@@ -6,8 +6,8 @@ import Header from './Header';
 import {connect} from "react-redux";
 import Alert from "../components/Alert";
 import Routes from "./Routes";
-import * as AuthActionCreators from "../actions/auth.actions";
-import * as AlertActionCreators from '../actions/alert.actions';
+import * as AuthActionCreators from "../redux/actions/auth.actions";
+import * as AlertActionCreators from '../redux/actions/alert.actions';
 
 class App extends Component {
 

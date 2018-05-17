@@ -8,7 +8,7 @@ import registerServiceWorker from './registerServiceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
-import reducers from './reducers';
+import reducers from './redux/reducers';
 import Root from './containers/Root';
 
 const store = createStore(

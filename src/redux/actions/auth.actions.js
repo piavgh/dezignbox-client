@@ -1,7 +1,7 @@
 import * as AuthActionTypes from '../actiontypes/auth.actiontypes';
 import * as AlertActionCreators from './alert.actions';
-import AuthService from "../services/auth.services";
-import Auth from "../helpers/auth";
+import AuthService from "../../services/auth.services";
+import Auth from "../../helpers/auth";
 
 export const setLoginPending = isLoginPending => {
     return {

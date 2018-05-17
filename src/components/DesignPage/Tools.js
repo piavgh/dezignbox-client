@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
     TabContent,
@@ -87,6 +88,9 @@ class Tools extends Component {
                         </TabPane>
                     </TabContent>
                 </div>
+            </Col>
+            <Col xs={12}>
+                <Link to="/start-design/campaign-info" className="btn btn-block btn-success button-continue">Continue</Link>
             </Col>
         </Row>;
     }

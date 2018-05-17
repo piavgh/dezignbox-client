@@ -50,7 +50,19 @@
     padding: 10px;
 }
 
+.button-continue {
+    margin-top: 20px;
+    background-color: #37B77B;
+}
+
 /*Tools Component END*/
+
+/*Campaign Detail START*/
+.button-back {
+    margin-top: 20px;
+    background-color: #37B77B;
+}
+/*Campaign Detail END*/
 
 /*Canvas Component START*/
 .canvas-container {

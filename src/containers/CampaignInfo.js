@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import {
     Row,
     Col
@@ -9,7 +10,10 @@ class CampaignDetail extends Component {
     render() {
         return <Row>
             <Col xs={12}>
-                This is campaign info component
+
+            </Col>
+            <Col xs={12}>
+                <Link to="/start-design/design" className="btn btn-success button-back">Back</Link>
             </Col>
         </Row>
     }

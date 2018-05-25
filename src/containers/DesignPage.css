@@ -58,9 +58,13 @@
 /*Tools Component END*/
 
 /*Campaign Detail START*/
-.button-back {
-    margin-top: 20px;
+.button-submit {
     background-color: #37B77B;
+    float: right;
+}
+
+.campaign-detail-buttons-container {
+    margin-top: 20px;
 }
 /*Campaign Detail END*/
 

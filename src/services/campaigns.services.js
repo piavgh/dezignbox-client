@@ -1,10 +1,10 @@
-import axios from 'axios';
+import BaseService from './base.service';
 
 const campaignsRoutesPrefix = "/api/v1/campaigns";
 
 const CampaignsService = {
     createCampaign: (campaign, callback) => {
-        axios.post(campaignsRoutesPrefix + '/', {
+        BaseService.post(campaignsRoutesPrefix + '/', {
             campaign
         }).then(function (response) {
             return callback(null, response.data.data);

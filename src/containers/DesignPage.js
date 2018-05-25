@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import {Route, Switch} from "react-router-dom";
 import axios from 'axios';
 import {
@@ -6,10 +8,12 @@ import {
     Col
 } from 'reactstrap';
 
+import Utils from '../helpers/utils';
 import './DesignPage.css';
 import Tools from "../components/DesignPage/Tools";
 import Canvas from "../components/DesignPage/Canvas";
-import CampaignInfo from "./CampaignInfo";
+import CampaignInfo from "../components/CampaignInfo";
+import * as CampaignsActionCreators from "../redux/actions/campaigns.actions";
 
 class DesignPage extends Component {
 
@@ -59,6 +63,14 @@ class DesignPage extends Component {
         });
     };
 
+    handleCampaignInfoInputChange = (e) => {
+        this.props.handleCampaignInfoInputChange(e.target.id, Utils.handleOptionInput(e.target.value));
+    };
+
+    createCampaign = () => {
+
+    };
+
     render() {
         return <div>
             {
@@ -79,7 +91,12 @@ class DesignPage extends Component {
                                 onTextChange={this.handleTextChange}
                                 onFileDrop={this.handleFileDrop}/>
                         }}/>
-                        <Route path="/start-design/campaign-info" component={CampaignInfo}/>
+                        <Route path="/start-design/campaign-info" render={() => {
+                            return <CampaignInfo
+                                createCampaign={this.createCampaign}
+                                handleInputChange={this.handleCampaignInfoInputChange}
+                            />
+                        }}/>
                     </Switch>
                 </Col>
                 <Col xs={{size: 10, offset: 1}} lg={{size: 8, offset: 0}}>
@@ -92,4 +109,20 @@ class DesignPage extends Component {
     }
 }
 
-export default DesignPage;
+const mapStateToProps = state => (
+    {
+        campaign: state.campaign
+    }
+);
+
+const mapDispatchToProps = dispatch => (
+    {
+        handleCampaignInfoInputChange: bindActionCreators(CampaignsActionCreators.handleCampaignInfoInputChange, dispatch),
+        createCampaign: bindActionCreators(CampaignsActionCreators.createCampaign, dispatch)
+    }
+);
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(DesignPage);

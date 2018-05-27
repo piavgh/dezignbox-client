@@ -24,7 +24,6 @@ class LoginForm extends Component {
 
     handleInputChange = event => {
         if (event.target.id === 'rememberMe') {
-            console.log(event.target.value);
             this.setState({
                 [event.target.id]: !this.state.rememberMe
             });

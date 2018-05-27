@@ -51,7 +51,6 @@ class DesignPage extends Component {
                 headers: {"X-Requested-With": "XMLHttpRequest"},
             }).then(response => {
                 const data = response.data;
-                console.log(data);
                 this.props.saveImageUrl(data.secure_url);
             })
         });
@@ -72,7 +71,6 @@ class DesignPage extends Component {
         this.props.saveCanvasObject(this.canvasStage.current.getStage().toJSON());
 
         // 2. Create campaign
-        console.log('Will create new campaign here');
         this.props.createCampaign(this.props.campaign.newCampaign).catch((err) => {
             console.log(err);
         });

@@ -14,7 +14,6 @@ class App extends Component {
     componentWillMount() {
         this.props.boundLoadUserFromToken();
         this.unlisten = this.props.history.listen((location, action) => {
-            console.log("on route change");
             this.props.boundClearAlert();
         });
     }

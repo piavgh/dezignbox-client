@@ -7,7 +7,8 @@ class CampaignDetail extends Component {
 
     static propTypes = {
         createCampaign: PropTypes.func.isRequired,
-        handleInputChange: PropTypes.func.isRequired
+        handleInputChange: PropTypes.func.isRequired,
+        handleFinalizeDesign: PropTypes.func.isRequired
     };
 
     onChange = (e) => {
@@ -16,6 +17,7 @@ class CampaignDetail extends Component {
 
     handleFormSubmit = (e) => {
         e.preventDefault();
+        this.props.handleFinalizeDesign();
     };
 
     render() {

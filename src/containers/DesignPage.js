@@ -17,14 +17,19 @@ import * as CampaignsActionCreators from "../redux/actions/campaigns.actions";
 
 class DesignPage extends Component {
 
+    constructor(props) {
+        super(props);
+        this.canvasStage = React.createRef();
+    }
+
+    static propTypes = {};
+
     state = {
         text: '',
         image: '',
         files: [],
         isUploadingImage: false
     };
-
-    static propTypes = {};
 
     handleTextChange = e => {
         this.setState({text: e.target.value});
@@ -46,10 +51,8 @@ class DesignPage extends Component {
                 headers: {"X-Requested-With": "XMLHttpRequest"},
             }).then(response => {
                 const data = response.data;
-                const fileURL = data.secure_url; // You should store this URL for future references in your app
                 console.log(data);
-                console.log(fileURL);
-                this.setState({isUploadingImage: false});
+                this.props.saveImageUrl(data.secure_url);
             })
         });
 
@@ -58,8 +61,20 @@ class DesignPage extends Component {
             // ... perform after upload is successful operation
             this.setState({
                 files,
-                image: files[0].preview
+                image: files[0].preview,
+                isUploadingImage: false
             });
+        });
+    };
+
+    handleFinalizeDesign = () => {
+        // 1. Store canvas stage JSON to redux store: newCampaign.canvasObject
+        this.props.saveCanvasObject(this.canvasStage.current.getStage().toJSON());
+
+        // 2. Create campaign
+        console.log('Will create new campaign here');
+        this.props.createCampaign(this.props.campaign.newCampaign).catch((err) => {
+            console.log(err);
         });
     };
 
@@ -69,6 +84,10 @@ class DesignPage extends Component {
 
     createCampaign = () => {
 
+    };
+
+    passStageRefToParent = (stage) => {
+        this.canvasStage = stage;
     };
 
     render() {
@@ -95,6 +114,7 @@ class DesignPage extends Component {
                             return <CampaignInfo
                                 createCampaign={this.createCampaign}
                                 handleInputChange={this.handleCampaignInfoInputChange}
+                                handleFinalizeDesign={this.handleFinalizeDesign}
                             />
                         }}/>
                     </Switch>
@@ -102,7 +122,8 @@ class DesignPage extends Component {
                 <Col xs={{size: 10, offset: 1}} lg={{size: 8, offset: 0}}>
                     <Canvas
                         text={this.state.text}
-                        image={this.state.image}/>
+                        image={this.state.image}
+                        passStageRefToParent={this.passStageRefToParent}/>
                 </Col>
             </Row>
         </div>
@@ -118,6 +139,8 @@ const mapStateToProps = state => (
 const mapDispatchToProps = dispatch => (
     {
         handleCampaignInfoInputChange: bindActionCreators(CampaignsActionCreators.handleCampaignInfoInputChange, dispatch),
+        saveImageUrl: bindActionCreators(CampaignsActionCreators.saveImageUrl, dispatch),
+        saveCanvasObject: bindActionCreators(CampaignsActionCreators.saveCanvasObject, dispatch),
         createCampaign: bindActionCreators(CampaignsActionCreators.createCampaign, dispatch)
     }
 );

@@ -3,13 +3,19 @@ import BaseService from './base.service';
 const campaignsRoutesPrefix = "/api/v1/campaigns";
 
 const CampaignsService = {
-    createCampaign: (campaign, callback) => {
-        BaseService.post(campaignsRoutesPrefix + '/', {
-            campaign
-        }).then(function (response) {
-            return callback(null, response.data.data);
-        }).catch(function (error) {
-            return callback(error);
+    createCampaign: (campaign) => {
+        return BaseService.post(campaignsRoutesPrefix + '/', {
+            title: campaign.title,
+            description: campaign.description,
+            active: campaign.status,
+            owner: '5ad32c371b701f18c0dd1517',
+            canvasObject: campaign.canvasObject,
+            originalImageUrl: campaign.imageUrl ? campaign.imageUrl : null,
+            thumbnailImageUrl: campaign.imageUrl ? campaign.imageUrl : null,
+        }, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
         });
     }
 };

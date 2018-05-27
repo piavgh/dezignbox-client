@@ -34,7 +34,10 @@ class DesignImage extends Component {
     render() {
         return <Image name="user-design"
                       image={this.state.image}
-                      draggable={true}/>;
+                      imageSrc={this.state.image}
+                      draggable={true}
+                      width={this.props.width}
+                      height={this.props.height}/>;
     }
 }
 

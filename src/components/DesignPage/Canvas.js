@@ -30,6 +30,7 @@ class Canvas extends Component {
     };
 
     componentDidMount() {
+        this.props.passStageRefToParent(this.stage);
         this.checkSize();
         // here we should add listener for "container" resize
         // take a look here https://developers.google.com/web/updates/2016/10/resizeobserver
@@ -59,7 +60,11 @@ class Canvas extends Component {
                         <Layer>
                             <BoxSurface/>
                             <UserText text={this.props.text}/>
-                            <DesignImage image={this.props.image}/>
+                            <DesignImage
+                                image={this.props.image}
+                                width={this.state.stageWidth}
+                                height={this.state.stageHeight}
+                            />
                             <Handler image={this.props.image}/>
                         </Layer>
                     </Stage>

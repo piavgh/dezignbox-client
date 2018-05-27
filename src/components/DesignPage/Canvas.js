@@ -13,6 +13,12 @@ import BoxSurface from "./Canvas/BoxSurface";
 
 class Canvas extends Component {
 
+    constructor(props) {
+        super(props);
+        this.container = React.createRef();
+        this.stage = React.createRef();
+    }
+
     static propTypes = {
         text: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired
@@ -36,8 +42,8 @@ class Canvas extends Component {
     }
 
     checkSize = () => {
-        const width = this.container.offsetWidth;
-        this.container.style.width = width * 0.6;
+        const width = this.container.current.offsetWidth;
+        this.container.current.style.width = width * 0.6;
         const height = width * 0.6;
         this.setState({
             stageWidth: width,
@@ -48,10 +54,8 @@ class Canvas extends Component {
     render() {
         return <Row>
             <Col xs={12} className="canvas-container">
-                <div className="drawing-area" ref={node => {
-                    this.container = node;
-                }}>
-                    <Stage width={this.state.stageWidth} height={this.state.stageHeight}>
+                <div className="drawing-area" ref={this.container}>
+                    <Stage ref={this.stage} width={this.state.stageWidth} height={this.state.stageHeight}>
                         <Layer>
                             <BoxSurface/>
                             <UserText text={this.props.text}/>

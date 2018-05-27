@@ -3,6 +3,7 @@ import {render} from 'react-dom';
 import {createStore, applyMiddleware} from 'redux';
 import loggerMiddleware from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
+import promiseMiddleware from 'redux-promise-middleware'
 
 import registerServiceWorker from './registerServiceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -15,6 +16,7 @@ const store = createStore(
     reducers,
     window.devToolsExtension && window.devToolsExtension(),
     applyMiddleware(
+        promiseMiddleware(), // shorter async actions
         thunkMiddleware, // lets us dispatch() functions
         loggerMiddleware // neat middleware that logs actions
     )

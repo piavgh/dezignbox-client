@@ -24,20 +24,15 @@ class Header extends Component {
         currentUser: PropTypes.object
     };
 
-    constructor(props) {
-        super(props);
+    state = {
+        isOpen: false
+    };
 
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-            isOpen: false
-        };
-    }
-
-    toggle() {
+    toggle = () => {
         this.setState({
             isOpen: !this.state.isOpen
         });
-    }
+    };
 
     logOut = () => {
         this.props.boundLogout();

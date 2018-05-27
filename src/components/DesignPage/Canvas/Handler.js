@@ -3,6 +3,11 @@ import {Transformer} from "react-konva";
 
 class Handler extends Component {
 
+    constructor(props) {
+        super(props);
+        this.transformer = React.createRef();
+    }
+
     componentDidMount() {
         this.updateTransformer();
     }
@@ -13,21 +18,17 @@ class Handler extends Component {
 
     updateTransformer() {
         if (this.props.image) {
-            const stage = this.transformer.getStage();
+            const stage = this.transformer.current.getStage();
             const userDesign = stage.findOne(".user-design");
-            this.transformer.attachTo(userDesign);
-            this.transformer.getLayer().batchDraw();
+            this.transformer.current.attachTo(userDesign);
+            this.transformer.current.getLayer().batchDraw();
         }
     }
 
     render() {
         if (this.props.image) {
             return (
-                <Transformer
-                    ref={node => {
-                        this.transformer = node;
-                    }}
-                />
+                <Transformer ref={this.transformer}/>
             );
         }
 

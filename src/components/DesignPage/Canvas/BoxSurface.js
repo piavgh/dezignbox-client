@@ -3,10 +3,15 @@ import {Rect} from "react-konva";
 
 class BoxSurface extends Component {
 
+    constructor(props) {
+        super(props);
+        this.boxSurface = React.createRef();
+    }
+
     componentDidMount() {
-        const stage = this.boxSurface.getStage();
-        this.boxSurface.width(stage.width());
-        this.boxSurface.height(stage.height());
+        const stage = this.boxSurface.current.getStage();
+        this.boxSurface.current.width(stage.width());
+        this.boxSurface.current.height(stage.height());
     }
 
     render() {
@@ -15,9 +20,7 @@ class BoxSurface extends Component {
                      y={0}
                      fill="#D7A572"
                      shadowBlur={5}
-                     ref={node => {
-                         this.boxSurface = node;
-                     }}/>
+                     ref={this.boxSurface}/>
     }
 }
 

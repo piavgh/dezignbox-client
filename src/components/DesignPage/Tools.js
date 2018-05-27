@@ -15,7 +15,14 @@ import {
 import classnames from 'classnames';
 import Dropzone from 'react-dropzone';
 
-class Tools extends Component {
+export default class Tools extends Component {
+
+    static propTypes = {
+        files: PropTypes.array.isRequired,
+        onTextChange: PropTypes.func.isRequired,
+        onFileDrop: PropTypes.func.isRequired
+    };
+
     state = {
         activeTab: '1'
     };
@@ -95,11 +102,3 @@ class Tools extends Component {
         </Row>;
     }
 }
-
-Tools.propTypes = {
-    files: PropTypes.array.isRequired,
-    onTextChange: PropTypes.func.isRequired,
-    onFileDrop: PropTypes.func.isRequired
-};
-
-export default Tools;

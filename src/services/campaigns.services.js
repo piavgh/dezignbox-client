@@ -9,7 +9,7 @@ const CampaignsService = {
             description: campaign.description,
             active: campaign.status,
             owner: '5ad32c371b701f18c0dd1517',
-            canvasObject: campaign.canvasObject,
+            canvasDataUrl: campaign.canvasDataUrl,
             originalImageUrl: campaign.imageUrl ? campaign.imageUrl : null,
             thumbnailImageUrl: campaign.imageUrl ? campaign.imageUrl : null,
         }, {

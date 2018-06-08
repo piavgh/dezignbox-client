@@ -5,5 +5,5 @@ export const CampaignsActionTypes = {
     CREATE_REJECTED: 'campaigns/CREATE_REJECTED',
     UPDATE_CAMPAIGN_INFO: 'campaigns/UPDATE_CAMPAIGN_INFO',
     SAVE_IMAGE_URL: 'campaigns/SAVE_IMAGE_URL',
-    SAVE_CANVAS_OBJECT: 'campaigns/SAVE_CANVAS_OBJECT'
+    SAVE_CANVAS_DATA_URL: 'campaigns/SAVE_CANVAS_DATA_URL'
 };

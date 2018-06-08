@@ -68,7 +68,9 @@ class DesignPage extends Component {
 
     handleFinalizeDesign = () => {
         // 1. Store canvas stage JSON to redux store: newCampaign.canvasObject
-        this.props.saveCanvasObject(this.canvasStage.current.getStage().toJSON());
+        this.props.saveCanvasDataUrl(this.canvasStage.current.getStage().toDataURL({
+            mimeType: 'image/png'
+        }));
 
         // 2. Create campaign
         this.props.createCampaign(this.props.campaign.newCampaign).catch((err) => {
@@ -138,7 +140,7 @@ const mapDispatchToProps = dispatch => (
     {
         handleCampaignInfoInputChange: bindActionCreators(CampaignsActionCreators.handleCampaignInfoInputChange, dispatch),
         saveImageUrl: bindActionCreators(CampaignsActionCreators.saveImageUrl, dispatch),
-        saveCanvasObject: bindActionCreators(CampaignsActionCreators.saveCanvasObject, dispatch),
+        saveCanvasDataUrl: bindActionCreators(CampaignsActionCreators.saveCanvasDataUrl, dispatch),
         createCampaign: bindActionCreators(CampaignsActionCreators.createCampaign, dispatch)
     }
 );

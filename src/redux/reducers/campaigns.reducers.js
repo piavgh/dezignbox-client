@@ -7,7 +7,7 @@ const initialState = {
         description: '',
         status: true,
         imageUrl: '',
-        canvasObject: ''
+        canvasDataUrl: ''
     },
     createCampaignPending: false,
     createCampaignSuccess: false,
@@ -31,9 +31,9 @@ export default function CampaignsReducers(state = initialState, action) {
                 ...state,
                 newCampaign
             };
-        case CampaignsActionTypes.SAVE_CANVAS_OBJECT:
+        case CampaignsActionTypes.SAVE_CANVAS_DATA_URL:
             newCampaign = state.newCampaign;
-            newCampaign.canvasObject = action.canvasObject;
+            newCampaign.canvasDataUrl = action.canvasDataUrl;
             return {
                 ...state,
                 newCampaign
@@ -53,7 +53,7 @@ export default function CampaignsReducers(state = initialState, action) {
                     description: '',
                     status: true,
                     imageUrl: '',
-                    canvasObject: ''
+                    canvasDataUrl: ''
                 }
             };
         case CampaignsActionTypes.CREATE_REJECTED:

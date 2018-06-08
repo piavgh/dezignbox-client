@@ -12,9 +12,9 @@ export const saveImageUrl = (imageUrl) => ({
     imageUrl
 });
 
-export const saveCanvasObject = (canvasObject) => ({
-    type: CampaignsActionTypes.SAVE_CANVAS_OBJECT,
-    canvasObject
+export const saveCanvasDataUrl = (canvasDataUrl) => ({
+    type: CampaignsActionTypes.SAVE_CANVAS_DATA_URL,
+    canvasDataUrl
 });
 
 export const createCampaign = (campaign) => ({

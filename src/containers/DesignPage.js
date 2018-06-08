@@ -73,17 +73,13 @@ class DesignPage extends Component {
         }));
 
         // 2. Create campaign
-        this.props.createCampaign(this.props.campaign.newCampaign).catch((err) => {
+        this.props.createCampaign(this.props.userId, this.props.campaign.newCampaign).catch((err) => {
             console.log(err);
         });
     };
 
     handleCampaignInfoInputChange = (e) => {
         this.props.handleCampaignInfoInputChange(e.target.id, Utils.handleOptionInput(e.target.value));
-    };
-
-    createCampaign = () => {
-
     };
 
     passStageRefToParent = (stage) => {
@@ -112,7 +108,9 @@ class DesignPage extends Component {
                         }}/>
                         <Route path="/start-design/campaign-info" render={() => {
                             return <CampaignInfo
-                                createCampaign={this.createCampaign}
+                                title={this.props.campaign.newCampaign.title}
+                                description={this.props.campaign.newCampaign.description}
+                                status={this.props.campaign.newCampaign.status}
                                 handleInputChange={this.handleCampaignInfoInputChange}
                                 handleFinalizeDesign={this.handleFinalizeDesign}
                             />
@@ -132,7 +130,8 @@ class DesignPage extends Component {
 
 const mapStateToProps = state => (
     {
-        campaign: state.campaign
+        campaign: state.campaign,
+        userId: state.auth.currentUser._id
     }
 );
 

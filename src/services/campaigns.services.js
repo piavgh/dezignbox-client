@@ -3,12 +3,12 @@ import BaseService from './base.service';
 const campaignsRoutesPrefix = "/api/v1/campaigns";
 
 const CampaignsService = {
-    createCampaign: (campaign) => {
+    createCampaign: (ownerId, campaign) => {
         return BaseService.post(campaignsRoutesPrefix + '/', {
             title: campaign.title,
             description: campaign.description,
             active: campaign.status,
-            owner: '5ad32c371b701f18c0dd1517',
+            owner: ownerId,
             canvasDataUrl: campaign.canvasDataUrl,
             originalImageUrl: campaign.imageUrl ? campaign.imageUrl : null,
             thumbnailImageUrl: campaign.imageUrl ? campaign.imageUrl : null,

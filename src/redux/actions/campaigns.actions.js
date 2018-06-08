@@ -17,7 +17,7 @@ export const saveCanvasDataUrl = (canvasDataUrl) => ({
     canvasDataUrl
 });
 
-export const createCampaign = (campaign) => ({
+export const createCampaign = (ownerId, campaign) => ({
     type: CampaignsActionTypes.CREATE,
-    payload: CampaignsService.createCampaign(campaign)
+    payload: CampaignsService.createCampaign(ownerId, campaign)
 });

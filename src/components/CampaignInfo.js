@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {Row, Col, Button, Form, FormGroup, Label, Input} from 'reactstrap';
 
-class CampaignDetail extends Component {
+class CampaignInfo extends Component {
 
     static propTypes = {
-        createCampaign: PropTypes.func.isRequired,
+        title: PropTypes.string,
+        description: PropTypes.string,
+        status: PropTypes.bool,
         handleInputChange: PropTypes.func.isRequired,
         handleFinalizeDesign: PropTypes.func.isRequired
     };
@@ -30,6 +32,7 @@ class CampaignDetail extends Component {
                             type="text"
                             name="title"
                             id="title"
+                            value={this.props.title}
                             placeholder="Enter campaign title"
                             onChange={this.onChange}
                         />
@@ -40,6 +43,7 @@ class CampaignDetail extends Component {
                             type="textarea"
                             name="description"
                             id="description"
+                            value={this.props.description}
                             placeholder="Enter your description"
                             onChange={this.onChange}
                         />
@@ -50,6 +54,7 @@ class CampaignDetail extends Component {
                             type="select"
                             name="status"
                             id="status"
+                            value={this.props.status}
                             onChange={this.onChange}
                         >
                             <option value={true}>Active</option>
@@ -66,4 +71,4 @@ class CampaignDetail extends Component {
     }
 }
 
-export default CampaignDetail;
+export default CampaignInfo;

@@ -8,7 +8,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
-import LoginForm from "../components/LoginForm";
+import LoginForm from "../components/LoginPage/LoginForm";
 import * as AuthActionCreators from "../redux/actions/auth.actions";
 
 class LoginPage extends Component {

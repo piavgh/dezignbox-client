@@ -12,7 +12,7 @@ import Utils from '../helpers/utils';
 import '../css/DesignPage.css';
 import Tools from "../components/DesignPage/Tools";
 import Canvas from "../components/DesignPage/Canvas";
-import CampaignInfo from "../components/CampaignInfo";
+import CampaignInfo from "../components/DesignPage/CampaignInfo";
 import * as CampaignsActionCreators from "../redux/actions/campaigns.actions";
 
 class DesignPage extends Component {

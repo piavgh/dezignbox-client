@@ -3,7 +3,7 @@ import {Route, Switch} from "react-router-dom";
 import Home from "./HomePage";
 import RegisterPage from "./RegsisterPage";
 import LoginPage from "./LoginPage";
-import Products from "../components/Products";
+import ProductsPage from "./ProductsPage";
 import NotFound from "../components/NotFound";
 import AboutUs from "../components/AboutUs";
 import PrivateRoute from "./PrivateRoute";
@@ -16,6 +16,6 @@ export default () =>
         <Route path={"/register"} component={RegisterPage}/>
         <Route path={"/aboutUs"} component={AboutUs}/>
         <PrivateRoute path={"/start-design"} component={DesignPage}/>
-        <PrivateRoute path={"/products"} component={Products}/>
+        <PrivateRoute path={"/products"} component={ProductsPage}/>
         <Route component={NotFound}/>
     </Switch>

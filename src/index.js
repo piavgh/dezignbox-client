@@ -7,7 +7,7 @@ import promiseMiddleware from 'redux-promise-middleware'
 
 import registerServiceWorker from './registerServiceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
-import './index.css';
+import './css/index.css';
 
 import reducers from './redux/reducers';
 import Root from './containers/Root';

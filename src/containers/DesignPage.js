@@ -9,7 +9,7 @@ import {
 } from 'reactstrap';
 
 import Utils from '../helpers/utils';
-import './DesignPage.css';
+import '../css/DesignPage.css';
 import Tools from "../components/DesignPage/Tools";
 import Canvas from "../components/DesignPage/Canvas";
 import CampaignInfo from "../components/CampaignInfo";

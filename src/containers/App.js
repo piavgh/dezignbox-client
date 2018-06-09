@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from "redux";
 
-import './App.css';
+import '../css/App.css';
 import Header from './Header';
 import {connect} from "react-redux";
 import Alert from "../components/Alert";

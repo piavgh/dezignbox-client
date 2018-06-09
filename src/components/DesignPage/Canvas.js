@@ -30,7 +30,6 @@ class Canvas extends Component {
     };
 
     componentDidMount() {
-        this.props.passStageRefToParent(this.stage);
         this.checkSize();
         // here we should add listener for "container" resize
         // take a look here https://developers.google.com/web/updates/2016/10/resizeobserver
@@ -44,7 +43,6 @@ class Canvas extends Component {
 
     checkSize = () => {
         const width = this.container.current.offsetWidth;
-        this.container.current.style.width = width * 0.6;
         const height = width * 0.6;
         this.setState({
             stageWidth: width,

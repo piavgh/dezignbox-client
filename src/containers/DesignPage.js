@@ -19,7 +19,7 @@ class DesignPage extends Component {
 
     constructor(props) {
         super(props);
-        this.canvasStage = React.createRef();
+        this.canvas = React.createRef();
     }
 
     static propTypes = {};
@@ -68,7 +68,7 @@ class DesignPage extends Component {
 
     handleFinalizeDesign = () => {
         // 1. Store canvas stage JSON to redux store: newCampaign.canvasObject
-        this.props.saveCanvasDataUrl(this.canvasStage.current.getStage().toDataURL({
+        this.props.saveCanvasDataUrl(this.canvas.current.stage.current.getStage().toDataURL({
             mimeType: 'image/png'
         }));
 
@@ -82,49 +82,48 @@ class DesignPage extends Component {
         this.props.handleCampaignInfoInputChange(e.target.id, Utils.handleOptionInput(e.target.value));
     };
 
-    passStageRefToParent = (stage) => {
-        this.canvasStage = stage;
-    };
-
     render() {
-        return <div>
-            {
-                this.state.isUploadingImage && <Row>
-                    <Col xs={{size: 10, offset: 1}} lg={{size: 12, offset: 0}} className="uploading-image-container">
-                        <p className="sending-image-text">Sending image</p>
-                        <p className="please-wait-text">Please wait...</p>
+        return (
+            <div>
+                {
+                    this.state.isUploadingImage && <Row>
+                        <Col xs={{size: 10, offset: 1}} lg={{size: 12, offset: 0}}
+                             className="uploading-image-container">
+                            <p className="sending-image-text">Sending image</p>
+                            <p className="please-wait-text">Please wait...</p>
+                        </Col>
+                    </Row>
+                }
+
+                <Row className="campaign-design-container">
+                    <Col xs={{size: 10, offset: 1}} lg={{size: 4, offset: 0}}>
+                        <Switch>
+                            <Route path="/start-design/design" render={() => {
+                                return <Tools
+                                    files={this.state.files}
+                                    onTextChange={this.handleTextChange}
+                                    onFileDrop={this.handleFileDrop}/>
+                            }}/>
+                            <Route path="/start-design/campaign-info" render={() => {
+                                return <CampaignInfo
+                                    title={this.props.campaign.newCampaign.title}
+                                    description={this.props.campaign.newCampaign.description}
+                                    status={this.props.campaign.newCampaign.status}
+                                    handleInputChange={this.handleCampaignInfoInputChange}
+                                    handleFinalizeDesign={this.handleFinalizeDesign}
+                                />
+                            }}/>
+                        </Switch>
+                    </Col>
+                    <Col xs={{size: 10, offset: 1}} lg={{size: 8, offset: 0}}>
+                        <Canvas
+                            text={this.state.text}
+                            image={this.state.image}
+                            ref={this.canvas}/>
                     </Col>
                 </Row>
-            }
-
-            <Row className="campaign-design-container">
-                <Col xs={{size: 10, offset: 1}} lg={{size: 4, offset: 0}}>
-                    <Switch>
-                        <Route path="/start-design/design" render={() => {
-                            return <Tools
-                                files={this.state.files}
-                                onTextChange={this.handleTextChange}
-                                onFileDrop={this.handleFileDrop}/>
-                        }}/>
-                        <Route path="/start-design/campaign-info" render={() => {
-                            return <CampaignInfo
-                                title={this.props.campaign.newCampaign.title}
-                                description={this.props.campaign.newCampaign.description}
-                                status={this.props.campaign.newCampaign.status}
-                                handleInputChange={this.handleCampaignInfoInputChange}
-                                handleFinalizeDesign={this.handleFinalizeDesign}
-                            />
-                        }}/>
-                    </Switch>
-                </Col>
-                <Col xs={{size: 10, offset: 1}} lg={{size: 8, offset: 0}}>
-                    <Canvas
-                        text={this.state.text}
-                        image={this.state.image}
-                        passStageRefToParent={this.passStageRefToParent}/>
-                </Col>
-            </Row>
-        </div>
+            </div>
+        );
     }
 }
 

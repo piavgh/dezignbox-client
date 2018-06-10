@@ -10,9 +10,9 @@ const CampaignList = ({campaigns}) => (
                 return (
                     <Campaign
                         title={campaign.title}
-                        image={campaign.image}
-                        status={campaign.status}
-                        key={campaign.id}/>
+                        image={campaign.canvasDataUrl}
+                        status={campaign.active}
+                        key={campaign._id}/>
                 )
             })
         }

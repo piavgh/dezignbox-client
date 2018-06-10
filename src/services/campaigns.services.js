@@ -17,6 +17,17 @@ const CampaignsService = {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         });
+    },
+
+    fetchCampaigns: (userId) => {
+        return BaseService.get(campaignsRoutesPrefix + '/', {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            params: {
+                userId: userId
+            }
+        });
     }
 };
 

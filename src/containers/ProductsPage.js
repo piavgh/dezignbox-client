@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
 import {
     Row,
     Col
@@ -6,31 +7,29 @@ import {
 
 import '../css/ProductsPage.css';
 import CampaignList from "../components/ProductsPage/CampaignList";
+import {fetchCampaigns} from "../redux/actions/campaigns.actions";
 
 class ProductsPage extends Component {
 
-    campaigns = [
-        {
-            id: 1,
-            title: 'Test 1',
-            image: 'https://i.ytimg.com/vi/bx7BjjqHf2U/maxresdefault.jpg',
-            status: true
-        },
-        {
-            id: 2,
-            title: 'Test 2',
-            image: 'http://www.dogbazar.org/wp-content/uploads/2013/09/beagle-2.jpg',
-            status: true
-        },
-        {
-            id: 3,
-            title: 'Test 3',
-            image: 'https://d2mzr2c3wiwtyo.cloudfront.net/imagecache/landing_wide_photo/img/breeds/beagle/beagle-puppy-playing-on-the-new-kuranda-dog-bed.jpg',
-            status: false
-        }
-    ];
+    componentDidMount() {
+        this.props.dispatch(fetchCampaigns(this.props.userId));
+    }
 
     render() {
+        const {error, loading, campaigns} = this.props;
+
+        if (error) {
+            return (
+                <div>{error}</div>
+            );
+        }
+
+        if (loading) {
+            return (
+                <div className="loading-spin-container"><span><i className="fas fa-spinner fa-spin"/></span></div>
+            )
+        }
+
         return (
             <Row className="products-page">
                 <Col xs={2}>
@@ -38,7 +37,7 @@ class ProductsPage extends Component {
                 </Col>
                 <Col xs={10}>
                     <h1>Products</h1>
-                    <CampaignList campaigns={this.campaigns}/>
+                    <CampaignList campaigns={campaigns}/>
                 </Col>
             </Row>
         );
@@ -46,4 +45,13 @@ class ProductsPage extends Component {
 
 }
 
-export default ProductsPage;
+const mapStateToProps = state => ({
+    userId: state.auth.currentUser._id,
+    campaigns: state.campaign.items,
+    loading: state.campaign.loading,
+    error: state.campaign.error
+});
+
+export default connect(
+    mapStateToProps
+)(ProductsPage);

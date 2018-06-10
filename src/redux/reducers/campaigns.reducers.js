@@ -1,7 +1,9 @@
 import {CampaignsActionTypes} from '../actiontypes/campaigns.actiontypes';
 
 const initialState = {
-    campaigns: [],
+    items: [],
+    loading: false,
+    error: null,
     newCampaign: {
         title: '',
         description: '',
@@ -61,6 +63,27 @@ export default function CampaignsReducers(state = initialState, action) {
                 ...state,
                 createCampaignPending: false,
                 createCampaignError: action.payload
+            };
+        case CampaignsActionTypes.FETCH_CAMPAIGNS_PENDING:
+            return {
+                ...state,
+                loading: true,
+                error: null
+            };
+
+        case CampaignsActionTypes.FETCH_CAMPAIGNS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                items: action.payload.campaigns
+            };
+
+        case CampaignsActionTypes.FETCH_CAMPAIGNS_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error,
+                items: []
             };
         default:
             return state;

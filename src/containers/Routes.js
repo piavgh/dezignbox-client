@@ -6,16 +6,19 @@ import LoginPage from "./LoginPage";
 import ProductsPage from "./ProductsPage";
 import NotFound from "../components/NotFound";
 import AboutUs from "../components/AboutUs";
-import PrivateRoute from "./PrivateRoute";
+import AppliedRoute from "./AppliedRoute";
+import UnauthenticatedRoute from "./UnauthenticatedRoute";
+import AuthenticatedRoute from "./AuthenticatedRoute";
 import DesignPage from "./DesignPage";
 
-export default () =>
+export default ({childProps}) =>
     <Switch>
-        <Route exact path={"/"} component={Home}/>
-        <Route path={"/login"} component={LoginPage}/>
-        <Route path={"/register"} component={RegisterPage}/>
-        <Route path={"/aboutUs"} component={AboutUs}/>
-        <PrivateRoute path={"/start-design"} component={DesignPage}/>
-        <PrivateRoute path={"/products"} component={ProductsPage}/>
+        <AppliedRoute path="/" exact component={Home} props={childProps}/>
+        <UnauthenticatedRoute path="/login" exact component={LoginPage} props={childProps}/>
+        <UnauthenticatedRoute path="/register" exact component={RegisterPage} props={childProps}/>
+        <UnauthenticatedRoute path={"/aboutUs"} exact component={AboutUs} props={childProps}/>
+        <AuthenticatedRoute path={"/start-design"} component={DesignPage} props={childProps}/>
+        <AuthenticatedRoute path={"/products"} component={ProductsPage} props={childProps}/>
+        {/* Finally, catch all unmatched routes */}
         <Route component={NotFound}/>
     </Switch>

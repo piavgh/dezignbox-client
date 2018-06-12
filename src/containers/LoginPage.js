@@ -6,7 +6,6 @@ import {
 } from 'reactstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
 
 import LoginForm from "../components/LoginPage/LoginForm";
 import * as AuthActionCreators from "../redux/actions/auth.actions";
@@ -18,10 +17,6 @@ class LoginPage extends Component {
 
     render() {
         const {isLoginPending, isAuthenticated, loginError, currentUser} = this.props;
-
-        if (isAuthenticated) {
-            return <Redirect to='/'/>
-        }
 
         return <Row>
             <Col xs={12} md={8}>

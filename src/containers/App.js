@@ -11,8 +11,10 @@ import * as AlertActionCreators from '../redux/actions/alert.actions';
 
 class App extends Component {
 
-    componentWillMount() {
-        this.props.boundLoadUserFromToken();
+    componentDidMount() {
+        if (!this.props.isAuthenticated) {
+            this.props.boundLoadUserFromToken();
+        }
         this.unlisten = this.props.history.listen((location, action) => {
             this.props.boundClearAlert();
         });
@@ -23,6 +25,9 @@ class App extends Component {
     }
 
     render() {
+        const childProps = {
+            isAuthenticated: this.props.isAuthenticated
+        };
         const {alert} = this.props;
 
         return (
@@ -30,7 +35,7 @@ class App extends Component {
                 <Header/>
                 <div className="container">
                     <Alert alert={alert}/>
-                    <Routes/>
+                    <Routes childProps={childProps}/>
                 </div>
             </div>
         );
@@ -40,6 +45,7 @@ class App extends Component {
 const mapStateToProps = state => (
     {
         alert: state.alert,
+        isAuthenticated: state.auth.isAuthenticated
     }
 );
 

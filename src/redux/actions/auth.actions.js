@@ -67,9 +67,9 @@ export const loginAction = (email, password) => {
         AuthService.login(email, password, (error, data) => {
             dispatch(setLoginPending(false));
             if (!error) {
-                dispatch(setLoginSuccess(true));
                 dispatch(setCurrentUser(data.currentUser));
                 Auth.authenticateUser(data.token);
+                dispatch(setLoginSuccess(true));
                 dispatch(AlertActionCreators.setAlertSuccess(`Welcome back ${data.currentUser.email}`));
             } else {
                 if (error.response.status === 401) {
@@ -116,8 +116,8 @@ export const loadUserFromToken = () => {
 
         AuthService.loadUserFromToken(token, (err, response) => {
             if (!err) {
+                dispatch(setCurrentUser(response.data.user));
                 dispatch(setLoginSuccess(true));
-                dispatch(setCurrentUser(response.data.user))
             } else {
                 dispatch(setLoginError({
                     message: err

@@ -32,9 +32,9 @@ class App extends Component {
     const {alert} = this.props;
 
     return (
-      <div>
+      <div className="App">
         <Header/>
-        <div className="container">
+        <div className="container main">
           <Alert alert={alert}/>
           <Routes childProps={childProps}/>
         </div>

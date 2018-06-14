@@ -21,7 +21,7 @@ export default class Footer extends Component {
 
             </Col>
             <Col xs={3} className="social-network-container">
-              <a href="https://www.facebook.com/Dezignbox-179803586196059" target="_blank">
+              <a href="https://www.facebook.com/Dezignbox-179803586196059" target="_blank" rel="noopener noreferrer">
                 <span className="social-network-icon"><i className="fab fa-facebook-f"/>
                 </span>
               </a>

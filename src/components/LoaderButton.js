@@ -3,18 +3,18 @@ import {Button} from "reactstrap";
 import "../css/LoaderButton.css";
 
 export default ({
-                    isLoading,
-                    text,
-                    loadingText,
-                    className = "",
-                    disabled = false,
-                    ...props
+                  isLoading,
+                  text,
+                  loadingText,
+                  className = "",
+                  disabled = false,
+                  ...props
                 }) =>
-    <Button
-        className={`LoaderButton ${className}`}
-        disabled={disabled || isLoading}
-        {...props}
-    >
-        {isLoading && <span><i className="fas fa-spinner fa-spin"/></span>}
-        {!isLoading ? text : loadingText}
-    </Button>;
+  <Button
+    className={`LoaderButton ${className}`}
+    disabled={disabled || isLoading}
+    {...props}
+  >
+    {isLoading && <span><i className="fas fa-spinner fa-spin"/></span>}
+    {!isLoading ? text : loadingText}
+  </Button>;

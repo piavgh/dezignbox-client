@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
-    Row,
-    Col
+  Row,
+  Col
 } from 'reactstrap';
 import {Stage, Layer} from 'react-konva';
 
@@ -13,63 +13,63 @@ import BoxSurface from "./Canvas/BoxSurface";
 
 class Canvas extends Component {
 
-    constructor(props) {
-        super(props);
-        this.container = React.createRef();
-        this.stage = React.createRef();
-    }
+  constructor(props) {
+    super(props);
+    this.container = React.createRef();
+    this.stage = React.createRef();
+  }
 
-    static propTypes = {
-        text: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired
-    };
+  static propTypes = {
+    text: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired
+  };
 
-    state = {
-        stageWidth: 1000,
-        stageHeight: 1000
-    };
+  state = {
+    stageWidth: 1000,
+    stageHeight: 1000
+  };
 
-    componentDidMount() {
-        this.checkSize();
-        // here we should add listener for "container" resize
-        // take a look here https://developers.google.com/web/updates/2016/10/resizeobserver
-        // for simplicity I will just listen window resize
-        window.addEventListener("resize", this.checkSize);
-    }
+  componentDidMount() {
+    this.checkSize();
+    // here we should add listener for "container" resize
+    // take a look here https://developers.google.com/web/updates/2016/10/resizeobserver
+    // for simplicity I will just listen window resize
+    window.addEventListener("resize", this.checkSize);
+  }
 
-    componentWillUnmount() {
-        window.removeEventListener("resize", this.checkSize);
-    }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.checkSize);
+  }
 
-    checkSize = () => {
-        const width = this.container.current.offsetWidth;
-        const height = width * 0.6;
-        this.setState({
-            stageWidth: width,
-            stageHeight: height
-        });
-    };
+  checkSize = () => {
+    const width = this.container.current.offsetWidth;
+    const height = width * 0.6;
+    this.setState({
+      stageWidth: width,
+      stageHeight: height
+    });
+  };
 
-    render() {
-        return <Row>
-            <Col xs={12} className="canvas-container">
-                <div className="drawing-area" ref={this.container}>
-                    <Stage ref={this.stage} width={this.state.stageWidth} height={this.state.stageHeight}>
-                        <Layer>
-                            <BoxSurface/>
-                            <UserText text={this.props.text}/>
-                            <DesignImage
-                                image={this.props.image}
-                                width={this.state.stageWidth}
-                                height={this.state.stageHeight}
-                            />
-                            <Handler image={this.props.image}/>
-                        </Layer>
-                    </Stage>
-                </div>
-            </Col>
-        </Row>;
-    }
+  render() {
+    return <Row>
+      <Col xs={12} className="canvas-container">
+        <div className="drawing-area" ref={this.container}>
+          <Stage ref={this.stage} width={this.state.stageWidth} height={this.state.stageHeight}>
+            <Layer>
+              <BoxSurface/>
+              <UserText text={this.props.text}/>
+              <DesignImage
+                image={this.props.image}
+                width={this.state.stageWidth}
+                height={this.state.stageHeight}
+              />
+              <Handler image={this.props.image}/>
+            </Layer>
+          </Stage>
+        </div>
+      </Col>
+    </Row>;
+  }
 }
 
 export default Canvas;

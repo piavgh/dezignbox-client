@@ -6,11 +6,11 @@
     margin-bottom: 60px;
 }
 
-.banner {
+.homepage .banner {
     position: relative;
 }
 
-.banner p {
+.homepage .banner p {
     position: absolute;
     top: 65px;
     left: 70px;
@@ -20,12 +20,12 @@
     font-weight: 900;
 }
 
-p {
+.homepage p {
     font-size: 1.75rem;
     font-family: "GT Haptik", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 900;
 }
 
-img {
+.homepage img {
     width: 100%;
 }

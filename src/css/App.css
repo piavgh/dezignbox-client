@@ -1,5 +1,17 @@
+.App {
+    display: flex;
+    -webkit-flex-direction: column; /* Safari */
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main {
+    -webkit-flex: 1;
+    flex: 1;
+    margin-top: 50px;
+}
+
 nav {
-    margin-bottom: 50px;
     background-color: #37B77B;
 }
 
@@ -64,3 +76,27 @@ button {
 }
 
 /* Not found page END */
+
+/*Footer START*/
+.footer {
+    background-color: #e2e2e2;
+}
+
+.footer .container {
+    margin-bottom: 0;
+    padding: 20px 0;
+}
+
+.social-network-container {
+    text-align: right;
+}
+
+.social-network-icon {
+    font-size: 16px;
+    margin: 0 5px;
+}
+
+.social-network-icon a {
+    text-decoration: none;
+}
+/*Footer END*/

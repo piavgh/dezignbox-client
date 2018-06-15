@@ -4,7 +4,7 @@ import alert from './alert.reducers';
 import campaign from './campaigns.reducers';
 
 export default combineReducers({
-    auth,
-    alert,
-    campaign
+  auth,
+  alert,
+  campaign
 });

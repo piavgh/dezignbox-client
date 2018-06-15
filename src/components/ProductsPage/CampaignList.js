@@ -3,35 +3,24 @@ import PropTypes from 'prop-types';
 
 import Campaign from "./Campaign";
 
-const CampaignList = (
+const CampaignList = ({campaigns}) => (
+  <div className="campaign-list">
     {
-        campaigns,
-        handleEditCampaign,
-        handleDeleteCampaign
+      campaigns.map(campaign => {
+        return (
+          <Campaign
+            title={campaign.title}
+            image={campaign.canvasDataUrl}
+            status={campaign.active}
+            key={campaign._id}/>
+        )
+      })
     }
-) => (
-    <div className="campaign-list">
-        {
-            campaigns.map(campaign => {
-                return (
-                    <Campaign
-                        title={campaign.title}
-                        image={campaign.canvasDataUrl}
-                        status={campaign.active}
-                        key={campaign._id}
-                        handleEdit={() => handleEditCampaign(campaign._id)}
-                        handleDelete={() => handleDeleteCampaign(campaign._id)}
-                    />
-                )
-            })
-        }
-    </div>
+  </div>
 );
 
 CampaignList.propTypes = {
-    campaigns: PropTypes.array.isRequired,
-    handleEditCampaign: PropTypes.func.isRequired,
-    handleDeleteCampaign: PropTypes.func.isRequired
+  campaigns: PropTypes.array.isRequired
 };
 
 export default CampaignList;

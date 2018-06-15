@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
-    Row,
-    Col
+  Row,
+  Col
 } from 'reactstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -11,55 +11,55 @@ import LoginForm from "../components/LoginPage/LoginForm";
 import * as AuthActionCreators from "../redux/actions/auth.actions";
 
 class LoginPage extends Component {
-    handleLoginSubmit = (email, password) => {
-        this.props.boundLoginAction(email, password);
-    };
+  handleLoginSubmit = (email, password) => {
+    this.props.boundLoginAction(email, password);
+  };
 
-    render() {
-        const {isLoginPending, isAuthenticated, loginError, currentUser} = this.props;
+  render() {
+    const {isLoginPending, isAuthenticated, loginError, currentUser} = this.props;
 
-        return <Row>
-            <Col xs={12} md={8}>
+    return <Row>
+      <Col xs={12} md={8}>
 
-            </Col>
-            <Col xs={12} md={4}>
-                <LoginForm
-                    handleLoginSubmit={this.handleLoginSubmit}
-                    isLoginPending={isLoginPending}
-                    isAuthenticated={isAuthenticated}
-                    loginError={loginError}
-                    currentUser={currentUser}
-                />
-            </Col>
-        </Row>;
-    }
+      </Col>
+      <Col xs={12} md={4}>
+        <LoginForm
+          handleLoginSubmit={this.handleLoginSubmit}
+          isLoginPending={isLoginPending}
+          isAuthenticated={isAuthenticated}
+          loginError={loginError}
+          currentUser={currentUser}
+        />
+      </Col>
+    </Row>;
+  }
 
 }
 
 LoginPage.propTypes = {
-    isLoginPending: PropTypes.bool.isRequired,
-    isAuthenticated: PropTypes.bool.isRequired,
-    loginError: PropTypes.object.isRequired
+  isLoginPending: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  loginError: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => (
-    {
-        isLoginPending: state.auth.isLoginPending,
-        isAuthenticated: state.auth.isAuthenticated,
-        loginError: state.auth.loginError,
-        currentUser: state.auth.currentUser,
-        alert: state.alert
-    }
+  {
+    isLoginPending: state.auth.isLoginPending,
+    isAuthenticated: state.auth.isAuthenticated,
+    loginError: state.auth.loginError,
+    currentUser: state.auth.currentUser,
+    alert: state.alert
+  }
 );
 
 const mapDispatchToProps = dispatch => (
-    {
-        boundLoginAction: bindActionCreators(AuthActionCreators.loginAction, dispatch),
-    }
+  {
+    boundLoginAction: bindActionCreators(AuthActionCreators.loginAction, dispatch),
+  }
 );
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(LoginPage);
 

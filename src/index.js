@@ -13,18 +13,18 @@ import reducers from './redux/reducers';
 import Root from './containers/Root';
 
 const store = createStore(
-    reducers,
-    window.devToolsExtension && window.devToolsExtension(),
-    applyMiddleware(
-        promiseMiddleware(), // shorter async actions
-        thunkMiddleware, // lets us dispatch() functions
-        loggerMiddleware // neat middleware that logs actions
-    )
+  reducers,
+  window.devToolsExtension && window.devToolsExtension(),
+  applyMiddleware(
+    promiseMiddleware(), // shorter async actions
+    thunkMiddleware, // lets us dispatch() functions
+    loggerMiddleware // neat middleware that logs actions
+  )
 );
 
 render(
-    <Root store={store}/>,
-    document.getElementById('root')
+  <Root store={store}/>,
+  document.getElementById('root')
 );
 
 registerServiceWorker();

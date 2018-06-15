@@ -15,6 +15,15 @@ class ProductsPage extends Component {
         this.props.dispatch(fetchCampaigns(this.props.userId));
     }
 
+    handleEditCampaign = (campaignId) => {
+        console.log(campaignId);
+    };
+
+    handleDeleteCampaign = (campaignId) => {
+        // this.props.dispatch(deleteCampaign(campaignId));
+        console.log(campaignId);
+    };
+
     render() {
         const {error, loading, campaigns} = this.props;
 
@@ -37,7 +46,11 @@ class ProductsPage extends Component {
                 </Col>
                 <Col xs={10}>
                     <h1>Products</h1>
-                    <CampaignList campaigns={campaigns}/>
+                    <CampaignList
+                        campaigns={campaigns}
+                        handleEditCampaign={this.handleEditCampaign}
+                        handleDeleteCampaign={this.handleDeleteCampaign}
+                    />
                 </Col>
             </Row>
         );

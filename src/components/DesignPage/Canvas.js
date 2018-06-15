@@ -54,7 +54,10 @@ class Canvas extends Component {
         return <Row>
             <Col xs={12} className="canvas-container">
                 <div className="drawing-area" ref={this.container}>
-                    <Stage ref={this.stage} width={this.state.stageWidth} height={this.state.stageHeight}>
+                    <Stage
+                        ref={this.stage}
+                        width={this.state.stageWidth}
+                        height={this.state.stageHeight}>
                         <Layer>
                             <BoxSurface/>
                             <UserText text={this.props.text}/>

@@ -49,3 +49,9 @@ export function fetchCampaigns(userId) {
             });
     };
 }
+
+export function deleteCampaign(campaignId) {
+    return dispatch => {
+
+    };
+}

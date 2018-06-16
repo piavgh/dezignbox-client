@@ -10,7 +10,9 @@ const Campaign = (
   {
     title,
     image,
-    status
+    status,
+    handleEdit,
+    handleDelete
   }
 ) => (
   <Row className="campaign-item">
@@ -25,8 +27,8 @@ const Campaign = (
     </Col>
     <Col xs={3}>
       <ul>
-        <li><i className="far fa-edit"/></li>
-        <li><i className="far fa-trash-alt"/></li>
+        <li onClick={handleEdit}><i className="far fa-edit"/></li>
+        <li onClick={handleDelete}><i className="far fa-trash-alt"/></li>
         <li><i className="fas fa-cog"/></li>
       </ul>
     </Col>
@@ -36,7 +38,9 @@ const Campaign = (
 Campaign.propTypes = {
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  status: PropTypes.bool.isRequired
+  status: PropTypes.bool.isRequired,
+  handleEdit: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired
 };
 
 export default Campaign;

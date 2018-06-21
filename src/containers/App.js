@@ -17,7 +17,10 @@ class App extends Component {
       this.props.boundLoadUserFromToken();
     }
     this.unlisten = this.props.history.listen((location, action) => {
-      this.props.boundClearAlert();
+      // Check if "alert" object is empty, if not, clear the "alert" object
+      if (!(Object.keys(this.props.alert).length === 0 && this.props.alert.constructor === Object)) {
+        this.props.boundClearAlert();
+      }
     });
   }
 

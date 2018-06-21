@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {
-  Row,
-  Col
-} from 'reactstrap';
+import {Row, Col, FormGroup, Label, Input} from 'reactstrap';
 import {Stage, Layer} from 'react-konva';
 
 import Handler from "./Canvas/Handler";
@@ -24,9 +21,30 @@ class Canvas extends Component {
     image: PropTypes.string.isRequired
   };
 
+  /**
+   * In case we need to add more sizes for box, just add it here
+   * TODO: Move this to a constants file.
+   * @type {{"20x10": {width: number, height: number}, "30x25": {width: number, height: number}, "40x30": {width: number, height: number}}}
+   */
+  boxSize = {
+    '20x10': {
+      width: 20,
+      height: 10
+    },
+    '30x25': {
+      width: 30,
+      height: 25
+    },
+    '40x30': {
+      width: 40,
+      height: 30
+    }
+  };
+
   state = {
     stageWidth: 1000,
-    stageHeight: 1000
+    stageHeight: 1000,
+    boxRatio: this.boxSize['20x10'].height / this.boxSize['20x10'].width
   };
 
   componentDidMount() {
@@ -41,17 +59,61 @@ class Canvas extends Component {
     window.removeEventListener("resize", this.checkSize);
   }
 
-  checkSize = () => {
+  checkSize() {
     const width = this.container.current.offsetWidth;
-    const height = width * 0.6;
+    const height = width * this.state.boxRatio;
     this.setState({
       stageWidth: width,
       stageHeight: height
     });
   };
 
+  onBoxSizeChange = (e) => {
+    switch (parseInt(e.target.value, 10)) {
+      case 1:
+        this.setState({
+          boxRatio: this.boxSize['20x10'].height / this.boxSize['20x10'].width
+        }, () => {
+          this.checkSize();
+        });
+        break;
+      case 2:
+        this.setState({
+          boxRatio: this.boxSize['30x25'].height / this.boxSize['30x25'].width
+        }, () => {
+          this.checkSize();
+        });
+        break;
+      case 3:
+        this.setState({
+          boxRatio: this.boxSize['40x30'].height / this.boxSize['40x30'].width
+        }, () => {
+          this.checkSize();
+        });
+        break;
+      default:
+        break;
+    }
+  };
+
   render() {
     return <Row>
+      <Col xs={{size: 4, offset: 8}} className="box-size-selector">
+        <FormGroup>
+          <Label for="status">Box Size</Label>
+          <Input
+            type="select"
+            name="boxRatio"
+            id="boxRatio"
+            value={this.state.boxSize}
+            onChange={this.onBoxSizeChange}
+            onSelect={this.onBoxSizeChange}>
+            <option value={1}>20cm x 10cm</option>
+            <option value={2}>30cm x 25cm</option>
+            <option value={3}>40cm x 30cm</option>
+          </Input>
+        </FormGroup>
+      </Col>
       <Col xs={12} className="canvas-container">
         <div className="drawing-area" ref={this.container}>
           <Stage ref={this.stage} width={this.state.stageWidth} height={this.state.stageHeight}>

@@ -59,7 +59,7 @@ class Canvas extends Component {
     window.removeEventListener("resize", this.checkSize);
   }
 
-  checkSize() {
+  checkSize = () => {
     const width = this.container.current.offsetWidth;
     const height = width * this.state.boxRatio;
     this.setState({
@@ -73,23 +73,17 @@ class Canvas extends Component {
       case 1:
         this.setState({
           boxRatio: this.boxSize['20x10'].height / this.boxSize['20x10'].width
-        }, () => {
-          this.checkSize();
-        });
+        }, this.checkSize);
         break;
       case 2:
         this.setState({
           boxRatio: this.boxSize['30x25'].height / this.boxSize['30x25'].width
-        }, () => {
-          this.checkSize();
-        });
+        }, this.checkSize);
         break;
       case 3:
         this.setState({
           boxRatio: this.boxSize['40x30'].height / this.boxSize['40x30'].width
-        }, () => {
-          this.checkSize();
-        });
+        }, this.checkSize);
         break;
       default:
         break;
@@ -98,20 +92,21 @@ class Canvas extends Component {
 
   render() {
     return <Row>
-      <Col xs={{size: 4, offset: 8}} className="box-size-selector">
-        <FormGroup>
-          <Label for="status">Box Size</Label>
-          <Input
-            type="select"
-            name="boxRatio"
-            id="boxRatio"
-            value={this.state.boxSize}
-            onChange={this.onBoxSizeChange}
-            onSelect={this.onBoxSizeChange}>
-            <option value={1}>20cm x 10cm</option>
-            <option value={2}>30cm x 25cm</option>
-            <option value={3}>40cm x 30cm</option>
-          </Input>
+      <Col xs={{size: 12, offset: 0}} md={{size: 8, offset: 4}} className="box-size-selector">
+        <FormGroup row>
+          <Label for="status" xs={{size: 3, offset: 3}}>Box Size</Label>
+          <Col xs={6}>
+            <Input
+              type="select"
+              name="boxRatio"
+              id="boxRatio"
+              value={this.state.boxSize}
+              onChange={this.onBoxSizeChange}>
+              <option value={1}>20cm x 10cm</option>
+              <option value={2}>30cm x 25cm</option>
+              <option value={3}>40cm x 30cm</option>
+            </Input>
+          </Col>
         </FormGroup>
       </Col>
       <Col xs={12} className="canvas-container">

@@ -76,3 +76,15 @@
     display: inline-block;
     margin-right: 10px;
 }
+
+.pagination {
+    text-align: center;
+    margin-top: 2rem;
+    display: flex;
+    -webkit-justify-content: center; /* Safari */
+    justify-content: center;
+    -webkit-align-items: center; /* Safari */
+    align-items: center;
+    -webkit-align-content: center; /* Safari */
+    align-content: center;
+}

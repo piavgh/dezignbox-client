@@ -8,11 +8,23 @@ import {
 import '../css/ProductsPage.css';
 import CampaignList from "../components/ProductsPage/CampaignList";
 import {fetchCampaigns} from "../redux/actions/campaigns.actions";
+import Pagination from "../components/ProductsPage/Pagination";
 
 class ProductsPage extends Component {
 
+  state = {
+    pageCount: 0,
+    perPage: 10,
+    currentPage: 1
+  };
+
   componentDidMount() {
-    this.props.dispatch(fetchCampaigns(this.props.userId));
+    this.props.dispatch(fetchCampaigns(this.props.userId, this.state.currentPage))
+      .then((data) => {
+        this.setState({
+          pageCount: data.extra.pageCount
+        })
+      });
   }
 
   handleEditCampaign = (campaignId) => {
@@ -21,6 +33,19 @@ class ProductsPage extends Component {
 
   handleDeleteCampaign = (campaignId) => {
 
+  };
+
+  handlePageChange = (pageNumber) => {
+    if (pageNumber === this.state.currentPage) {
+      return;
+    }
+    this.props.dispatch(fetchCampaigns(this.props.userId, pageNumber))
+      .then((data) => {
+        this.setState({
+          pageCount: data.extra.pageCount,
+          currentPage: pageNumber
+        })
+      });
   };
 
   render() {
@@ -50,6 +75,10 @@ class ProductsPage extends Component {
             handleEditCampaign={this.handleEditCampaign}
             handleDeleteCampaign={this.handleDeleteCampaign}
           />
+          <Pagination
+            pageCount={this.state.pageCount}
+            currentPage={this.state.currentPage}
+            handlePageChange={this.handlePageChange}/>
         </Col>
       </Row>
     );

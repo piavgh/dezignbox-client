@@ -73,9 +73,13 @@ class DesignPage extends Component {
     }));
 
     // 2. Create campaign
-    this.props.createCampaign(this.props.userId, this.props.campaign.newCampaign).catch((err) => {
-      console.log(err);
-    });
+    this.props.createCampaign(this.props.userId, this.props.campaign.newCampaign)
+      .then((result) => {
+        this.props.history.push('/products');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   handleCampaignInfoInputChange = (e) => {

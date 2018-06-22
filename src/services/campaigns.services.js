@@ -19,13 +19,14 @@ const CampaignsService = {
     });
   },
 
-  fetchCampaigns: (userId) => {
+  fetchCampaigns: (userId, page = 1) => {
     return BaseService.get(campaignsRoutesPrefix + '/', {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
       params: {
-        userId: userId
+        userId: userId,
+        page: page
       }
     });
   }

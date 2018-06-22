@@ -36,10 +36,10 @@ export const fetchCampaignsFailure = error => ({
   payload: {error}
 });
 
-export function fetchCampaigns(userId) {
+export function fetchCampaigns(userId, page) {
   return dispatch => {
     dispatch(fetchCampaignsPending());
-    return CampaignsService.fetchCampaigns(userId)
+    return CampaignsService.fetchCampaigns(userId, page)
       .then(res => {
         dispatch(fetchCampaignsSuccess(res.data.data));
         return res.data;

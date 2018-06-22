@@ -44,7 +44,29 @@ export default class AppPagination extends Component {
 
   render() {
     let items = [];
-    for (let i = 1; i <= this.props.pageCount; i++) {
+    let lowerBound = 1;
+    let upperBound = 1;
+
+    // Calculate lower bound and upper bound of the loop below
+    if (this.props.currentPage === 1) {
+      lowerBound = 1;
+      upperBound = 5;
+    } else if (this.props.currentPage === 2) {
+      lowerBound = 1;
+      upperBound = 5;
+    } else if (this.props.currentPage === this.props.pageCount - 1) {
+      lowerBound = this.props.pageCount - 5;
+      upperBound = this.props.pageCount - 1;
+    } else if (this.props.currentPage === this.props.pageCount) {
+      lowerBound = this.props.pageCount - 4;
+      upperBound = this.props.pageCount;
+    } else {
+      lowerBound = this.props.currentPage - 2;
+      upperBound = this.props.currentPage + 2;
+    }
+
+    for (let i = lowerBound; i <= upperBound; i++) {
+
       items.push(
         <PaginationItem
           key={i}

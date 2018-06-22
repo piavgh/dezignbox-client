@@ -15,6 +15,7 @@
     margin: 20px 0;
     color: white;
     font-weight: bold;
+    border-radius: 1rem;
 }
 
 .uploading-image-container .sending-image-text {

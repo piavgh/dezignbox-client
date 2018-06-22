@@ -50,15 +50,15 @@ export default class AppPagination extends Component {
     // Calculate lower bound and upper bound of the loop below
     if (this.props.currentPage === 1) {
       lowerBound = 1;
-      upperBound = 5;
+      upperBound = this.props.pageCount <= 5 ? this.props.pageCount : 5;
     } else if (this.props.currentPage === 2) {
       lowerBound = 1;
-      upperBound = 5;
+      upperBound = this.props.pageCount <= 5 ? this.props.pageCount : 5;
     } else if (this.props.currentPage === this.props.pageCount - 1) {
-      lowerBound = this.props.pageCount - 5;
+      lowerBound = this.props.pageCount - 5 > 1 ? this.props.pageCount - 5 : 1;
       upperBound = this.props.pageCount - 1;
     } else if (this.props.currentPage === this.props.pageCount) {
-      lowerBound = this.props.pageCount - 4;
+      lowerBound = this.props.pageCount - 4 > 1 ? this.props.pageCount - 4 : 1;
       upperBound = this.props.pageCount;
     } else {
       lowerBound = this.props.currentPage - 2;

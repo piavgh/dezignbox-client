@@ -4,7 +4,7 @@ import {bindActionCreators} from "redux";
 import '../css/App.css';
 import Header from './Header';
 import {connect} from "react-redux";
-import Alert from "../components/Alert";
+import Alert from "../components/Common/Alert";
 import Routes from "./Routes";
 import * as AuthActionCreators from "../redux/actions/auth.actions";
 import * as AlertActionCreators from '../redux/actions/alert.actions';

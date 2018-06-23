@@ -8,7 +8,7 @@ import {
 import '../css/ProductsPage.css';
 import CampaignList from "../components/ProductsPage/CampaignList";
 import {fetchCampaigns} from "../redux/actions/campaigns.actions";
-import Pagination from "../components/ProductsPage/Pagination";
+import Pagination from "../components/Common/Pagination";
 
 class ProductsPage extends Component {
 

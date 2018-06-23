@@ -5,7 +5,7 @@ import {
   Label
 } from 'reactstrap';
 
-import LoaderButton from '../LoaderButton';
+import LoaderButton from '../Common/LoaderButton';
 
 class LoginForm extends Component {
   static propTypes = {

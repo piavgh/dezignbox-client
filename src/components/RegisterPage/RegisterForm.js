@@ -5,7 +5,7 @@ import {
 } from 'reactstrap';
 import PropTypes from "prop-types";
 
-import LoaderButton from '../LoaderButton';
+import LoaderButton from '../Common/LoaderButton';
 
 class RegisterForm extends Component {
   static propTypes = {

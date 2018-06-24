@@ -9,6 +9,7 @@ import '../css/ProductsPage.css';
 import CampaignList from "../components/ProductsPage/CampaignList";
 import {fetchCampaigns} from "../redux/actions/campaigns.actions";
 import Pagination from "../components/Common/Pagination";
+import Spinner from "../components/Common/Spinner";
 
 class ProductsPage extends Component {
 
@@ -59,7 +60,9 @@ class ProductsPage extends Component {
 
     if (loading) {
       return (
-        <div className="loading-spin-container"><span><i className="fas fa-spinner fa-spin"/></span></div>
+        <Spinner
+          show={loading}
+          name="productsPageSpinner"/>
       )
     }
 

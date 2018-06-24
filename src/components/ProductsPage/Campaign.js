@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom';
 
 const Campaign = (
   {
+    id,
     title,
     image,
     status,
@@ -20,7 +21,7 @@ const Campaign = (
       <img className="campaign-image" src={image} alt={title}/>
     </Col>
     <Col xs={5}>
-      <Link to="#" className="campaign-title">{title}</Link>
+      <Link to={"/products/" + id} className="campaign-title">{title}</Link>
     </Col>
     <Col xs={1}>
       <span className={status ? "campaign-status active" : "campaign-status inactive"}/>
@@ -36,6 +37,7 @@ const Campaign = (
 );
 
 Campaign.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   status: PropTypes.bool.isRequired,

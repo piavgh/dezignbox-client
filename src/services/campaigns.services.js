@@ -29,6 +29,15 @@ const CampaignsService = {
         page: page
       }
     });
+  },
+
+  fetchCampaignDetail: (id) => {
+    console.log(id);
+    return BaseService.get(campaignsRoutesPrefix + '/' + id, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    });
   }
 };
 

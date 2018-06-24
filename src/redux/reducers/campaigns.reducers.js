@@ -4,6 +4,7 @@ const initialState = {
   items: [],
   loading: false,
   error: null,
+  detail: null,
   newCampaign: {
     title: '',
     description: '',
@@ -85,6 +86,29 @@ export default function CampaignsReducers(state = initialState, action) {
         error: action.payload.error,
         items: []
       };
+
+    case CampaignsActionTypes.FETCH_CAMPAIGN_DETAIL_PENDING:
+      return {
+        ...state,
+        loading: true,
+        error: null
+      };
+
+    case CampaignsActionTypes.FETCH_CAMPAIGN_DETAIL_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        detail: action.payload.campaign
+  };
+
+    case CampaignsActionTypes.FETCH_CAMPAIGN_DETAIL_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+        detail: null
+      };
+
     default:
       return state;
   }

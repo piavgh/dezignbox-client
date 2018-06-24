@@ -15,6 +15,7 @@ const CampaignList = (
       campaigns.map(campaign => {
         return (
           <Campaign
+            id={campaign._id}
             title={campaign.title}
             image={campaign.canvasDataUrl}
             status={campaign.active}

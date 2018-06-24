@@ -50,6 +50,34 @@ export function fetchCampaigns(userId, page) {
   };
 }
 
+export const fetchCampaignDetailPending = () => ({
+  type: CampaignsActionTypes.FETCH_CAMPAIGN_DETAIL_PENDING
+});
+
+export const fetchCampaignDetailSuccess = campaign => ({
+  type: CampaignsActionTypes.FETCH_CAMPAIGN_DETAIL_SUCCESS,
+  payload: {campaign}
+});
+
+export const fetchCampaignDetailFailure = error => ({
+  type: CampaignsActionTypes.FETCH_CAMPAIGN_DETAIL_FAILURE,
+  payload: {error}
+});
+
+export function fetchCampaignDetail(id) {
+  return dispatch => {
+    dispatch(fetchCampaignDetailPending());
+    return CampaignsService.fetchCampaignDetail(id)
+      .then(res => {
+        dispatch(fetchCampaignDetailSuccess(res.data.data));
+        return res.data;
+      })
+      .catch(error => {
+        dispatch(fetchCampaignDetailFailure(error.response.data.error));
+      });
+  };
+}
+
 export function deleteCampaign(campaignId) {
     return dispatch => {
 

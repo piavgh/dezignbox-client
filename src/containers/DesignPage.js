@@ -14,6 +14,8 @@ import Tools from "../components/DesignPage/Tools";
 import Canvas from "../components/DesignPage/Canvas";
 import CampaignInfo from "../components/DesignPage/CampaignInfo";
 import * as CampaignsActionCreators from "../redux/actions/campaigns.actions";
+import Spinner from "../components/Common/Spinner";
+import {spinnerService} from "../services/spinner.services";
 
 class DesignPage extends Component {
 
@@ -27,8 +29,7 @@ class DesignPage extends Component {
   state = {
     text: '',
     image: '',
-    files: [],
-    isUploadingImage: false
+    files: []
   };
 
   handleTextChange = e => {
@@ -36,7 +37,7 @@ class DesignPage extends Component {
   };
 
   handleFileDrop = files => {
-    this.setState({isUploadingImage: true});
+    this.toggleLoader();
     const uploaders = files.map(file => {
       // Initial FormData
       const formData = new FormData();
@@ -60,13 +61,13 @@ class DesignPage extends Component {
       // ... perform after upload is successful operation
       this.setState({
         files,
-        image: files[0].preview,
-        isUploadingImage: false
-      });
+        image: files[0].preview
+      }, this.toggleLoader());
     });
   };
 
   handleFinalizeDesign = () => {
+    this.toggleLoader();
     // 1. Store canvas stage JSON to redux store: newCampaign.canvasObject
     this.props.saveCanvasDataUrl(this.canvas.current.stage.current.getStage().toDataURL({
       mimeType: 'image/png'
@@ -75,9 +76,11 @@ class DesignPage extends Component {
     // 2. Create campaign
     this.props.createCampaign(this.props.userId, this.props.campaign.newCampaign)
       .then((result) => {
+        this.toggleLoader();
         this.props.history.push('/products');
       })
       .catch((err) => {
+        this.toggleLoader();
         console.log(err);
       });
   };
@@ -86,18 +89,19 @@ class DesignPage extends Component {
     this.props.handleCampaignInfoInputChange(e.target.id, Utils.handleOptionInput(e.target.value));
   };
 
+  toggleLoader = () => {
+    if (spinnerService.isShowing('designPageSpinner')) {
+      spinnerService.hide('designPageSpinner');
+    } else {
+      spinnerService.show('designPageSpinner');
+    }
+  };
+
   render() {
     return (
       <div>
-        {
-          this.state.isUploadingImage && <Row>
-            <Col xs={{size: 10, offset: 1}} lg={{size: 12, offset: 0}}
-                 className="uploading-image-container">
-              <p className="sending-image-text">Sending image</p>
-              <p className="please-wait-text">Please wait...</p>
-            </Col>
-          </Row>
-        }
+        <Spinner
+          name="designPageSpinner"/>
 
         <Row className="campaign-design-container">
           <Col xs={{size: 10, offset: 1}} lg={{size: 4, offset: 0}}>

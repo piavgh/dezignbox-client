@@ -9,8 +9,10 @@ class CampaignInfo extends Component {
     title: PropTypes.string,
     description: PropTypes.string,
     status: PropTypes.bool,
+    submitButtonTitle: PropTypes.string.isRequired,
     handleInputChange: PropTypes.func.isRequired,
-    handleFinalizeDesign: PropTypes.func.isRequired
+    handleGoBack: PropTypes.func.isRequired,
+    handleFormSubmit: PropTypes.func.isRequired
   };
 
   onChange = (e) => {
@@ -19,7 +21,7 @@ class CampaignInfo extends Component {
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-    this.props.handleFinalizeDesign();
+    this.props.handleFormSubmit();
   };
 
   render() {
@@ -62,8 +64,8 @@ class CampaignInfo extends Component {
             </Input>
           </FormGroup>
           <div className="campaign-detail-buttons-container">
-            <Link to="/start-design/design" className="btn btn-secondary button-back">Back</Link>
-            <Button className="btn btn-success button-submit">Finalize Design</Button>
+            <Button className="btn btn-secondary button-back" onClick={this.props.handleGoBack}>Back</Button>
+            <Button className="btn btn-success button-submit">{this.props.submitButtonTitle}</Button>
           </div>
         </Form>
       </Col>

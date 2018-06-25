@@ -14,19 +14,37 @@ const initialState = {
   },
   createCampaignPending: false,
   createCampaignSuccess: false,
-  createCampaignError: {}
+  createCampaignError: {},
+  updateCampaignPending: false,
+  updateCampaignSuccess: false,
+  updateCampaignError: {}
 };
 
 export default function CampaignsReducers(state = initialState, action) {
+  let newCampaign;
+  let detail;
   switch (action.type) {
     case CampaignsActionTypes.UPDATE_CAMPAIGN_INFO:
-      let newCampaign = state.newCampaign;
-      newCampaign[action.field] = action.value;
+      if (action.params.reduxField === 'newCampaign') {
+        newCampaign = state.newCampaign;
+        newCampaign[action.field] = action.value;
 
-      return {
-        ...state,
-        newCampaign
-      };
+        return {
+          ...state,
+          newCampaign
+        };
+      } else if (action.params.reduxField === 'detail') {
+        detail = state.detail;
+        console.log(detail);
+        detail[action.field] = action.value;
+
+        return {
+          ...state,
+          detail
+        };
+      } else {
+        break;
+      }
     case CampaignsActionTypes.SAVE_IMAGE_URL:
       newCampaign = state.newCampaign;
       newCampaign.imageUrl = action.imageUrl;
@@ -57,7 +75,8 @@ export default function CampaignsReducers(state = initialState, action) {
           status: true,
           imageUrl: '',
           canvasDataUrl: ''
-        }
+        },
+        createCampaignError: {}
       };
     case CampaignsActionTypes.CREATE_REJECTED:
       return {
@@ -65,6 +84,26 @@ export default function CampaignsReducers(state = initialState, action) {
         createCampaignPending: false,
         createCampaignError: action.payload
       };
+
+    case CampaignsActionTypes.UPDATE_PENDING:
+      return {
+        ...state,
+        updateCampaignPending: true
+      };
+    case CampaignsActionTypes.UPDATE_FULFILLED:
+      return {
+        ...state,
+        updateCampaignPending: false,
+        updateCampaignSuccess: true,
+        updateCampaignError: {}
+      };
+    case CampaignsActionTypes.UPDATE_REJECTED:
+      return {
+        ...state,
+        updateCampaignPending: false,
+        updateCampaignError: action.payload
+      };
+
     case CampaignsActionTypes.FETCH_CAMPAIGNS_PENDING:
       return {
         ...state,

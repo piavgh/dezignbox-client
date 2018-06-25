@@ -1,10 +1,11 @@
 import {CampaignsActionTypes} from '../actiontypes/campaigns.actiontypes';
 import CampaignsService from '../../services/campaigns.services';
 
-export const handleCampaignInfoInputChange = (field, value) => ({
+export const handleCampaignInfoInputChange = (field, value, params) => ({
   type: CampaignsActionTypes.UPDATE_CAMPAIGN_INFO,
   field,
-  value
+  value,
+  params
 });
 
 export const saveImageUrl = (imageUrl) => ({
@@ -20,6 +21,11 @@ export const saveCanvasDataUrl = (canvasDataUrl) => ({
 export const createCampaign = (ownerId, campaign) => ({
   type: CampaignsActionTypes.CREATE,
   payload: CampaignsService.createCampaign(ownerId, campaign)
+});
+
+export const updateCampaign = (campaign) => ({
+  type: CampaignsActionTypes.UPDATE,
+  payload: CampaignsService.updateCampaign(campaign)
 });
 
 export const fetchCampaignsPending = () => ({
@@ -79,7 +85,7 @@ export function fetchCampaignDetail(id) {
 }
 
 export function deleteCampaign(campaignId) {
-    return dispatch => {
+  return dispatch => {
 
-    };
+  };
 }

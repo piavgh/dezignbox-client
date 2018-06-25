@@ -86,7 +86,17 @@ class DesignPage extends Component {
   };
 
   handleCampaignInfoInputChange = (e) => {
-    this.props.handleCampaignInfoInputChange(e.target.id, Utils.handleOptionInput(e.target.value));
+    this.props.handleCampaignInfoInputChange(
+      e.target.id,
+      Utils.handleOptionInput(e.target.value),
+      {
+        reduxField: "newCampaign"
+      }
+    );
+  };
+
+  handleGoBack = () => {
+    this.props.history.goBack();
   };
 
   toggleLoader = () => {
@@ -98,6 +108,8 @@ class DesignPage extends Component {
   };
 
   render() {
+    const {campaign} = this.props;
+
     return (
       <div>
         <Spinner
@@ -114,11 +126,13 @@ class DesignPage extends Component {
               }}/>
               <Route path="/start-design/campaign-info" render={() => {
                 return <CampaignInfo
-                  title={this.props.campaign.newCampaign.title}
-                  description={this.props.campaign.newCampaign.description}
-                  status={this.props.campaign.newCampaign.status}
+                  title={campaign.newCampaign.title}
+                  description={campaign.newCampaign.description}
+                  status={campaign.newCampaign.status}
+                  submitButtonTitle="Finalize Design"
                   handleInputChange={this.handleCampaignInfoInputChange}
-                  handleFinalizeDesign={this.handleFinalizeDesign}
+                  handleGoBack={this.handleGoBack}
+                  handleFormSubmit={this.handleFinalizeDesign}
                 />
               }}/>
             </Switch>

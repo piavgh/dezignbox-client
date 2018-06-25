@@ -28,7 +28,7 @@ class DesignPage extends Component {
 
   state = {
     text: '',
-    image: '',
+    image: null,
     files: []
   };
 

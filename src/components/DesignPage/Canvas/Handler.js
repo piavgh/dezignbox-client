@@ -9,30 +9,34 @@ class Handler extends Component {
   }
 
   componentDidMount() {
-    this.updateTransformer();
+    this.checkNode();
   }
 
   componentDidUpdate() {
-    this.updateTransformer();
+    this.checkNode();
   }
 
-  updateTransformer() {
-    if (this.props.image) {
-      const stage = this.transformer.current.getStage();
-      const userDesign = stage.findOne(".user-design");
-      this.transformer.current.attachTo(userDesign);
-      this.transformer.current.getLayer().batchDraw();
+  checkNode() {
+    const stage = this.transformer.current.getStage();
+    const {selectedShapeName} = this.props;
+    const selectedNode = stage.findOne("." + selectedShapeName);
+
+    if (selectedNode === this.transformer.current.node()) {
+      return;
     }
+
+    if (selectedNode) {
+      this.transformer.current.attachTo(selectedNode);
+    } else {
+      this.transformer.current.detach();
+    }
+    this.transformer.current.getLayer().batchDraw();
   }
 
   render() {
-    if (this.props.image) {
-      return (
-        <Transformer ref={this.transformer}/>
-      );
-    }
-
-    return null;
+    return (
+      <Transformer ref={this.transformer}/>
+    );
   }
 }
 

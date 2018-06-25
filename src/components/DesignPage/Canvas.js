@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {Row, Col, FormGroup, Label, Input} from 'reactstrap';
 import {Stage, Layer} from 'react-konva';
 
@@ -15,11 +14,6 @@ class Canvas extends Component {
     this.container = React.createRef();
     this.stage = React.createRef();
   }
-
-  static propTypes = {
-    text: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired
-  };
 
   /**
    * In case we need to add more sizes for box, just add it here
@@ -44,7 +38,8 @@ class Canvas extends Component {
   state = {
     stageWidth: 1000,
     stageHeight: 1000,
-    boxRatio: this.boxSize['20x10'].height / this.boxSize['20x10'].width
+    boxRatio: this.boxSize['20x10'].height / this.boxSize['20x10'].width,
+    selectedShapeName: null
   };
 
   componentDidMount() {
@@ -90,7 +85,23 @@ class Canvas extends Component {
     }
   };
 
+  handleStageClick = e => {
+    this.setState({
+      selectedShapeName: e.target.name()
+    });
+  };
+
   render() {
+    let textComponent = this.props.text ?
+      <UserText text={this.props.text}/> : null;
+
+    let imageComponent = this.props.image ?
+      <DesignImage
+        image={this.props.image}
+        width={this.state.stageWidth * 0.7}
+        height={this.state.stageHeight * 0.7}
+      /> : null;
+
     return <Row>
       <Col xs={{size: 12, offset: 0}} md={{size: 8, offset: 4}} className="box-size-selector">
         <FormGroup row>
@@ -111,16 +122,17 @@ class Canvas extends Component {
       </Col>
       <Col xs={12} className="canvas-container">
         <div className="drawing-area" ref={this.container}>
-          <Stage ref={this.stage} width={this.state.stageWidth} height={this.state.stageHeight}>
+          <Stage
+            ref={this.stage}
+            width={this.state.stageWidth}
+            height={this.state.stageHeight}
+            onClick={this.handleStageClick}>
             <Layer>
               <BoxSurface/>
-              <UserText text={this.props.text}/>
-              <DesignImage
-                image={this.props.image}
-                width={this.state.stageWidth}
-                height={this.state.stageHeight}
-              />
-              <Handler image={this.props.image}/>
+              {textComponent}
+              {imageComponent}
+              <Handler
+                selectedShapeName={this.state.selectedShapeName}/>
             </Layer>
           </Stage>
         </div>

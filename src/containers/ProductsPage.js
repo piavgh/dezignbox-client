@@ -30,7 +30,7 @@ class ProductsPage extends Component {
   }
 
   handleEditCampaign = (campaignId) => {
-
+    this.props.history.push('/products/' + campaignId);
   };
 
   handleDeleteCampaign = (campaignId) => {

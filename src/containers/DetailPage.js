@@ -46,7 +46,7 @@ class DetailPage extends Component {
   };
 
   render() {
-    const {error, loading, campaign, updateCampaignPending} = this.props;
+    const {error, loading, campaign} = this.props;
 
     if (error) {
       return (
@@ -58,14 +58,6 @@ class DetailPage extends Component {
       return (
         <Spinner
           show={loading}
-          name="detailPageSpinner"/>
-      )
-    }
-
-    if (updateCampaignPending) {
-      return (
-        <Spinner
-          show={updateCampaignPending}
           name="detailPageSpinner"/>
       )
     }
@@ -104,8 +96,7 @@ const mapStateToProps = state => ({
   userId: state.auth.currentUser._id,
   campaign: state.campaign,
   loading: state.campaign.loading,
-  error: state.campaign.error,
-  updateCampaignPending: state.campaign.updateCampaignPending
+  error: state.campaign.error
 });
 
 const mapDispatchToProps = dispatch => (

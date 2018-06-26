@@ -12,12 +12,12 @@ const initialState = {
     imageUrl: '',
     canvasDataUrl: ''
   },
-  createCampaignPending: false,
   createCampaignSuccess: false,
   createCampaignError: {},
-  updateCampaignPending: false,
   updateCampaignSuccess: false,
-  updateCampaignError: {}
+  updateCampaignError: {},
+  deleteCampaignSuccess: false,
+  deleteCampaignError: {}
 };
 
 export default function CampaignsReducers(state = initialState, action) {
@@ -62,12 +62,12 @@ export default function CampaignsReducers(state = initialState, action) {
     case CampaignsActionTypes.CREATE_PENDING:
       return {
         ...state,
-        createCampaignPending: true
+        loading: true
       };
     case CampaignsActionTypes.CREATE_FULFILLED:
       return {
         ...state,
-        createCampaignPending: false,
+        loading: false,
         createCampaignSuccess: true,
         newCampaign: {
           title: '',
@@ -81,27 +81,50 @@ export default function CampaignsReducers(state = initialState, action) {
     case CampaignsActionTypes.CREATE_REJECTED:
       return {
         ...state,
-        createCampaignPending: false,
+        loading: false,
         createCampaignError: action.payload
       };
 
     case CampaignsActionTypes.UPDATE_PENDING:
       return {
         ...state,
-        updateCampaignPending: true
+        loading: true
       };
     case CampaignsActionTypes.UPDATE_FULFILLED:
       return {
         ...state,
-        updateCampaignPending: false,
+        loading: false,
         updateCampaignSuccess: true,
         updateCampaignError: {}
       };
     case CampaignsActionTypes.UPDATE_REJECTED:
       return {
         ...state,
-        updateCampaignPending: false,
+        loading: false,
         updateCampaignError: action.payload
+      };
+
+    case CampaignsActionTypes.DELETE_PENDING:
+      return {
+        ...state,
+        loading: true
+      };
+    case CampaignsActionTypes.DELETE_FULFILLED:
+      console.log(action.payload);
+      return {
+        ...state,
+        items: state.items.filter((item) => {
+          return item._id !== action.payload.data.data._id
+        }),
+        loading: false,
+        deleteCampaignSuccess: true,
+        deleteCampaignError: {}
+      };
+    case CampaignsActionTypes.DELETE_REJECTED:
+      return {
+        ...state,
+        loading: false,
+        deleteCampaignError: action.payload
       };
 
     case CampaignsActionTypes.FETCH_CAMPAIGNS_PENDING:

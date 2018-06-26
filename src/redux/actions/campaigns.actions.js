@@ -28,6 +28,11 @@ export const updateCampaign = (campaign) => ({
   payload: CampaignsService.updateCampaign(campaign)
 });
 
+export const deleteCampaign = (campaignId) => ({
+  type: CampaignsActionTypes.DELETE,
+  payload: CampaignsService.deleteCampaign(campaignId)
+});
+
 export const fetchCampaignsPending = () => ({
   type: CampaignsActionTypes.FETCH_CAMPAIGNS_PENDING
 });
@@ -81,11 +86,5 @@ export function fetchCampaignDetail(id) {
       .catch(error => {
         dispatch(fetchCampaignDetailFailure(error.response.data.error));
       });
-  };
-}
-
-export function deleteCampaign(campaignId) {
-  return dispatch => {
-
   };
 }

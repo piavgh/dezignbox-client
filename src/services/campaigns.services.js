@@ -49,6 +49,14 @@ const CampaignsService = {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     });
+  },
+
+  deleteCampaign: (id) => {
+    return BaseService.delete(campaignsRoutesPrefix + '/' + id, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    });
   }
 };
 

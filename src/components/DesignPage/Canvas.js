@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {Row, Col, FormGroup, Label, Input} from 'reactstrap';
+import {Row, Col} from 'reactstrap';
 import {Stage, Layer} from 'react-konva';
 
 import Handler from "./Canvas/Handler";
 import UserText from "./Canvas/UserText";
 import DesignImage from "./Canvas/DesignImage";
 import BoxSurface from "./Canvas/BoxSurface";
+import BoxSizeSelector from "./BoxSizeSelector";
 
 class Canvas extends Component {
 
@@ -102,42 +103,30 @@ class Canvas extends Component {
         height={this.state.stageHeight * 0.7}
       /> : null;
 
-    return <Row>
-      <Col xs={{size: 12, offset: 0}} md={{size: 8, offset: 4}} className="box-size-selector">
-        <FormGroup row>
-          <Label for="status" xs={{size: 3, offset: 3}}>Box Size</Label>
-          <Col xs={6}>
-            <Input
-              type="select"
-              name="boxRatio"
-              id="boxRatio"
-              value={this.state.boxSize}
-              onChange={this.onBoxSizeChange}>
-              <option value={1}>20cm x 10cm</option>
-              <option value={2}>30cm x 25cm</option>
-              <option value={3}>40cm x 30cm</option>
-            </Input>
-          </Col>
-        </FormGroup>
-      </Col>
-      <Col xs={12} className="canvas-container">
-        <div className="drawing-area" ref={this.container}>
-          <Stage
-            ref={this.stage}
-            width={this.state.stageWidth}
-            height={this.state.stageHeight}
-            onClick={this.handleStageClick}>
-            <Layer>
-              <BoxSurface/>
-              {textComponent}
-              {imageComponent}
-              <Handler
-                selectedShapeName={this.state.selectedShapeName}/>
-            </Layer>
-          </Stage>
-        </div>
-      </Col>
-    </Row>;
+    return (
+      <Row>
+        <BoxSizeSelector
+          onBoxSizeChange={this.onBoxSizeChange}/>
+
+        <Col xs={12} className="canvas-container">
+          <div className="drawing-area" ref={this.container}>
+            <Stage
+              ref={this.stage}
+              width={this.state.stageWidth}
+              height={this.state.stageHeight}
+              onClick={this.handleStageClick}>
+              <Layer>
+                <BoxSurface/>
+                {textComponent}
+                {imageComponent}
+                <Handler
+                  selectedShapeName={this.state.selectedShapeName}/>
+              </Layer>
+            </Stage>
+          </div>
+        </Col>
+      </Row>
+    );
   }
 }
 

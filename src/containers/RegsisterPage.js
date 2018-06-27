@@ -46,10 +46,9 @@ RegisterPage.propTypes = {
 
 const mapStateToProps = state => (
   {
-    isRegisterPending: state.auth.isRegisterPending,
-    isRegisterSuccess: state.auth.isRegisterSuccess,
-    isRegisterError: state.auth.isRegisterError,
-    alert: state.alert.alert
+    isRegisterPending: state.authReducer.isRegisterPending,
+    isRegisterSuccess: state.authReducer.isRegisterSuccess,
+    isRegisterError: state.authReducer.isRegisterError
   }
 );
 

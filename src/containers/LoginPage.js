@@ -44,11 +44,10 @@ LoginPage.propTypes = {
 
 const mapStateToProps = state => (
   {
-    isLoginPending: state.auth.isLoginPending,
-    isAuthenticated: state.auth.isAuthenticated,
-    loginError: state.auth.loginError,
-    currentUser: state.auth.currentUser,
-    alert: state.alert
+    isLoginPending: state.authReducer.isLoginPending,
+    isAuthenticated: state.authReducer.isAuthenticated,
+    loginError: state.authReducer.loginError,
+    currentUser: state.authReducer.currentUser
   }
 );
 

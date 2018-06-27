@@ -152,7 +152,7 @@ class DesignPage extends Component {
 const mapStateToProps = state => (
   {
     campaignsReducer: state.campaignsReducer,
-    userId: state.auth.currentUser._id
+    userId: state.authReducer.currentUser._id
   }
 );
 

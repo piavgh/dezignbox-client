@@ -95,7 +95,7 @@ class CheckoutPage extends Component {
 }
 
 const mapStateToProps = state => ({
-  userId: state.auth.currentUser._id,
+  userId: state.authReducer.currentUser._id,
   campaignsReducer: state.campaignsReducer,
   ordersReducer: state.ordersReducer,
   loading: state.campaignsReducer.loading || state.ordersReducer.loading,

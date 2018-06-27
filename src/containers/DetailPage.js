@@ -93,7 +93,7 @@ class DetailPage extends Component {
 }
 
 const mapStateToProps = state => ({
-  userId: state.auth.currentUser._id,
+  userId: state.authReducer.currentUser._id,
   campaignsReducer: state.campaignsReducer,
   loading: state.campaignsReducer.loading,
   error: state.campaignsReducer.error

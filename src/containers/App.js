@@ -49,8 +49,8 @@ class App extends Component {
 
 const mapStateToProps = state => (
   {
-    alert: state.alert,
-    isAuthenticated: state.auth.isAuthenticated
+    alert: state.alertReducer,
+    isAuthenticated: state.authReducer.isAuthenticated
   }
 );
 

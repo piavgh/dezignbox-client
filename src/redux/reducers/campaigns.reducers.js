@@ -1,4 +1,4 @@
-import {CampaignsActionTypes} from '../actiontypes/campaigns.actiontypes';
+import CampaignsActionTypes from '../actiontypes/campaigns.actiontypes';
 
 const initialState = {
   items: [],
@@ -23,6 +23,7 @@ const initialState = {
 export default function CampaignsReducers(state = initialState, action) {
   let newCampaign;
   let detail;
+
   switch (action.type) {
     case CampaignsActionTypes.UPDATE_CAMPAIGN_INFO:
       if (action.params.reduxField === 'newCampaign') {

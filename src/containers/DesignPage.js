@@ -74,7 +74,7 @@ class DesignPage extends Component {
     }));
 
     // 2. Create campaign
-    this.props.createCampaign(this.props.userId, this.props.campaign.newCampaign)
+    this.props.createCampaign(this.props.userId, this.props.campaignsReducer.newCampaign)
       .then((result) => {
         this.toggleLoader();
         this.props.history.push('/products');
@@ -108,7 +108,7 @@ class DesignPage extends Component {
   };
 
   render() {
-    const {campaign} = this.props;
+    const {campaignsReducer} = this.props;
 
     return (
       <div>
@@ -126,9 +126,9 @@ class DesignPage extends Component {
               }}/>
               <Route path="/start-design/campaign-info" render={() => {
                 return <CampaignInfo
-                  title={campaign.newCampaign.title}
-                  description={campaign.newCampaign.description}
-                  status={campaign.newCampaign.status}
+                  title={campaignsReducer.newCampaign.title}
+                  description={campaignsReducer.newCampaign.description}
+                  status={campaignsReducer.newCampaign.status}
                   submitButtonTitle="Finalize Design"
                   handleInputChange={this.handleCampaignInfoInputChange}
                   handleGoBack={this.handleGoBack}
@@ -151,7 +151,7 @@ class DesignPage extends Component {
 
 const mapStateToProps = state => (
   {
-    campaign: state.campaign,
+    campaignsReducer: state.campaignsReducer,
     userId: state.auth.currentUser._id
   }
 );

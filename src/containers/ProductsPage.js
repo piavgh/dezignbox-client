@@ -93,9 +93,9 @@ class ProductsPage extends Component {
 
 const mapStateToProps = state => ({
   userId: state.auth.currentUser._id,
-  campaigns: state.campaign.items,
-  loading: state.campaign.loading,
-  error: state.campaign.error
+  campaigns: state.campaignsReducer.items,
+  loading: state.campaignsReducer.loading,
+  error: state.campaignsReducer.error
 });
 
 const mapDispatchToProps = dispatch => (

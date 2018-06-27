@@ -1,4 +1,4 @@
-import {CampaignsActionTypes} from '../actiontypes/campaigns.actiontypes';
+import CampaignsActionTypes from '../actiontypes/campaigns.actiontypes';
 import CampaignsService from '../../services/campaigns.services';
 
 export const handleCampaignInfoInputChange = (field, value, params) => ({

@@ -46,7 +46,7 @@ class DetailPage extends Component {
   };
 
   render() {
-    const {error, loading, campaign} = this.props;
+    const {error, loading, campaignsReducer} = this.props;
 
     if (error) {
       return (
@@ -62,14 +62,14 @@ class DetailPage extends Component {
       )
     }
 
-    if (campaign.detail) {
+    if (campaignsReducer.detail) {
       return (
         <Row className="detail-page">
           <Col xs={{size: 10, offset: 1}} lg={{size: 4, offset: 0}}>
             <CampaignInfo
-              title={campaign.detail.title}
-              description={campaign.detail.description}
-              status={campaign.detail.status}
+              title={campaignsReducer.detail.title}
+              description={campaignsReducer.detail.description}
+              status={campaignsReducer.detail.status}
               submitButtonTitle="Save"
               handleInputChange={this.handleCampaignInfoInputChange}
               handleGoBack={this.handleGoBack}
@@ -78,7 +78,7 @@ class DetailPage extends Component {
           </Col>
 
           <Col xs={{size: 10, offset: 1}} lg={{size: 8, offset: 0}}>
-            <img src={campaign.detail.canvasDataUrl} alt="canvasDataUrl"/>
+            <img src={campaignsReducer.detail.canvasDataUrl} alt="canvasDataUrl"/>
           </Col>
         </Row>
       );
@@ -94,9 +94,9 @@ class DetailPage extends Component {
 
 const mapStateToProps = state => ({
   userId: state.auth.currentUser._id,
-  campaign: state.campaign,
-  loading: state.campaign.loading,
-  error: state.campaign.error
+  campaignsReducer: state.campaignsReducer,
+  loading: state.campaignsReducer.loading,
+  error: state.campaignsReducer.error
 });
 
 const mapDispatchToProps = dispatch => (

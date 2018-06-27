@@ -1,4 +1,4 @@
-export const CampaignsActionTypes = {
+const CampaignsActionTypes = {
 
   CREATE: 'campaigns/CREATE',
   CREATE_PENDING: 'campaigns/CREATE_PENDING',
@@ -28,3 +28,5 @@ export const CampaignsActionTypes = {
   FETCH_CAMPAIGN_DETAIL_FAILURE: 'FETCH_CAMPAIGN_DETAIL_FAILURE'
 
 };
+
+export default CampaignsActionTypes;

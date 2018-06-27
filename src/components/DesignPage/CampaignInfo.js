@@ -63,8 +63,8 @@ class CampaignInfo extends Component {
             </Input>
           </FormGroup>
           <div className="campaign-detail-buttons-container">
-            <Button className="btn btn-secondary button-back" onClick={this.props.handleGoBack}>Back</Button>
-            <Button className="btn btn-success button-submit">{this.props.submitButtonTitle}</Button>
+            <Button className="btn button-back dz-button" onClick={this.props.handleGoBack}>Back</Button>
+            <Button className="btn button-submit dz-button">{this.props.submitButtonTitle}</Button>
           </div>
         </Form>
       </Col>

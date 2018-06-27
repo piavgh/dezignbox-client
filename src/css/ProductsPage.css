@@ -89,6 +89,7 @@
 .place-order-btn:hover {
     background: #fff;
     color: #1AAB8A;
+    text-decoration: none;
 }
 
 .place-order-btn:before, .place-order-btn:after {

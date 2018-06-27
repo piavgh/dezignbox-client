@@ -68,7 +68,7 @@ class RegisterForm extends Component {
         />
         <LoaderButton
           block
-          className="btn-success"
+          className="dz-button"
           disabled={!this.validateForm()}
           isLoading={this.props.isRegisterPending}
           text="Register"

@@ -100,3 +100,60 @@ button {
     text-decoration: none;
 }
 /*Footer END*/
+
+/*Button START*/
+.dz-button {
+    background: #1AAB8A;
+    color: #fff;
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.8rem;
+    position: relative;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: 800ms ease all;
+    outline: none;
+}
+
+.dz-button:hover {
+    background: #fff;
+    color: #1AAB8A;
+}
+
+.dz-button:before, .dz-button:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: #1AAB8A;
+    transition: 400ms ease all;
+}
+
+.dz-button:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+
+.dz-button:hover:before, .dz-button:hover:after {
+    width: 100%;
+    transition: 800ms ease all;
+}
+
+.button-back {
+    background: #7C7777;
+    color: #fff;
+}
+
+.button-back:hover {
+    background: #fff;
+    color: #7C7777;
+}
+
+.button-back:before, .button-back:after {
+    background: #7C7777;
+}
+/*Button END*/

@@ -105,8 +105,8 @@ class CheckoutInfo extends Component {
           </FormGroup>
 
           <div className="campaign-detail-buttons-container">
-            <Button className="btn btn-secondary button-back" onClick={this.props.handleGoBack}>Back</Button>
-            <Button className="btn btn-success button-submit">Place Order</Button>
+            <Button className="btn button-back dz-button" onClick={this.props.handleGoBack}>Back</Button>
+            <Button className="btn button-submit dz-button">Place Order</Button>
           </div>
         </Form>
       </Col>

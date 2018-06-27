@@ -97,7 +97,7 @@ export default class Tools extends Component {
         </div>
       </Col>
       <Col xs={12}>
-        <Link to="/start-design/campaign-info" className="btn btn-block btn-success button-continue">Continue</Link>
+        <Link to="/start-design/campaign-info" className="btn btn-block button-continue dz-button">Continue</Link>
       </Col>
     </Row>;
   }

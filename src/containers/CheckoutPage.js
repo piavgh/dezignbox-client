@@ -12,6 +12,7 @@ import Utils from "../helpers/utils";
 import CheckoutInfo from "../components/CheckoutPage/CheckoutInfo";
 import {fetchCampaignDetail} from "../redux/actions/campaigns.actions";
 import {handleCheckoutInfoInputChange, createOrder} from "../redux/actions/orders.actions";
+import {setAlertSuccess, setAlertError} from "../redux/actions/alert.actions";
 
 class CheckoutPage extends Component {
 
@@ -43,6 +44,10 @@ class CheckoutPage extends Component {
       this.props.ordersReducer.checkout
     ).then(() => {
       this.props.history.push("/products");
+      this.props.setAlertSuccess('Your information has been submitted.');
+    }).catch((err) => {
+      console.log(err);
+      this.props.setAlertError(err);
     });
   };
 
@@ -106,7 +111,9 @@ const mapDispatchToProps = dispatch => (
   {
     fetchCampaignDetail: bindActionCreators(fetchCampaignDetail, dispatch),
     handleCheckoutInfoInputChange: bindActionCreators(handleCheckoutInfoInputChange, dispatch),
-    createOrder: bindActionCreators(createOrder, dispatch)
+    createOrder: bindActionCreators(createOrder, dispatch),
+    setAlertSuccess: bindActionCreators(setAlertSuccess, dispatch),
+    setAlertError: bindActionCreators(setAlertError, dispatch)
   }
 );
 

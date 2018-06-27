@@ -21,6 +21,7 @@ import {
 } from "../redux/actions/campaigns.actions";
 import Spinner from "../components/Common/Spinner";
 import {spinnerService} from "../services/spinner.services";
+import {setAlertSuccess, setAlertError} from "../redux/actions/alert.actions";
 
 class DesignPage extends Component {
 
@@ -83,10 +84,12 @@ class DesignPage extends Component {
       .then((result) => {
         this.toggleLoader();
         this.props.history.push('/products');
+        this.props.setAlertSuccess('Your campaign has been created.');
       })
       .catch((err) => {
         this.toggleLoader();
         console.log(err);
+        this.props.setAlertError(err);
       });
   };
 
@@ -166,7 +169,9 @@ const mapDispatchToProps = dispatch => (
     handleCampaignInfoInputChange: bindActionCreators(handleCampaignInfoInputChange, dispatch),
     saveImageUrl: bindActionCreators(saveImageUrl, dispatch),
     saveCanvasDataUrl: bindActionCreators(saveCanvasDataUrl, dispatch),
-    createCampaign: bindActionCreators(createCampaign, dispatch)
+    createCampaign: bindActionCreators(createCampaign, dispatch),
+    setAlertSuccess: bindActionCreators(setAlertSuccess, dispatch),
+    setAlertError: bindActionCreators(setAlertError, dispatch)
   }
 );
 

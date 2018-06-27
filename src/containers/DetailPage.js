@@ -15,6 +15,7 @@ import {
 import Spinner from "../components/Common/Spinner";
 import CampaignInfo from "../components/DesignPage/CampaignInfo";
 import Utils from "../helpers/utils";
+import {setAlertSuccess, setAlertError} from "../redux/actions/alert.actions";
 
 class DetailPage extends Component {
 
@@ -39,12 +40,13 @@ class DetailPage extends Component {
   };
 
   handleSaveDesign = () => {
-    this.props.updateCampaign(this.props.campaign.detail)
+    this.props.updateCampaign(this.props.campaignsReducer.detail)
       .then((result) => {
-
+        this.props.setAlertSuccess('Your campaign is saved.');
       })
       .catch((err) => {
         console.log(err);
+        this.props.setAlertError(err);
       });
   };
 
@@ -106,7 +108,9 @@ const mapDispatchToProps = dispatch => (
   {
     handleCampaignInfoInputChange: bindActionCreators(handleCampaignInfoInputChange, dispatch),
     fetchCampaignDetail: bindActionCreators(fetchCampaignDetail, dispatch),
-    updateCampaign: bindActionCreators(updateCampaign, dispatch)
+    updateCampaign: bindActionCreators(updateCampaign, dispatch),
+    setAlertSuccess: bindActionCreators(setAlertSuccess, dispatch),
+    setAlertError: bindActionCreators(setAlertError, dispatch)
   }
 );
 

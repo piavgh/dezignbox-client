@@ -24,7 +24,7 @@ class ProductsPage extends Component {
     this.props.fetchCampaigns(this.props.userId, this.state.currentPage)
       .then((data) => {
         this.setState({
-          pageCount: data.extra.pageCount
+          pageCount: data.value.data.extra.pageCount
         })
       });
   }
@@ -46,7 +46,7 @@ class ProductsPage extends Component {
     this.props.fetchCampaigns(this.props.userId, pageNumber)
       .then((data) => {
         this.setState({
-          pageCount: data.extra.pageCount,
+          pageCount: data.value.data.extra.pageCount,
           currentPage: pageNumber
         })
       });

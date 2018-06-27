@@ -33,58 +33,12 @@ export const deleteCampaign = (campaignId) => ({
   payload: CampaignsService.deleteCampaign(campaignId)
 });
 
-export const fetchCampaignsPending = () => ({
-  type: CampaignsActionTypes.FETCH_CAMPAIGNS_PENDING
+export const fetchCampaigns = (userId, page) => ({
+  type: CampaignsActionTypes.FETCH_CAMPAIGNS,
+  payload: CampaignsService.fetchCampaigns(userId, page)
 });
 
-export const fetchCampaignsSuccess = campaigns => ({
-  type: CampaignsActionTypes.FETCH_CAMPAIGNS_SUCCESS,
-  payload: {campaigns}
+export const fetchCampaignDetail = (id) => ({
+  type: CampaignsActionTypes.FETCH_CAMPAIGN_DETAIL,
+  payload: CampaignsService.fetchCampaignDetail(id)
 });
-
-export const fetchCampaignsFailure = error => ({
-  type: CampaignsActionTypes.FETCH_CAMPAIGNS_FAILURE,
-  payload: {error}
-});
-
-export function fetchCampaigns(userId, page) {
-  return dispatch => {
-    dispatch(fetchCampaignsPending());
-    return CampaignsService.fetchCampaigns(userId, page)
-      .then(res => {
-        dispatch(fetchCampaignsSuccess(res.data.data));
-        return res.data;
-      })
-      .catch(error => {
-        dispatch(fetchCampaignsFailure(error.response.data.error));
-      });
-  };
-}
-
-export const fetchCampaignDetailPending = () => ({
-  type: CampaignsActionTypes.FETCH_CAMPAIGN_DETAIL_PENDING
-});
-
-export const fetchCampaignDetailSuccess = campaign => ({
-  type: CampaignsActionTypes.FETCH_CAMPAIGN_DETAIL_SUCCESS,
-  payload: {campaign}
-});
-
-export const fetchCampaignDetailFailure = error => ({
-  type: CampaignsActionTypes.FETCH_CAMPAIGN_DETAIL_FAILURE,
-  payload: {error}
-});
-
-export function fetchCampaignDetail(id) {
-  return dispatch => {
-    dispatch(fetchCampaignDetailPending());
-    return CampaignsService.fetchCampaignDetail(id)
-      .then(res => {
-        dispatch(fetchCampaignDetailSuccess(res.data.data));
-        return res.data;
-      })
-      .catch(error => {
-        dispatch(fetchCampaignDetailFailure(error.response.data.error));
-      });
-  };
-}

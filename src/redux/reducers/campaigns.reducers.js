@@ -135,18 +135,18 @@ export default function CampaignsReducers(state = initialState, action) {
         error: null
       };
 
-    case CampaignsActionTypes.FETCH_CAMPAIGNS_SUCCESS:
+    case CampaignsActionTypes.FETCH_CAMPAIGNS_FULFILLED:
       return {
         ...state,
         loading: false,
-        items: action.payload.campaigns
+        items: action.payload.data.data
       };
 
-    case CampaignsActionTypes.FETCH_CAMPAIGNS_FAILURE:
+    case CampaignsActionTypes.FETCH_CAMPAIGNS_REJECTED:
       return {
         ...state,
         loading: false,
-        error: action.payload.error,
+        error: action.payload.response.data.error,
         items: []
       };
 
@@ -157,18 +157,18 @@ export default function CampaignsReducers(state = initialState, action) {
         error: null
       };
 
-    case CampaignsActionTypes.FETCH_CAMPAIGN_DETAIL_SUCCESS:
+    case CampaignsActionTypes.FETCH_CAMPAIGN_DETAIL_FULFILLED:
       return {
         ...state,
         loading: false,
-        detail: action.payload.campaign
+        detail: action.payload.data.data
   };
 
-    case CampaignsActionTypes.FETCH_CAMPAIGN_DETAIL_FAILURE:
+    case CampaignsActionTypes.FETCH_CAMPAIGN_DETAIL_REJECTED:
       return {
         ...state,
         loading: false,
-        error: action.payload.error,
+        error: action.payload.response.data.error,
         detail: null
       };
 

@@ -8,7 +8,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 import LoginForm from "../components/LoginPage/LoginForm";
-import * as AuthActionCreators from "../redux/actions/auth.actions";
+import {loginAction} from "../redux/actions/auth.actions";
 
 class LoginPage extends Component {
   handleLoginSubmit = (email, password) => {
@@ -53,7 +53,7 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    boundLoginAction: bindActionCreators(AuthActionCreators.loginAction, dispatch),
+    boundLoginAction: bindActionCreators(loginAction, dispatch),
   }
 );
 

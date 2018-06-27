@@ -7,10 +7,13 @@ import {
 } from 'reactstrap';
 
 import "../css/DetailPage.css";
-import {fetchCampaignDetail} from "../redux/actions/campaigns.actions";
+import {
+  fetchCampaignDetail,
+  handleCampaignInfoInputChange,
+  updateCampaign
+} from "../redux/actions/campaigns.actions";
 import Spinner from "../components/Common/Spinner";
 import CampaignInfo from "../components/DesignPage/CampaignInfo";
-import * as CampaignsActionCreators from "../redux/actions/campaigns.actions";
 import Utils from "../helpers/utils";
 
 class DetailPage extends Component {
@@ -101,9 +104,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => (
   {
-    handleCampaignInfoInputChange: bindActionCreators(CampaignsActionCreators.handleCampaignInfoInputChange, dispatch),
+    handleCampaignInfoInputChange: bindActionCreators(handleCampaignInfoInputChange, dispatch),
     fetchCampaignDetail: bindActionCreators(fetchCampaignDetail, dispatch),
-    updateCampaign: bindActionCreators(CampaignsActionCreators.updateCampaign, dispatch)
+    updateCampaign: bindActionCreators(updateCampaign, dispatch)
   }
 );
 

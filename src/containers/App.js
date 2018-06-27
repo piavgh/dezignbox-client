@@ -6,8 +6,8 @@ import Header from './Header';
 import {connect} from "react-redux";
 import Alert from "../components/Common/Alert";
 import Routes from "./Routes";
-import * as AuthActionCreators from "../redux/actions/auth.actions";
-import * as AlertActionCreators from '../redux/actions/alert.actions';
+import {loadUserFromToken} from "../redux/actions/auth.actions";
+import {clearAlert} from '../redux/actions/alert.actions';
 import Footer from "./Footer";
 
 class App extends Component {
@@ -56,8 +56,8 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    boundLoadUserFromToken: bindActionCreators(AuthActionCreators.loadUserFromToken, dispatch),
-    boundClearAlert: bindActionCreators(AlertActionCreators.clearAlert, dispatch)
+    boundLoadUserFromToken: bindActionCreators(loadUserFromToken, dispatch),
+    boundClearAlert: bindActionCreators(clearAlert, dispatch)
   }
 );
 

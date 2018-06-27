@@ -1,53 +1,65 @@
-import * as AuthActionTypes from '../actiontypes/auth.actiontypes';
-import * as AlertActionCreators from './alert.actions';
+import {
+  SET_LOGIN_PENDING,
+  SET_LOGIN_SUCCESS,
+  SET_LOGIN_ERROR,
+  SET_CURRENT_USER,
+  SET_REGISTER_PENDING,
+  SET_REGISTER_SUCCESS,
+  SET_REGISTER_ERROR,
+  LOGOUT
+} from '../actiontypes/auth.actiontypes';
+import {
+  setAlertSuccess,
+  setAlertError
+} from './alert.actions';
 import AuthService from "../../services/auth.services";
 import Auth from "../../helpers/auth";
 
 export const setLoginPending = isLoginPending => {
   return {
-    type: AuthActionTypes.SET_LOGIN_PENDING,
+    type: SET_LOGIN_PENDING,
     isLoginPending
   }
 };
 
 export const setLoginSuccess = isAuthenticated => {
   return {
-    type: AuthActionTypes.SET_LOGIN_SUCCESS,
+    type: SET_LOGIN_SUCCESS,
     isAuthenticated
   }
 };
 
 export const setLoginError = loginError => {
   return {
-    type: AuthActionTypes.SET_LOGIN_ERROR,
+    type: SET_LOGIN_ERROR,
     loginError
   }
 };
 
 export const setCurrentUser = currentUser => {
   return {
-    type: AuthActionTypes.SET_CURRENT_USER,
+    type: SET_CURRENT_USER,
     currentUser
   }
 };
 
 export const setRegisterPending = isRegisterPending => {
   return {
-    type: AuthActionTypes.SET_REGISTER_PENDING,
+    type: SET_REGISTER_PENDING,
     isRegisterPending
   }
 };
 
 export const setRegisterSuccess = isRegisterSuccess => {
   return {
-    type: AuthActionTypes.SET_REGISTER_SUCCESS,
+    type: SET_REGISTER_SUCCESS,
     isRegisterSuccess
   }
 };
 
 export const setRegisterError = isRegisterError => {
   return {
-    type: AuthActionTypes.SET_REGISTER_ERROR,
+    type: SET_REGISTER_ERROR,
     isRegisterError
   }
 };
@@ -55,7 +67,7 @@ export const setRegisterError = isRegisterError => {
 export const logout = () => {
   Auth.deAuthenticateUser();
   return {
-    type: AuthActionTypes.LOGOUT
+    type: LOGOUT
   }
 };
 
@@ -70,19 +82,19 @@ export const loginAction = (email, password) => {
         dispatch(setCurrentUser(data.currentUser));
         Auth.authenticateUser(data.token);
         dispatch(setLoginSuccess(true));
-        dispatch(AlertActionCreators.setAlertSuccess(`Welcome back ${data.currentUser.email}`));
+        dispatch(setAlertSuccess(`Welcome back ${data.currentUser.email}`));
       } else {
         if (error.response.status === 401) {
           let message = 'Invalid email and password';
           dispatch(setLoginError({
             message: message
           }));
-          dispatch(AlertActionCreators.setAlertError(message));
+          dispatch(setAlertError(message));
         } else {
           dispatch(setLoginError({
             message: error.response.data
           }));
-          dispatch(AlertActionCreators.setAlertError(error.response.data));
+          dispatch(setAlertError(error.response.data));
         }
       }
     });
@@ -97,10 +109,10 @@ export const registerAction = (email, password) => {
       dispatch(setRegisterPending(false));
       if (!error) {
         dispatch(setRegisterSuccess(true));
-        dispatch(AlertActionCreators.setAlertSuccess(`You've successfully registered!`));
+        dispatch(setAlertSuccess(`You've successfully registered!`));
       } else {
         dispatch(setRegisterError({message: error}));
-        dispatch(AlertActionCreators.setAlertError(error));
+        dispatch(setAlertError(error));
       }
     });
   }

@@ -1,4 +1,13 @@
-import * as AuthActionTypes from '../actiontypes/auth.actiontypes';
+import {
+  SET_LOGIN_PENDING,
+  SET_LOGIN_SUCCESS,
+  SET_LOGIN_ERROR,
+  SET_CURRENT_USER,
+  SET_REGISTER_PENDING,
+  SET_REGISTER_SUCCESS,
+  SET_REGISTER_ERROR,
+  LOGOUT
+} from '../actiontypes/auth.actiontypes';
 
 const initialState = {
   isLoginPending: false,
@@ -12,7 +21,7 @@ const initialState = {
 
 export default function Auth(state = initialState, action) {
   switch (action.type) {
-    case AuthActionTypes.SET_LOGIN_PENDING:
+    case SET_LOGIN_PENDING:
       return {
         ...state,
         isLoginPending: true,
@@ -20,14 +29,14 @@ export default function Auth(state = initialState, action) {
         loginError: {},
         currentUser: null
       };
-    case AuthActionTypes.SET_LOGIN_SUCCESS:
+    case SET_LOGIN_SUCCESS:
       return {
         ...state,
         isLoginPending: false,
         isAuthenticated: true,
         loginError: {}
       };
-    case AuthActionTypes.SET_LOGIN_ERROR:
+    case SET_LOGIN_ERROR:
       return {
         ...state,
         isLoginPending: false,
@@ -35,12 +44,12 @@ export default function Auth(state = initialState, action) {
         loginError: action.loginError,
         currentUser: null
       };
-    case AuthActionTypes.SET_CURRENT_USER:
+    case SET_CURRENT_USER:
       return {
         ...state,
         currentUser: action.currentUser
       };
-    case AuthActionTypes.SET_REGISTER_PENDING:
+    case SET_REGISTER_PENDING:
       return {
         ...state,
         isRegisterPending: true,
@@ -48,14 +57,14 @@ export default function Auth(state = initialState, action) {
         isRegisterError: {},
         currentUser: null
       };
-    case AuthActionTypes.SET_REGISTER_SUCCESS:
+    case SET_REGISTER_SUCCESS:
       return {
         ...state,
         isRegisterPending: false,
         isRegisterSuccess: true,
         isRegisterError: {}
       };
-    case AuthActionTypes.SET_REGISTER_ERROR:
+    case SET_REGISTER_ERROR:
       return {
         ...state,
         isRegisterPending: false,
@@ -63,7 +72,7 @@ export default function Auth(state = initialState, action) {
         isRegisterError: action.isRegisterError,
         currentUser: null
       };
-    case AuthActionTypes.LOGOUT:
+    case LOGOUT:
       return {
         ...state,
         isLoginPending: false,

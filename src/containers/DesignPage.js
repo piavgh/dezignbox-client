@@ -13,7 +13,12 @@ import '../css/DesignPage.css';
 import Tools from "../components/DesignPage/Tools";
 import Canvas from "../components/DesignPage/Canvas";
 import CampaignInfo from "../components/DesignPage/CampaignInfo";
-import * as CampaignsActionCreators from "../redux/actions/campaigns.actions";
+import {
+  handleCampaignInfoInputChange,
+  saveImageUrl,
+  saveCanvasDataUrl,
+  createCampaign
+} from "../redux/actions/campaigns.actions";
 import Spinner from "../components/Common/Spinner";
 import {spinnerService} from "../services/spinner.services";
 
@@ -158,10 +163,10 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    handleCampaignInfoInputChange: bindActionCreators(CampaignsActionCreators.handleCampaignInfoInputChange, dispatch),
-    saveImageUrl: bindActionCreators(CampaignsActionCreators.saveImageUrl, dispatch),
-    saveCanvasDataUrl: bindActionCreators(CampaignsActionCreators.saveCanvasDataUrl, dispatch),
-    createCampaign: bindActionCreators(CampaignsActionCreators.createCampaign, dispatch)
+    handleCampaignInfoInputChange: bindActionCreators(handleCampaignInfoInputChange, dispatch),
+    saveImageUrl: bindActionCreators(saveImageUrl, dispatch),
+    saveCanvasDataUrl: bindActionCreators(saveCanvasDataUrl, dispatch),
+    createCampaign: bindActionCreators(createCampaign, dispatch)
   }
 );
 

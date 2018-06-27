@@ -9,7 +9,7 @@ import {connect} from "react-redux";
 import {Redirect} from 'react-router-dom';
 
 import RegisterForm from "../components/RegisterPage/RegisterForm";
-import * as AuthActionCreators from "../redux/actions/auth.actions";
+import {registerAction} from "../redux/actions/auth.actions";
 
 class RegisterPage extends Component {
   handleRegisterSubmit = (email, password) => {
@@ -54,7 +54,7 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    boundRegisterAction: bindActionCreators(AuthActionCreators.registerAction, dispatch)
+    boundRegisterAction: bindActionCreators(registerAction, dispatch)
   }
 );
 

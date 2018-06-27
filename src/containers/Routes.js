@@ -11,6 +11,7 @@ import LoginPage from "./LoginPage";
 import DesignPage from "./DesignPage";
 import ProductsPage from "./ProductsPage";
 import DetailPage from "./DetailPage";
+import CheckoutPage from "./CheckoutPage";
 import NotFound from "../components/NotFound";
 
 export default ({childProps}) =>
@@ -22,6 +23,7 @@ export default ({childProps}) =>
     <AuthenticatedRoute path="/start-design" component={DesignPage} props={childProps}/>
     <AuthenticatedRoute path="/products" exact component={ProductsPage} props={childProps}/>
     <AuthenticatedRoute path="/products/:id" component={DetailPage} props={childProps}/>
+    <AuthenticatedRoute path="/checkout/:id" component={CheckoutPage} props={childProps}/>
     {/* Finally, catch all unmatched routes */}
     <Route component={NotFound}/>
   </Switch>

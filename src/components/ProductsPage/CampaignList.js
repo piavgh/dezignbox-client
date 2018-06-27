@@ -6,7 +6,6 @@ import Campaign from "./Campaign";
 const CampaignList = (
   {
     campaigns,
-    handleEditCampaign,
     handleDeleteCampaign
   }
 ) => (
@@ -20,7 +19,6 @@ const CampaignList = (
             image={campaign.canvasDataUrl}
             status={campaign.active}
             key={campaign._id}
-            handleEdit={() => handleEditCampaign(campaign._id)}
             handleDelete={() => handleDeleteCampaign(campaign._id)}/>
         )
       })
@@ -30,7 +28,6 @@ const CampaignList = (
 
 CampaignList.propTypes = {
   campaigns: PropTypes.array.isRequired,
-  handleEditCampaign: PropTypes.func.isRequired,
   handleDeleteCampaign: PropTypes.func.isRequired
 };
 

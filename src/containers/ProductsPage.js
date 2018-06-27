@@ -29,10 +29,6 @@ class ProductsPage extends Component {
       });
   }
 
-  handleEditCampaign = (campaignId) => {
-    this.props.history.push('/products/' + campaignId);
-  };
-
   handleDeleteCampaign = (campaignId) => {
     this.props.deleteCampaign(campaignId)
       .then((response) => {
@@ -82,7 +78,6 @@ class ProductsPage extends Component {
           <h1>Products</h1>
           <CampaignList
             campaigns={campaigns}
-            handleEditCampaign={this.handleEditCampaign}
             handleDeleteCampaign={this.handleDeleteCampaign}
           />
           <Pagination

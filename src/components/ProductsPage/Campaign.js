@@ -12,7 +12,6 @@ const Campaign = (
     title,
     image,
     status,
-    handleEdit,
     handleDelete
   }
 ) => (
@@ -27,11 +26,7 @@ const Campaign = (
       <span className={status ? "campaign-status active" : "campaign-status inactive"}/>
     </Col>
     <Col xs={3}>
-      <ul>
-        <li onClick={handleEdit}><i className="far fa-edit"/></li>
-        <li onClick={handleDelete}><i className="far fa-trash-alt"/></li>
-        <li><i className="fas fa-cog"/></li>
-      </ul>
+      <Link className="place-order-btn" to={"/checkout/" + id}>Place Order</Link>
     </Col>
   </Row>
 );
@@ -41,7 +36,6 @@ Campaign.propTypes = {
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   status: PropTypes.bool.isRequired,
-  handleEdit: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired
 };
 

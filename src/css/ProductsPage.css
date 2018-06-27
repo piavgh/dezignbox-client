@@ -53,7 +53,7 @@
 }
 
 .campaign-status.active {
-    background-color: #37B77B;
+    background-color: #1AAB8A;
 }
 
 .campaign-status.inactive {
@@ -70,6 +70,48 @@
 .campaign-item ul li {
     display: inline-block;
     margin-right: 10px;
+}
+
+.place-order-btn {
+    background: #1AAB8A;
+    color: #fff;
+    border: none;
+    border-radius: 0.2rem;
+    padding: 0.8rem;
+    position: relative;
+    height: 60px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 800ms ease all;
+    outline: none;
+}
+
+.place-order-btn:hover {
+    background: #fff;
+    color: #1AAB8A;
+}
+
+.place-order-btn:before, .place-order-btn:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: #1AAB8A;
+    transition: 400ms ease all;
+}
+
+.place-order-btn:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+
+.place-order-btn:hover:before, .place-order-btn:hover:after {
+    width: 100%;
+    transition: 800ms ease all;
 }
 
 .pagination {

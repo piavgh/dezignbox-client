@@ -1,4 +1,4 @@
-import {AlertActionTypes} from '../actiontypes/alert.actiontypes';
+import AlertActionTypes from '../actiontypes/alert.actiontypes';
 
 const initialState = {};
 

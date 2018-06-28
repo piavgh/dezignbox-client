@@ -1,9 +1,9 @@
 import BaseService from './base.service';
 
-const ordersRoutesPrefix = "/api/v1/orders";
+const ordersRoutesPrefix = "/api/v1/transactions";
 
-const OrdersService = {
-  createOrder: (ownerId, campaignId, order) => {
+const TransactionsService = {
+  createTransaction: (ownerId, campaignId, order) => {
     return BaseService.post(ordersRoutesPrefix + '/', {
       owner: ownerId,
       campaign: campaignId,
@@ -20,6 +20,18 @@ const OrdersService = {
       }
     });
   },
+
+  fetchTransactions: (userId, page = 1) => {
+    return BaseService.get(ordersRoutesPrefix + '/', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+      params: {
+        userId: userId,
+        page: page
+      }
+    });
+  },
 };
 
-export default OrdersService;
+export default TransactionsService;

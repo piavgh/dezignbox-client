@@ -1,7 +1,9 @@
-import OrdersActionTypes from '../actiontypes/orders.actiontypes';
+import TransactionsActiontypes from '../actiontypes/transactions.actiontypes';
 
 const initialState = {
+  items: [],
   loading: false,
+  error: null,
   createOrderSuccess: false,
   createOrderError: {},
   checkout: {
@@ -18,7 +20,7 @@ export default function OrdersReducers(state = initialState, action) {
   let checkout;
 
   switch (action.type) {
-    case OrdersActionTypes.UPDATE_CHECKOUT_INFO:
+    case TransactionsActiontypes.UPDATE_CHECKOUT_INFO:
       if (action.params.reduxField === 'checkout') {
         checkout = state.checkout;
         checkout[action.field] = action.value;
@@ -31,12 +33,12 @@ export default function OrdersReducers(state = initialState, action) {
         break;
       }
 
-    case OrdersActionTypes.CREATE_PENDING:
+    case TransactionsActiontypes.CREATE_PENDING:
       return {
         ...state,
         loading: true
       };
-    case OrdersActionTypes.CREATE_FULFILLED:
+    case TransactionsActiontypes.CREATE_FULFILLED:
       return {
         ...state,
         loading: false,
@@ -51,11 +53,33 @@ export default function OrdersReducers(state = initialState, action) {
         },
         createOrderError: {}
       };
-    case OrdersActionTypes.CREATE_REJECTED:
+    case TransactionsActiontypes.CREATE_REJECTED:
       return {
         ...state,
         loading: false,
         createOrderError: action.payload
+      };
+
+    case TransactionsActiontypes.FETCH_TRANSACTIONS_PENDING:
+      return {
+        ...state,
+        loading: true,
+        error: null
+      };
+
+    case TransactionsActiontypes.FETCH_TRANSACTIONS_FULFILLED:
+      return {
+        ...state,
+        loading: false,
+        items: action.payload.data.data
+      };
+
+    case TransactionsActiontypes.FETCH_TRANSACTIONS_REJECTED:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.response.data.error,
+        items: []
       };
 
     default:

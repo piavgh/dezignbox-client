@@ -1,0 +1,128 @@
+.products-page {
+    background-color: #F6F6F9;
+}
+
+.products-page h1 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    line-height: 1;
+    margin: 0 0 1.1rem;
+    padding-top: 0.3rem;
+}
+
+.campaign-list {
+    background-color: white;
+}
+
+.campaign-item {
+    display: flex;
+    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+    align-items: center;
+    -webkit-align-items: center;
+    align-content: center;
+    -webkit-align-content: center;
+    border-bottom: 1px solid #EDEFF3;
+    padding: 1rem;
+}
+
+.campaign-image {
+    max-width: 5rem;
+    max-height: 5rem;
+}
+
+.campaign-title {
+    text-decoration: none !important;
+    background-color: transparent;
+    color: #0a0918;
+    font-weight: bold;
+    -webkit-transition: color 100ms;
+    transition: color 100ms;
+}
+
+.campaign-title:hover {
+    color: #69c8ff;
+}
+
+.campaign-status {
+    display: block;
+    margin-bottom: 0;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+}
+
+.campaign-status.active {
+    background-color: #1AAB8A;
+}
+
+.campaign-status.inactive {
+    background-color: #ff5d4d;
+}
+
+.campaign-item ul {
+    text-align: right;
+    list-style: none;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+.campaign-item ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.place-order-btn {
+    background: #1AAB8A;
+    color: #fff;
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.8rem;
+    position: relative;
+    height: 60px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 800ms ease all;
+    outline: none;
+}
+
+.place-order-btn:hover {
+    background: #fff;
+    color: #1AAB8A;
+    text-decoration: none;
+}
+
+.place-order-btn:before, .place-order-btn:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: #1AAB8A;
+    transition: 400ms ease all;
+}
+
+.place-order-btn:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+
+.place-order-btn:hover:before, .place-order-btn:hover:after {
+    width: 100%;
+    transition: 800ms ease all;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 2rem;
+    display: flex;
+    -webkit-justify-content: center; /* Safari */
+    justify-content: center;
+    -webkit-align-items: center; /* Safari */
+    align-items: center;
+    -webkit-align-content: center; /* Safari */
+    align-content: center;
+}

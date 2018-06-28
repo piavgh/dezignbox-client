@@ -11,7 +11,7 @@ import Spinner from "../components/Common/Spinner";
 import Utils from "../helpers/utils";
 import CheckoutInfo from "../components/CheckoutPage/CheckoutInfo";
 import {fetchCampaignDetail} from "../redux/actions/campaigns.actions";
-import {handleCheckoutInfoInputChange, createOrder} from "../redux/actions/orders.actions";
+import {handleCheckoutInfoInputChange, createTransaction} from "../redux/actions/transactions.actions";
 import {setAlertSuccess, setAlertError} from "../redux/actions/alert.actions";
 
 class CheckoutPage extends Component {
@@ -38,10 +38,10 @@ class CheckoutPage extends Component {
 
   handlePlaceOrder = (e) => {
     e.preventDefault();
-    this.props.createOrder(
+    this.props.createTransaction(
       this.props.userId,
       this.props.campaignsReducer.detail._id,
-      this.props.ordersReducer.checkout
+      this.props.transactionsReducer.checkout
     ).then(() => {
       this.props.history.push("/products");
       this.props.setAlertSuccess('Your information has been submitted.');
@@ -52,7 +52,7 @@ class CheckoutPage extends Component {
   };
 
   render() {
-    const {error, loading, campaignsReducer, ordersReducer} = this.props;
+    const {error, loading, campaignsReducer, transactionsReducer} = this.props;
 
     if (error) {
       return (
@@ -73,12 +73,12 @@ class CheckoutPage extends Component {
         <Row className="checkout-page">
           <Col xs={{size: 10, offset: 1}} lg={{size: 6, offset: 0}}>
             <CheckoutInfo
-              numberOfItems={ordersReducer.checkout.numberOfItems}
-              fullName={ordersReducer.checkout.fullName}
-              address={ordersReducer.checkout.address}
-              city={ordersReducer.checkout.city}
-              shippingMethod={ordersReducer.checkout.shippingMethod}
-              paymentMethod={ordersReducer.checkout.paymentMethod}
+              numberOfItems={transactionsReducer.checkout.numberOfItems}
+              fullName={transactionsReducer.checkout.fullName}
+              address={transactionsReducer.checkout.address}
+              city={transactionsReducer.checkout.city}
+              shippingMethod={transactionsReducer.checkout.shippingMethod}
+              paymentMethod={transactionsReducer.checkout.paymentMethod}
               handleInputChange={this.handleCheckoutInfoInputChange}
               handleGoBack={this.handleGoBack}
               handleFormSubmit={this.handlePlaceOrder}/>
@@ -102,8 +102,8 @@ class CheckoutPage extends Component {
 const mapStateToProps = state => ({
   userId: state.authReducer.currentUser._id,
   campaignsReducer: state.campaignsReducer,
-  ordersReducer: state.ordersReducer,
-  loading: state.campaignsReducer.loading || state.ordersReducer.loading,
+  transactionsReducer: state.transactionsReducer,
+  loading: state.campaignsReducer.loading || state.transactionsReducer.loading,
   error: state.campaignsReducer.error
 });
 
@@ -111,7 +111,7 @@ const mapDispatchToProps = dispatch => (
   {
     fetchCampaignDetail: bindActionCreators(fetchCampaignDetail, dispatch),
     handleCheckoutInfoInputChange: bindActionCreators(handleCheckoutInfoInputChange, dispatch),
-    createOrder: bindActionCreators(createOrder, dispatch),
+    createTransaction: bindActionCreators(createTransaction, dispatch),
     setAlertSuccess: bindActionCreators(setAlertSuccess, dispatch),
     setAlertError: bindActionCreators(setAlertError, dispatch)
   }

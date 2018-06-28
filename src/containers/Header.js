@@ -54,6 +54,10 @@ class Header extends Component {
             </DropdownItem>
             <DropdownItem divider/>
             <DropdownItem>
+              <Link to="/transactions">Transactions</Link>
+            </DropdownItem>
+            <DropdownItem divider/>
+            <DropdownItem>
               <a onClick={this.logOut}>Log Out</a>
             </DropdownItem>
           </DropdownMenu>

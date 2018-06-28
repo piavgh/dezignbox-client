@@ -6,7 +6,7 @@ import {
 } from 'reactstrap';
 import {Link} from 'react-router-dom';
 
-export default class Campaign extends Component {
+export default class CampaignItem extends Component {
 
   static propTypes = {
     id: PropTypes.string.isRequired,

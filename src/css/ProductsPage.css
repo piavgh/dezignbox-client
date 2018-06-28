@@ -11,7 +11,7 @@
 }
 
 .campaign-list {
-    background-color: white;
+
 }
 
 .campaign-item {
@@ -24,6 +24,8 @@
     -webkit-align-content: center;
     border-bottom: 1px solid #EDEFF3;
     padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: white;
 }
 
 .campaign-image {

@@ -16,4 +16,24 @@ export default class Utils {
 
     return value;
   }
+
+  static processTransactionStatus(value) {
+    let processedValue;
+    switch (value) {
+      case 1:
+        processedValue = "Đã tiếp nhận đơn hàng";
+        break;
+      case 2:
+        processedValue = "Đã giao hàng";
+        break;
+      case 3:
+        processedValue = "Đã hủy";
+        break;
+      default:
+        processedValue = "Đã tiếp nhận đơn hàng";
+        break;
+    }
+
+    return processedValue;
+  }
 }

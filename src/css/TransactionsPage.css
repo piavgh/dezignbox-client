@@ -1,8 +1,8 @@
-.products-page {
+.transactions-page {
     background-color: #F6F6F9;
 }
 
-.products-page h1 {
+.transactions-page h1 {
     font-size: 1.4rem;
     font-weight: bold;
     line-height: 1;
@@ -10,11 +10,38 @@
     padding-top: 0.3rem;
 }
 
-.campaign-list {
+.transaction-list {
+
+}
+
+.transaction-item {
+    margin-bottom: 1rem;
     background-color: white;
 }
 
-.campaign-item {
+.transaction-item-header {
+    border-bottom: 1px solid #DADADA;
+    padding: 0.3rem;
+}
+
+.transaction-id {
+    font-size: 0.9rem;
+    color: black;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.transaction-id a {
+    color: #1AA8D0;
+}
+
+.transaction-created-date {
+    font-size: 0.7rem;
+    color: #757575;
+    margin-bottom: 0;
+}
+
+.transaction-item-body {
     display: flex;
     justify-content: flex-start;
     -webkit-justify-content: flex-start;
@@ -22,17 +49,10 @@
     -webkit-align-items: center;
     align-content: center;
     -webkit-align-content: center;
-    border-bottom: 1px solid #EDEFF3;
-    padding: 1rem;
+    padding: 1.5rem 0.7rem;
 }
 
-.campaign-image {
-    max-width: 5rem;
-    max-height: 5rem;
-}
-
-.campaign-title {
-    text-decoration: none !important;
+.transaction-campaign-title {
     background-color: transparent;
     color: #0a0918;
     font-weight: bold;
@@ -40,36 +60,31 @@
     transition: color 100ms;
 }
 
-.campaign-title:hover {
-    color: #69c8ff;
+.transaction-campaign-image {
+    max-width: 7rem;
+    max-height: 7rem;
 }
 
-.campaign-status {
-    display: block;
-    margin-bottom: 0;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
+.transaction-qty-string {
+    color: #CCC9C9;
+    font-size: 0.9rem;
 }
 
-.campaign-status.active {
-    background-color: #1AAB8A;
+.transaction-qty {
+    font-size: 0.9rem;
+    font-weight: bold;
 }
 
-.campaign-status.inactive {
-    background-color: #ff5d4d;
+.transaction-status {
+    font-size: 0.7rem;
+    padding: 0.1rem;
+    white-space: normal;
 }
 
-.campaign-item ul {
-    text-align: right;
-    list-style: none;
-    margin-bottom: 0;
-    padding-left: 0;
-}
-
-.campaign-item ul li {
-    display: inline-block;
-    margin-right: 10px;
+.transaction-delivery {
+    font-size: 0.7rem;
+    padding: 0.1rem;
+    white-space: normal;
 }
 
 .place-order-btn {

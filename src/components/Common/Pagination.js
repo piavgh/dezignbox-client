@@ -9,6 +9,7 @@ import {
 export default class AppPagination extends Component {
 
   static propTypes = {
+    show: PropTypes.bool.isRequired,
     pageCount: PropTypes.number.isRequired,
     currentPage: PropTypes.number.isRequired,
     handlePageChange: PropTypes.func.isRequired
@@ -43,6 +44,10 @@ export default class AppPagination extends Component {
   };
 
   render() {
+    if (!this.props.show) {
+      return null;
+    }
+
     let items = [];
     let lowerBound = 1;
     let upperBound = 1;

@@ -81,6 +81,7 @@ class ProductsPage extends Component {
             handleDeleteCampaign={this.handleDeleteCampaign}
           />
           <Pagination
+            show={campaigns.length > 0}
             pageCount={this.state.pageCount}
             currentPage={this.state.currentPage}
             handlePageChange={this.handlePageChange}/>

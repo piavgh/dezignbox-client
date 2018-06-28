@@ -12,7 +12,7 @@ import {fetchTransactions} from "../redux/actions/transactions.actions";
 import Pagination from "../components/Common/Pagination";
 import Spinner from "../components/Common/Spinner";
 
-class ProductsPage extends Component {
+class TransactionsPage extends Component {
 
   state = {
     pageCount: 0,
@@ -65,11 +65,12 @@ class ProductsPage extends Component {
 
         </Col>
         <Col xs={10}>
-          <h1>Products</h1>
+          <h1>Transactions</h1>
           <TransactionList
             transactions={transactions}
           />
           <Pagination
+            show={transactions.length > 0}
             pageCount={this.state.pageCount}
             currentPage={this.state.currentPage}
             handlePageChange={this.handlePageChange}/>
@@ -96,4 +97,4 @@ const mapDispatchToProps = dispatch => (
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProductsPage);
+)(TransactionsPage);

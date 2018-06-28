@@ -1,40 +1,63 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
   Row,
-  Col
+  Col,
+  Badge
 } from 'reactstrap';
 import {Link} from 'react-router-dom';
+import moment from 'moment';
 
-const Campaign = (
-  {
-    id,
-    title,
-    image,
-    status
+import Utils from '../../helpers/utils';
+
+export default class TransactionItem extends Component {
+
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    transactionId: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    updatedAt: PropTypes.string.isRequired,
+    campaignTitle: PropTypes.string.isRequired,
+    campaignImage: PropTypes.string.isRequired,
+    numberOfItems: PropTypes.number.isRequired,
+    status: PropTypes.number.isRequired
+  };
+
+  render() {
+    return (
+      <Row className="transaction-item">
+        <Col xs={12}>
+          <Row className="transaction-item-header">
+            <Col xs={12}>
+              <p className="transaction-id">Transaction <Link to={"/transactions/" + this.props.id}>#{this.props.transactionId}</Link></p>
+              <p className="transaction-created-date">Placed on {moment(this.props.createdAt).format('DD/MM/YYYY')}</p>
+            </Col>
+          </Row>
+          <Row className="transaction-item-body">
+            <Col xs={2}>
+              <img className="transaction-campaign-image" src={this.props.campaignImage} alt={this.props.campaignTitle}/>
+            </Col>
+            <Col xs={4}>
+              <span className="transaction-campaign-title">{this.props.campaignTitle}</span>
+            </Col>
+            <Col xs={2}>
+              <span><span className="transaction-qty-string">Qty:</span> <span className="transaction-qty">{this.props.numberOfItems}</span></span>
+            </Col>
+            <Col xs={2}>
+              <Badge color="secondary"><span className="transaction-status">{Utils.processTransactionStatus(this.props.status)}</span></Badge>
+            </Col>
+            <Col xs={2}>
+              {
+                this.props.status === 2
+                  ?
+                  <Badge color="success"><span className="transaction-delivery">Đã được giao vào {moment(this.props.updatedAt).format('DD/MM/YYYY')}</span></Badge>
+                  :
+                  <Badge color="secondary"><span className="transaction-delivery">Chưa giao hàng</span></Badge>
+              }
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+    );
   }
-) => (
-  <Row className="campaign-item">
-    <Col xs={3}>
-      <img className="campaign-image" src={image} alt={title}/>
-    </Col>
-    <Col xs={5}>
-      <Link to={"/products/" + id} className="campaign-title">{title}</Link>
-    </Col>
-    <Col xs={1}>
-      <span className={status ? "campaign-status active" : "campaign-status inactive"}/>
-    </Col>
-    <Col xs={3}>
-      <Link className="place-order-btn" to={"/checkout/" + id}>Place Order</Link>
-    </Col>
-  </Row>
-);
-
-Campaign.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  status: PropTypes.bool.isRequired
-};
-
-export default Campaign;
+}

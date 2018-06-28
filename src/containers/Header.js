@@ -49,17 +49,23 @@ class Header extends Component {
             {this.props.currentUser.email}
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem>
-              <Link to="/products">Products</Link>
-            </DropdownItem>
+            <NavLink to="/products" tag={RRNavLink}>
+              <DropdownItem>
+                Products
+              </DropdownItem>
+            </NavLink>
             <DropdownItem divider/>
-            <DropdownItem>
-              <Link to="/transactions">Transactions</Link>
-            </DropdownItem>
+            <NavLink to="/transactions" tag={RRNavLink}>
+              <DropdownItem>
+                Transactions
+              </DropdownItem>
+            </NavLink>
             <DropdownItem divider/>
-            <DropdownItem>
-              <a onClick={this.logOut}>Log Out</a>
-            </DropdownItem>
+            <NavLink to="/" onClick={this.logOut} tag={RRNavLink}>
+              <DropdownItem>
+                Log Out
+              </DropdownItem>
+            </NavLink>
           </DropdownMenu>
         </UncontrolledDropdown>
       </Nav>

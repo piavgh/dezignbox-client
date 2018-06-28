@@ -28,6 +28,10 @@ button {
     color: #d4ffec !important;
 }
 
+.nav-link button:hover {
+    color: #1AAB8A !important;
+}
+
 .container {
     margin-bottom: 40px;
 }

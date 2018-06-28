@@ -7,7 +7,7 @@ class CampaignInfo extends Component {
   static propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
-    status: PropTypes.bool,
+    status: PropTypes.number,
     submitButtonTitle: PropTypes.string.isRequired,
     handleInputChange: PropTypes.func.isRequired,
     handleGoBack: PropTypes.func.isRequired,
@@ -58,8 +58,8 @@ class CampaignInfo extends Component {
               value={this.props.status}
               onChange={this.onChange}
             >
-              <option value={true}>Active</option>
-              <option value={false}>Inactive</option>
+              <option value={1}>Active</option>
+              <option value={2}>Inactive</option>
             </Input>
           </FormGroup>
           <div className="campaign-detail-buttons-container">

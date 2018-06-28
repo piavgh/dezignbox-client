@@ -7,7 +7,7 @@ const CampaignsService = {
     return BaseService.post(campaignsRoutesPrefix + '/', {
       title: campaign.title,
       description: campaign.description,
-      active: campaign.status,
+      status: campaign.status,
       owner: ownerId,
       canvasDataUrl: campaign.canvasDataUrl,
       originalImageUrl: campaign.imageUrl ? campaign.imageUrl : null,
@@ -23,7 +23,7 @@ const CampaignsService = {
     return BaseService.put(campaignsRoutesPrefix + '/' + campaign._id, {
       title: campaign.title,
       description: campaign.description,
-      active: campaign.active,
+      status: campaign.status,
     }, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`

@@ -12,7 +12,7 @@ export default class CampaignItem extends Component {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    status: PropTypes.bool.isRequired
+    status: PropTypes.number.isRequired
   };
 
   render() {
@@ -25,7 +25,7 @@ export default class CampaignItem extends Component {
           <Link to={"/products/" + this.props.id} className="campaign-title">{this.props.title}</Link>
         </Col>
         <Col xs={1}>
-          <span className={this.props.status ? "campaign-status active" : "campaign-status inactive"}/>
+          <span className={this.props.status === 1 ? "campaign-status active" : "campaign-status inactive"}/>
         </Col>
         <Col xs={3}>
           <Link className="place-order-btn" to={"/checkout/" + this.props.id}>Place Order</Link>

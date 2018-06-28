@@ -7,9 +7,9 @@ export default class Utils {
    */
   static handleOptionInput(value) {
     if (value === 'true') {
-      value = true;
+      value = 1;
     } else if (value === 'false') {
-      value = false;
+      value = 2;
     } else if ((typeof value === 'string' || value instanceof String) && parseInt(value, 10)) {
       value = parseInt(value, 10);
     }

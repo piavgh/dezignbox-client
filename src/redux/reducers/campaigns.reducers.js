@@ -8,7 +8,7 @@ const initialState = {
   newCampaign: {
     title: '',
     description: '',
-    status: true,
+    status: 1,
     imageUrl: '',
     canvasDataUrl: ''
   },
@@ -36,7 +36,6 @@ export default function CampaignsReducers(state = initialState, action) {
         };
       } else if (action.params.reduxField === 'detail') {
         detail = state.detail;
-        console.log(detail);
         detail[action.field] = action.value;
 
         return {
@@ -73,7 +72,7 @@ export default function CampaignsReducers(state = initialState, action) {
         newCampaign: {
           title: '',
           description: '',
-          status: true,
+          status: 1,
           imageUrl: '',
           canvasDataUrl: ''
         },

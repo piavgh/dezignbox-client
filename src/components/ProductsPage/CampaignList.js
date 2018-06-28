@@ -20,7 +20,7 @@ export default class CampaignList extends Component {
                   id={campaign._id}
                   title={campaign.title}
                   image={campaign.canvasDataUrl}
-                  status={campaign.active}
+                  status={campaign.status}
                   key={campaign._id}/>
               )
             })

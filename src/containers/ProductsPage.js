@@ -8,7 +8,7 @@ import {
 
 import '../css/ProductsPage.css';
 import CampaignList from "../components/ProductsPage/CampaignList";
-import {fetchCampaigns, deleteCampaign} from "../redux/actions/campaigns.actions";
+import {fetchCampaigns} from "../redux/actions/campaigns.actions";
 import Pagination from "../components/Common/Pagination";
 import Spinner from "../components/Common/Spinner";
 
@@ -28,16 +28,6 @@ class ProductsPage extends Component {
         })
       });
   }
-
-  handleDeleteCampaign = (campaignId) => {
-    this.props.deleteCampaign(campaignId)
-      .then((response) => {
-        console.log(response)
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  };
 
   handlePageChange = (pageNumber) => {
     if (pageNumber === this.state.currentPage) {
@@ -77,9 +67,7 @@ class ProductsPage extends Component {
         <Col xs={10}>
           <h1>Products</h1>
           <CampaignList
-            campaigns={campaigns}
-            handleDeleteCampaign={this.handleDeleteCampaign}
-          />
+            campaigns={campaigns}/>
           <Pagination
             show={campaigns.length > 0}
             pageCount={this.state.pageCount}
@@ -101,8 +89,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => (
   {
-    fetchCampaigns: bindActionCreators(fetchCampaigns, dispatch),
-    deleteCampaign: bindActionCreators(deleteCampaign, dispatch)
+    fetchCampaigns: bindActionCreators(fetchCampaigns, dispatch)
   }
 );
 

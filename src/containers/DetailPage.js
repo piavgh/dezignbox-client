@@ -8,6 +8,7 @@ import {
 
 import "../css/DetailPage.css";
 import {
+  deleteCampaign,
   fetchCampaignDetail,
   handleCampaignInfoInputChange,
   updateCampaign
@@ -16,6 +17,7 @@ import Spinner from "../components/Common/Spinner";
 import CampaignInfo from "../components/DesignPage/CampaignInfo";
 import Utils from "../helpers/utils";
 import {setAlertSuccess, setAlertError} from "../redux/actions/alert.actions";
+import DeleteButton from "../components/DetailPage/DeleteButton";
 
 class DetailPage extends Component {
 
@@ -37,6 +39,16 @@ class DetailPage extends Component {
 
   handleGoBack = () => {
     this.props.history.goBack();
+  };
+
+  handleDeleteCampaign = (campaignId) => {
+    this.props.deleteCampaign(campaignId)
+      .then((response) => {
+        this.props.history.push('/products');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   handleSaveDesign = () => {
@@ -80,6 +92,8 @@ class DetailPage extends Component {
               handleGoBack={this.handleGoBack}
               handleFormSubmit={this.handleSaveDesign}
             />
+            <DeleteButton
+              handleDeleteCampaign={() => this.handleDeleteCampaign(campaignsReducer.detail._id)}/>
           </Col>
 
           <Col xs={{size: 10, offset: 1}} lg={{size: 8, offset: 0}}>
@@ -109,6 +123,7 @@ const mapDispatchToProps = dispatch => (
     handleCampaignInfoInputChange: bindActionCreators(handleCampaignInfoInputChange, dispatch),
     fetchCampaignDetail: bindActionCreators(fetchCampaignDetail, dispatch),
     updateCampaign: bindActionCreators(updateCampaign, dispatch),
+    deleteCampaign: bindActionCreators(deleteCampaign, dispatch),
     setAlertSuccess: bindActionCreators(setAlertSuccess, dispatch),
     setAlertError: bindActionCreators(setAlertError, dispatch)
   }

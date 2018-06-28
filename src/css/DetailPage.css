@@ -8,3 +8,7 @@
     border: 1px solid #e2e2e2;
     border-radius: 0.5rem;
 }
+
+.delete-button {
+    margin: 1rem 0;
+}

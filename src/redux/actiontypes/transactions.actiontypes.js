@@ -1,4 +1,4 @@
-const TransactionsActiontypes = {
+const TransactionsActionTypes = {
   CREATE: 'transactions/CREATE',
   CREATE_PENDING: 'transactions/CREATE_PENDING',
   CREATE_FULFILLED: 'transactions/CREATE_FULFILLED',
@@ -12,4 +12,4 @@ const TransactionsActiontypes = {
   FETCH_TRANSACTIONS_REJECTED: 'transactions/FETCH_TRANSACTIONS_REJECTED',
 };
 
-export default TransactionsActiontypes;
+export default TransactionsActionTypes;

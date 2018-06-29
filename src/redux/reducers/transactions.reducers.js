@@ -1,4 +1,4 @@
-import TransactionsActiontypes from '../actiontypes/transactions.actiontypes';
+import TransactionsActionTypes from '../actiontypes/transactions.actiontypes';
 
 const initialState = {
   items: [],
@@ -20,7 +20,7 @@ export default function OrdersReducers(state = initialState, action) {
   let checkout;
 
   switch (action.type) {
-    case TransactionsActiontypes.UPDATE_CHECKOUT_INFO:
+    case TransactionsActionTypes.UPDATE_CHECKOUT_INFO:
       if (action.params.reduxField === 'checkout') {
         checkout = state.checkout;
         checkout[action.field] = action.value;
@@ -33,12 +33,12 @@ export default function OrdersReducers(state = initialState, action) {
         break;
       }
 
-    case TransactionsActiontypes.CREATE_PENDING:
+    case TransactionsActionTypes.CREATE_PENDING:
       return {
         ...state,
         loading: true
       };
-    case TransactionsActiontypes.CREATE_FULFILLED:
+    case TransactionsActionTypes.CREATE_FULFILLED:
       return {
         ...state,
         loading: false,
@@ -53,28 +53,28 @@ export default function OrdersReducers(state = initialState, action) {
         },
         createOrderError: {}
       };
-    case TransactionsActiontypes.CREATE_REJECTED:
+    case TransactionsActionTypes.CREATE_REJECTED:
       return {
         ...state,
         loading: false,
         createOrderError: action.payload
       };
 
-    case TransactionsActiontypes.FETCH_TRANSACTIONS_PENDING:
+    case TransactionsActionTypes.FETCH_TRANSACTIONS_PENDING:
       return {
         ...state,
         loading: true,
         error: null
       };
 
-    case TransactionsActiontypes.FETCH_TRANSACTIONS_FULFILLED:
+    case TransactionsActionTypes.FETCH_TRANSACTIONS_FULFILLED:
       return {
         ...state,
         loading: false,
         items: action.payload.data.data
       };
 
-    case TransactionsActiontypes.FETCH_TRANSACTIONS_REJECTED:
+    case TransactionsActionTypes.FETCH_TRANSACTIONS_REJECTED:
       return {
         ...state,
         loading: false,

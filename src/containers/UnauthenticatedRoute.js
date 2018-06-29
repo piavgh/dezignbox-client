@@ -19,6 +19,26 @@ function querystring(name, url = window.location.href) {
 
 export default ({component: C, props: cProps, ...rest}) => {
   const redirect = querystring("redirect");
+
+  if (redirect && redirect.includes('admin')) {
+    console.log("isAdmin: " + cProps.isAdmin);
+    return (
+      <Route
+        {...rest}
+        render={
+          props =>
+            !cProps.isAdmin
+              ?
+              <C {...props} {...cProps} />
+              :
+              <Redirect
+                to={redirect === "" || redirect === null ? "/" : redirect}
+              />
+        }
+      />
+    );
+  }
+
   return (
     <Route
       {...rest}

@@ -30,7 +30,8 @@ class App extends Component {
 
   render() {
     const childProps = {
-      isAuthenticated: this.props.isAuthenticated
+      isAuthenticated: this.props.isAuthenticated,
+      isAdmin: this.props.isAdmin
     };
     const {alert} = this.props;
 
@@ -50,7 +51,8 @@ class App extends Component {
 const mapStateToProps = state => (
   {
     alert: state.alertReducer,
-    isAuthenticated: state.authReducer.isAuthenticated
+    isAuthenticated: state.authReducer.isAuthenticated,
+    isAdmin: state.authReducer.currentUser && state.authReducer.currentUser.isAdmin
   }
 );
 

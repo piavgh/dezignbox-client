@@ -5,7 +5,7 @@ import { Button } from 'reactstrap';
 export default class DeleteButton extends Component {
 
   static propTypes = {
-    handleDeleteCampaign: PropTypes.func.isRequired
+    handleClick: PropTypes.func.isRequired
   };
 
   render() {
@@ -13,9 +13,10 @@ export default class DeleteButton extends Component {
       <Button
         outline
         block
+        size="lg"
         color="danger"
         className="delete-button"
-        onClick={this.props.handleDeleteCampaign}>
+        onClick={this.props.handleClick}>
         Delete <span><i className="fas fa-trash"/></span>
       </Button>
     )

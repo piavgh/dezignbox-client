@@ -1,0 +1,53 @@
+/*ConfirmBox START*/
+.ReactModal__Body--open,
+.ReactModal__Html--open {
+    overflow: hidden;
+}
+
+.ConfirmBox__Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.ConfirmBox__Overlay--after-open {
+
+}
+
+.ConfirmBox__Overlay--before-close {
+
+}
+
+.ConfirmBox__Content {
+    display: flex;
+    -webkit-justify-content: center; /* Safari */
+    justify-content: center;
+    -webkit-align-items: center; /* Safari */
+    align-items: center;
+    -webkit-align-content: center; /* Safari */
+    align-content: center;
+    position: absolute;
+    top: 10rem;
+    left: 10rem;
+    right: 10rem;
+    bottom: 10rem;
+    border: 1px solid #CCCCCC;
+    background: white;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px
+}
+
+.ConfirmBox__Content--after-open {
+
+}
+
+.ConfirmBox__Content--before-close {
+
+}
+/*ConfirmBox END*/

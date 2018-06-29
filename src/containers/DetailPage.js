@@ -18,8 +18,13 @@ import CampaignInfo from "../components/DesignPage/CampaignInfo";
 import Utils from "../helpers/utils";
 import {setAlertSuccess, setAlertError} from "../redux/actions/alert.actions";
 import DeleteButton from "../components/DetailPage/DeleteButton";
+import ConfirmBox from "../components/Common/ConfirmBox";
 
 class DetailPage extends Component {
+
+  state = {
+    showModal: false
+  };
 
   componentDidMount() {
     this.props.fetchCampaignDetail(this.props.match.params.id).then((data) => {
@@ -62,6 +67,22 @@ class DetailPage extends Component {
       });
   };
 
+  handleOpenModal = () => {
+    this.setState({showModal: true});
+  };
+
+  handleCloseModal = () => {
+    this.setState({showModal: false});
+  };
+
+  handleConfirmDelete = () => {
+    this.handleDeleteCampaign(this.props.campaignsReducer.detail._id)
+  };
+
+  handleCancelDelete = () => {
+    this.handleCloseModal();
+  };
+
   render() {
     const {error, loading, campaignsReducer} = this.props;
 
@@ -81,25 +102,37 @@ class DetailPage extends Component {
 
     if (campaignsReducer.detail) {
       return (
-        <Row className="detail-page">
-          <Col xs={{size: 10, offset: 1}} lg={{size: 4, offset: 0}}>
-            <CampaignInfo
-              title={campaignsReducer.detail.title}
-              description={campaignsReducer.detail.description}
-              status={campaignsReducer.detail.status}
-              submitButtonTitle="Save"
-              handleInputChange={this.handleCampaignInfoInputChange}
-              handleGoBack={this.handleGoBack}
-              handleFormSubmit={this.handleSaveDesign}
-            />
-            <DeleteButton
-              handleDeleteCampaign={() => this.handleDeleteCampaign(campaignsReducer.detail._id)}/>
-          </Col>
+        <div>
+          <ConfirmBox
+            show={this.state.showModal}
+            className="delete-campaign-confirm-modal"
+            headerText={"Delete campaign " + campaignsReducer.detail.title}
+            bodyText="This action can not be undone. Are you sure?"
+            confirmButtonLabel="I know"
+            cancelButtonLabel="Cancel"
+            handleConfirmAction={this.handleConfirmDelete}
+            handleCancelAction={this.handleCancelDelete}
+          />
+          <Row className="detail-page">
+            <Col xs={{size: 10, offset: 1}} lg={{size: 4, offset: 0}}>
+              <CampaignInfo
+                title={campaignsReducer.detail.title}
+                description={campaignsReducer.detail.description}
+                status={campaignsReducer.detail.status}
+                submitButtonTitle="Save"
+                handleInputChange={this.handleCampaignInfoInputChange}
+                handleGoBack={this.handleGoBack}
+                handleFormSubmit={this.handleSaveDesign}
+              />
+              <DeleteButton
+                handleClick={this.handleOpenModal}/>
+            </Col>
 
-          <Col xs={{size: 10, offset: 1}} lg={{size: 8, offset: 0}}>
-            <img src={campaignsReducer.detail.canvasDataUrl} alt="canvasDataUrl"/>
-          </Col>
-        </Row>
+            <Col xs={{size: 10, offset: 1}} lg={{size: 8, offset: 0}}>
+              <img src={campaignsReducer.detail.canvasDataUrl} alt="canvasDataUrl"/>
+            </Col>
+          </Row>
+        </div>
       );
     } else {
       return (

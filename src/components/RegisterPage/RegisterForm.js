@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 
 import LoaderButton from '../Common/LoaderButton';
 
-class RegisterForm extends Component {
+export default class RegisterForm extends Component {
   static propTypes = {
     handleRegisterSubmit: PropTypes.func.isRequired,
     isRegisterPending: PropTypes.bool.isRequired,
@@ -77,6 +77,4 @@ class RegisterForm extends Component {
       </Form>
     );
   }
-}
-
-export default RegisterForm;
+};

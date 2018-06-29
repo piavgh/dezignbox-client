@@ -7,7 +7,7 @@ import {
 
 import LoaderButton from '../Common/LoaderButton';
 
-class LoginForm extends Component {
+export default class LoginForm extends Component {
   static propTypes = {
     handleLoginSubmit: PropTypes.func.isRequired,
     isLoginPending: PropTypes.bool.isRequired,
@@ -83,6 +83,4 @@ class LoginForm extends Component {
       </Form>
     );
   }
-}
-
-export default LoginForm;
+};

@@ -8,9 +8,9 @@ export const handleCheckoutInfoInputChange = (field, value, params) => ({
   params
 });
 
-export const createTransaction = (ownerId, campaignId, order) => ({
+export const createTransaction = (ownerId, campaignId, transaction) => ({
   type: TransactionsActiontypes.CREATE,
-  payload: TransactionsService.createTransaction(ownerId, campaignId, order)
+  payload: TransactionsService.createTransaction(ownerId, campaignId, transaction)
 });
 
 export const fetchTransactions = (userId, page) => ({

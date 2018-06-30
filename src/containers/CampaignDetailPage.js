@@ -96,7 +96,7 @@ class CampaignDetailPage extends Component {
       return (
         <Spinner
           show={loading}
-          name="detailPageSpinner"/>
+          name="campaignDetailPageSpinner"/>
       )
     }
 
@@ -113,7 +113,7 @@ class CampaignDetailPage extends Component {
             handleConfirmAction={this.handleConfirmDelete}
             handleCancelAction={this.handleCancelDelete}
           />
-          <Row className="detail-page">
+          <Row className="campaign-detail-page">
             <Col xs={{size: 10, offset: 1}} lg={{size: 4, offset: 0}}>
               <CampaignInfo
                 title={campaignsReducer.detail.title}

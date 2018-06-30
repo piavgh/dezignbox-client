@@ -161,7 +161,7 @@ export default function CampaignsReducers(state = initialState, action) {
         ...state,
         loading: false,
         detail: action.payload.data.data
-  };
+      };
 
     case CampaignsActionTypes.FETCH_CAMPAIGN_DETAIL_REJECTED:
       return {

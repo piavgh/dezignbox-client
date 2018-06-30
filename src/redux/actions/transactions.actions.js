@@ -17,3 +17,8 @@ export const fetchTransactions = (userId, page) => ({
   type: TransactionsActionTypes.FETCH_TRANSACTIONS,
   payload: TransactionsService.fetchTransactions(userId, page)
 });
+
+export const fetchTransactionDetail = (id) => ({
+  type: TransactionsActionTypes.FETCH_TRANSACTION_DETAIL,
+  payload: TransactionsService.fetchTransactionDetail(id)
+});

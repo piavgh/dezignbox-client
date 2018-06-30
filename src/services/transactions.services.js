@@ -32,6 +32,14 @@ const TransactionsService = {
       }
     });
   },
+
+  fetchTransactionDetail: (id) => {
+    return BaseService.get(transactionsRoutesPrefix + '/' + id, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    });
+  }
 };
 
 export default TransactionsService;

@@ -4,6 +4,7 @@ const initialState = {
   items: [],
   loading: false,
   error: null,
+  detail: null,
   createOrderSuccess: false,
   createOrderError: {},
   checkout: {
@@ -80,6 +81,28 @@ export default function TransactionsReducers(state = initialState, action) {
         loading: false,
         error: action.payload.response.data.error,
         items: []
+      };
+
+    case TransactionsActionTypes.FETCH_TRANSACTION_DETAIL_PENDING:
+      return {
+        ...state,
+        loading: true,
+        error: null
+      };
+
+    case TransactionsActionTypes.FETCH_TRANSACTION_DETAIL_FULFILLED:
+      return {
+        ...state,
+        loading: false,
+        detail: action.payload.data.data
+      };
+
+    case TransactionsActionTypes.FETCH_TRANSACTION_DETAIL_REJECTED:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.response.data.error,
+        detail: null
       };
 
     default:

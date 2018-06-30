@@ -14,6 +14,7 @@ import ProductsPage from "./ProductsPage";
 import CampaignDetailPage from "./CampaignDetailPage";
 import CheckoutPage from "./CheckoutPage";
 import TransactionsPage from "./TransactionsPage";
+import TransactionDetailPage from "./TransactionDetailPage";
 import AdminPage from "../admin/containers/AdminPage";
 import AdminTransactionsPage from "../admin/containers/AdminTransactionsPage";
 import NotFound from "../components/NotFound";
@@ -32,6 +33,7 @@ export default class Routes extends Component {
         <AuthenticatedRoute path="/products/:id" component={CampaignDetailPage} props={this.props.childProps}/>
         <AuthenticatedRoute path="/checkout/:id" component={CheckoutPage} props={this.props.childProps}/>
         <AuthenticatedRoute path="/transactions" exact component={TransactionsPage} props={this.props.childProps}/>
+        <AuthenticatedRoute path="/transactions/:id" component={TransactionDetailPage} props={this.props.childProps}/>
         <AdminRoute path="/admin" exact component={AdminPage} props={this.props.childProps}/>
         <AdminRoute path="/admin/transactions" exact component={AdminTransactionsPage} props={this.props.childProps}/>
         {/* Finally, catch all unmatched routes */}

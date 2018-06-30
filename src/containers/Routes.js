@@ -11,7 +11,7 @@ import RegisterPage from "./RegsisterPage";
 import LoginPage from "./LoginPage";
 import DesignPage from "./DesignPage";
 import ProductsPage from "./ProductsPage";
-import DetailPage from "./DetailPage";
+import CampaignDetailPage from "./CampaignDetailPage";
 import CheckoutPage from "./CheckoutPage";
 import TransactionsPage from "./TransactionsPage";
 import AdminPage from "../admin/containers/AdminPage";
@@ -29,7 +29,7 @@ export default class Routes extends Component {
         <UnauthenticatedRoute path="/aboutUs" exact component={AboutUs} props={this.props.childProps}/>
         <AuthenticatedRoute path="/start-design" component={DesignPage} props={this.props.childProps}/>
         <AuthenticatedRoute path="/products" exact component={ProductsPage} props={this.props.childProps}/>
-        <AuthenticatedRoute path="/products/:id" component={DetailPage} props={this.props.childProps}/>
+        <AuthenticatedRoute path="/products/:id" component={CampaignDetailPage} props={this.props.childProps}/>
         <AuthenticatedRoute path="/checkout/:id" component={CheckoutPage} props={this.props.childProps}/>
         <AuthenticatedRoute path="/transactions" exact component={TransactionsPage} props={this.props.childProps}/>
         <AdminRoute path="/admin" exact component={AdminPage} props={this.props.childProps}/>

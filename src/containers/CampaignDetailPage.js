@@ -6,7 +6,7 @@ import {
   Col
 } from 'reactstrap';
 
-import "../css/DetailPage.css";
+import "../css/CampaignDetailPage.css";
 import {
   deleteCampaign,
   fetchCampaignDetail,
@@ -17,10 +17,10 @@ import Spinner from "../components/Common/Spinner";
 import CampaignInfo from "../components/DesignPage/CampaignInfo";
 import Utils from "../helpers/utils";
 import {setAlertSuccess, setAlertError} from "../redux/actions/alert.actions";
-import DeleteButton from "../components/DetailPage/DeleteButton";
+import DeleteButton from "../components/CampaignDetailPage/DeleteButton";
 import ConfirmBox from "../components/Common/ConfirmBox";
 
-class DetailPage extends Component {
+class CampaignDetailPage extends Component {
 
   state = {
     showModal: false
@@ -165,5 +165,5 @@ const mapDispatchToProps = dispatch => (
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DetailPage);
+)(CampaignDetailPage);
 

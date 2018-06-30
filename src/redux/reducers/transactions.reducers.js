@@ -16,7 +16,7 @@ const initialState = {
   }
 };
 
-export default function OrdersReducers(state = initialState, action) {
+export default function TransactionsReducers(state = initialState, action) {
   let checkout;
 
   switch (action.type) {

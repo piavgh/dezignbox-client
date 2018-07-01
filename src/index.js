@@ -14,7 +14,7 @@ import Root from './containers/Root';
 
 const store = createStore(
   reducers,
-  window.devToolsExtension && window.devToolsExtension(),
+  typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(
     promiseMiddleware(), // shorter async actions
     thunkMiddleware, // lets us dispatch() functions

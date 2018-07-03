@@ -7,6 +7,7 @@ class CheckoutInfo extends Component {
   static propTypes = {
     numberOfItems: PropTypes.number.isRequired,
     fullName: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
     address: PropTypes.string.isRequired,
     city: PropTypes.number.isRequired,
     shippingMethod: PropTypes.number.isRequired,
@@ -53,6 +54,19 @@ class CheckoutInfo extends Component {
               onChange={this.onChange}
             />
           </FormGroup>
+
+          <FormGroup>
+            <Label for="phone">Phone</Label>
+            <Input
+              type="text"
+              name="phone"
+              id="phone"
+              value={this.props.phone}
+              placeholder="Enter your phone number"
+              onChange={this.onChange}
+            />
+          </FormGroup>
+
           <FormGroup>
             <Label for="address">Address</Label>
             <Input

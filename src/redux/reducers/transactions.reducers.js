@@ -10,6 +10,7 @@ const initialState = {
   checkout: {
     numberOfItems: 100,
     fullName: '',
+    phone: '',
     address: '',
     city: 1,
     shippingMethod: 1,

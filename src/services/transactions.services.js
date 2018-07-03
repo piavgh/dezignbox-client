@@ -9,6 +9,7 @@ const TransactionsService = {
       campaign: campaignId,
       numberOfItems: transaction.numberOfItems,
       fullName: transaction.fullName,
+      phone: transaction.phone,
       address: transaction.address,
       city: transaction.city,
       shippingMethod: transaction.shippingMethod,

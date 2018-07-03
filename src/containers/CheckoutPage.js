@@ -75,6 +75,7 @@ class CheckoutPage extends Component {
             <CheckoutInfo
               numberOfItems={transactionsReducer.checkout.numberOfItems}
               fullName={transactionsReducer.checkout.fullName}
+              phone={transactionsReducer.checkout.phone}
               address={transactionsReducer.checkout.address}
               city={transactionsReducer.checkout.city}
               shippingMethod={transactionsReducer.checkout.shippingMethod}

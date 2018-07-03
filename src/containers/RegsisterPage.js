@@ -6,22 +6,24 @@ import {
 } from 'reactstrap';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-import {Redirect} from 'react-router-dom';
 
 import RegisterForm from "../components/RegisterPage/RegisterForm";
 import {registerAction} from "../redux/actions/auth.actions";
+import {setAlertSuccess, setAlertError} from '../redux/actions/alert.actions';
 
 class RegisterPage extends Component {
   handleRegisterSubmit = (email, password) => {
-    this.props.boundRegisterAction(email, password);
+    this.props.registerAction(email, password)
+      .then((data) => {
+        this.props.history.push('/login');
+        this.props.setAlertSuccess(data);
+      }, (err) => {
+        this.props.setAlertError(err.error.message);
+      });
   };
 
   render() {
     const {isRegisterPending, isRegisterSuccess, isRegisterError} = this.props;
-
-    if (isRegisterSuccess) {
-      return <Redirect to='/login'/>
-    }
 
     return <Row>
       <Col xs={12} md={8}>
@@ -54,7 +56,9 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    boundRegisterAction: bindActionCreators(registerAction, dispatch)
+    registerAction: bindActionCreators(registerAction, dispatch),
+    setAlertSuccess: bindActionCreators(setAlertSuccess, dispatch),
+    setAlertError: bindActionCreators(setAlertError, dispatch),
   }
 );
 

@@ -9,10 +9,17 @@ import {connect} from 'react-redux';
 
 import LoginForm from "../components/LoginPage/LoginForm";
 import {loginAction} from "../redux/actions/auth.actions";
+import {setAlertSuccess, setAlertError} from '../redux/actions/alert.actions';
 
 class LoginPage extends Component {
   handleLoginSubmit = (email, password) => {
-    this.props.boundLoginAction(email, password);
+    this.props.loginAction(email, password)
+      .then((data) => {
+        this.props.history.push('/');
+        this.props.setAlertSuccess(`Welcome back ${data.currentUser.email}`)
+      }, (err) => {
+        this.props.setAlertError(err);
+      });
   };
 
   render() {
@@ -53,7 +60,9 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    boundLoginAction: bindActionCreators(loginAction, dispatch),
+    loginAction: bindActionCreators(loginAction, dispatch),
+    setAlertSuccess: bindActionCreators(setAlertSuccess, dispatch),
+    setAlertError: bindActionCreators(setAlertError, dispatch),
   }
 );
 

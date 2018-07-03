@@ -8,10 +8,6 @@ import {
   SET_REGISTER_ERROR,
   LOGOUT
 } from '../actiontypes/auth.actiontypes';
-import {
-  setAlertSuccess,
-  setAlertError
-} from './alert.actions';
 import AuthService from "../../services/auth.services";
 import Auth from "../../helpers/auth";
 
@@ -76,27 +72,31 @@ export const loginAction = (email, password) => {
   return (dispatch) => {
     dispatch(setLoginPending(true));
 
-    AuthService.login(email, password, (error, data) => {
-      dispatch(setLoginPending(false));
-      if (!error) {
-        dispatch(setCurrentUser(data.currentUser));
-        Auth.authenticateUser(data.token);
-        dispatch(setLoginSuccess(true));
-        dispatch(setAlertSuccess(`Welcome back ${data.currentUser.email}`));
-      } else {
-        if (error.response.status === 401) {
-          let message = 'Invalid email and password';
-          dispatch(setLoginError({
-            message: message
-          }));
-          dispatch(setAlertError(message));
+    return new Promise((resolve, reject) => {
+      AuthService.login(email, password, (error, data) => {
+        dispatch(setLoginPending(false));
+        if (!error) {
+          dispatch(setCurrentUser(data.currentUser));
+          Auth.authenticateUser(data.token);
+          dispatch(setLoginSuccess(true));
+          resolve(data);
         } else {
-          dispatch(setLoginError({
-            message: error.response.data
-          }));
-          dispatch(setAlertError(error.response.data));
+          let message;
+          if (error.response.status === 401) {
+            message = 'Invalid email and password';
+            dispatch(setLoginError({
+              message: message
+            }));
+          } else {
+            message = error.response.data;
+            dispatch(setLoginError({
+              message: message
+            }));
+          }
+
+          reject(message);
         }
-      }
+      });
     });
   };
 };
@@ -105,15 +105,17 @@ export const registerAction = (email, password) => {
   return (dispatch) => {
     dispatch(setRegisterPending(true));
 
-    AuthService.register(email, password, (error) => {
-      dispatch(setRegisterPending(false));
-      if (!error) {
-        dispatch(setRegisterSuccess(true));
-        dispatch(setAlertSuccess(`You've successfully registered!`));
-      } else {
-        dispatch(setRegisterError({message: error}));
-        dispatch(setAlertError(error));
-      }
+    return new Promise((resolve, reject) => {
+      AuthService.register(email, password, (error) => {
+        dispatch(setRegisterPending(false));
+        if (!error) {
+          dispatch(setRegisterSuccess(true));
+          resolve(`You've successfully registered!`);
+        } else {
+          dispatch(setRegisterError({message: error}));
+          reject(error);
+        }
+      });
     });
   }
 };

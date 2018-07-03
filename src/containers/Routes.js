@@ -6,7 +6,7 @@ import UnauthenticatedRoute from "./UnauthenticatedRoute";
 import AuthenticatedRoute from "./AuthenticatedRoute";
 import AdminRoute from "../admin/containers/AdminRoute";
 import HomePage from "./HomePage";
-import AboutUs from "../components/AboutUs";
+import AboutUsPage from "./AboutUsPage";
 import RegisterPage from "./RegsisterPage";
 import LoginPage from "./LoginPage";
 import DesignPage from "./DesignPage";
@@ -27,7 +27,7 @@ export default class Routes extends Component {
         <AppliedRoute path="/" exact component={HomePage} props={this.props.childProps}/>
         <UnauthenticatedRoute path="/login" exact component={LoginPage} props={this.props.childProps}/>
         <UnauthenticatedRoute path="/register" exact component={RegisterPage} props={this.props.childProps}/>
-        <UnauthenticatedRoute path="/aboutUs" exact component={AboutUs} props={this.props.childProps}/>
+        <UnauthenticatedRoute path="/aboutUs" exact component={AboutUsPage} props={this.props.childProps}/>
         <AuthenticatedRoute path="/start-design" component={DesignPage} props={this.props.childProps}/>
         <AuthenticatedRoute path="/products" exact component={ProductsPage} props={this.props.childProps}/>
         <AuthenticatedRoute path="/products/:id" component={CampaignDetailPage} props={this.props.childProps}/>

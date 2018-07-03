@@ -44,12 +44,12 @@ export default ({component: C, props: cProps, ...rest}) => {
       {...rest}
       render={
         props =>
-          !cProps.isAuthenticated
+          !cProps.isAuthenticated || redirect === "" || redirect === null
             ?
             <C {...props} {...cProps} />
             :
             <Redirect
-              to={redirect === "" || redirect === null ? "/" : redirect}
+              to={redirect}
             />
       }
     />

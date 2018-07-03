@@ -21,7 +21,7 @@ const AuthService = {
       return callback(null, 'OK');
     }).catch(function (error) {
       console.log(error.response.data);
-      return callback('Register failed');
+      return callback(error.response.data);
     });
   },
 

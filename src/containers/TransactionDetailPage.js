@@ -3,13 +3,15 @@ import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
 import {
   Row,
-  Col
+  Col,
+  Button
 } from 'reactstrap';
 
 import "../css/TransactionDetailPage.css";
 import {fetchTransactionDetail} from '../redux/actions/transactions.actions';
 import Spinner from "../components/Common/Spinner";
 import ShippingDetail from "../components/TransactionDetailPage/ShippingDetail";
+import TransactionDetail from "../components/TransactionDetailPage/TransactionDetail";
 
 class TransactionDetailPage extends Component {
 
@@ -55,6 +57,12 @@ class TransactionDetailPage extends Component {
               address={transactionsReducer.detail.address}
               shippingMethod={transactionsReducer.detail.shippingMethod}
             />
+            <TransactionDetail
+              campaignTitle={transactionsReducer.detail.campaign.title}
+              campaignImage={transactionsReducer.detail.campaign.canvasDataUrl}
+              numberOfItems={transactionsReducer.detail.numberOfItems}
+            />
+            <Button className="btn button-back dz-button" onClick={this.handleGoBack}>Back</Button>
           </Col>
         </Row>
       );

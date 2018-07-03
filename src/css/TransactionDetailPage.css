@@ -7,6 +7,7 @@
 /*Shipping Detail START*/
 .transaction-detail-page__shipping__container-wrapper {
     background: white;
+    margin-bottom: 1rem;
 }
 
 .shipping-border {
@@ -65,3 +66,20 @@
 }
 
 /*Shipping Detail END*/
+
+/*Transaction Detail START*/
+.transaction-detail-page__main-content-wrapper {
+    background: white;
+    margin-bottom: 1rem;
+}
+
+.transaction-detail-page__order-content-wrapper {
+    padding: 1rem;
+    color: rgba(0,0,0,.8);
+}
+
+.transaction-detail-page__order-content-wrapper img {
+    width: 100%;
+}
+
+/*Transaction Detail END*/

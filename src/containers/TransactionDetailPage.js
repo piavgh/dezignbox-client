@@ -3,13 +3,13 @@ import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
 import {
   Row,
-  Col,
-  Button
+  Col
 } from 'reactstrap';
 
 import "../css/TransactionDetailPage.css";
 import {fetchTransactionDetail} from '../redux/actions/transactions.actions';
 import Spinner from "../components/Common/Spinner";
+import ShippingDetail from "../components/TransactionDetailPage/ShippingDetail";
 
 class TransactionDetailPage extends Component {
 
@@ -46,17 +46,15 @@ class TransactionDetailPage extends Component {
 
     if (transactionsReducer.detail) {
       return (
-        <Row className="transaction-detail-page">
-          <Col xs={12}>
-            <p>Campaign: {transactionsReducer.detail.campaign.title}</p>
-            <p>Number of items: {transactionsReducer.detail.numberOfItems}</p>
-            <p>Full Name: {transactionsReducer.detail.fullName}</p>
-            <p>Address: {transactionsReducer.detail.address}</p>
-            <p>City: {transactionsReducer.detail.city}</p>
-            <p>Shipping Method: {transactionsReducer.detail.shippingMethod}</p>
-            <p>Payment Method: {transactionsReducer.detail.paymentMethod}</p>
-            <p>Status: {transactionsReducer.detail.status}</p>
-            <Button onClick={this.handleGoBack}>Back</Button>
+        <Row className="transaction-detail-page__container">
+          <Col xs={{size: 10, offset: 2}}>
+            <ShippingDetail
+              transactionId={transactionsReducer.detail.transactionId}
+              fullName={transactionsReducer.detail.fullName}
+              phone={transactionsReducer.detail.phone}
+              address={transactionsReducer.detail.address}
+              shippingMethod={transactionsReducer.detail.shippingMethod}
+            />
           </Col>
         </Row>
       );

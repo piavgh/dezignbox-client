@@ -1,0 +1,67 @@
+/* Main page START */
+.transaction-detail-page__container {
+    padding-bottom: 20rem;
+}
+/* Main page END */
+
+/*Shipping Detail START*/
+.transaction-detail-page__shipping__container-wrapper {
+    background: white;
+}
+
+.shipping-border {
+    height: .2rem;
+    width: 100%;
+    background-position-x: -2rem;
+    background-size: 7.6rem .2rem;
+    background-image: -webkit-repeating-linear-gradient(45deg, #6fa6d6, #6fa6d6 33px, transparent 0, transparent 41px, #f18d9b 0, #f18d9b 74px, transparent 0, transparent 82px); /* Safari */
+    background-image: repeating-linear-gradient(45deg, #6fa6d6, #6fa6d6 33px, transparent 0, transparent 41px, #f18d9b 0, #f18d9b 74px, transparent 0, transparent 82px);
+}
+
+.transaction-detail-page__shipping__container {
+    padding: 1.2rem 0.8rem 2rem;
+}
+
+.transaction-detail-page__shipping__header {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0,0,0,.09);
+}
+
+.transaction-detail-page__shipping__header__title {
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    margin-left: .3rem;
+    text-transform: capitalize;
+}
+
+.transaction-detail-page__shipping__header__tracking-info_container {
+    text-align: right;
+}
+
+.transaction-detail-page__shipping__header__tracking-info {
+    color: rgba(0,0,0,.54);
+    font-size: 0.7rem;
+    line-height: 1.4rem;
+    max-width: 50%;
+    word-wrap: break-word;
+}
+
+.transaction-detail-page__shipping__content {
+    padding: 1.2rem 0.8rem 0;
+}
+
+.transaction-detail-page__shipping__shipping-address__shipping-name {
+    font-size: 0.9rem;
+}
+
+.transaction-detail-page__shipping__shipping-address__shipping-phone {
+    font-size: 0.7rem;
+    color: #757575;
+}
+
+.transaction-detail-page__shipping__shipping-address-detail {
+    font-size: 0.7rem;
+    color: #757575;
+}
+
+/*Shipping Detail END*/

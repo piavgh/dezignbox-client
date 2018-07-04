@@ -83,7 +83,8 @@ button {
 
 /*Footer START*/
 .footer {
-    background-color: #e2e2e2;
+    background-color: #292929;
+    color: white;
 }
 
 .footer .container {
@@ -91,17 +92,68 @@ button {
     padding: 20px 0;
 }
 
-.social-network-container {
+.footer-wrapper {
+    margin-top: 1.5rem;
+}
+
+.footer__left-column {
+    font-size: 0.9rem;
+}
+
+.footer__left-column a {
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.25);
+}
+
+.footer__left-column a:hover {
+    border-bottom: 1px dotted rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.5);
+}
+
+.copyright {
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.25);
+}
+
+.link-static-page {
+    margin-bottom: 0.3rem;
+}
+
+.bo-cong-thuong {
+    margin-top: 1.5rem;
+}
+
+.bo-cong-thuong img {
+    width: 40%;
+}
+
+.footer__right-column {
     text-align: right;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.25);
+}
+
+.social-network-container {
+    margin-bottom: 1rem;
+}
+
+.social-network-container a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.25);
+}
+
+.social-network-container a:hover {
+    color: rgba(255,255,255,0.75);
 }
 
 .social-network-icon {
-    font-size: 16px;
-    margin: 0 5px;
+    font-size: 1.2rem;
+    margin: 0 0.5rem;
 }
 
-.social-network-icon a {
-    text-decoration: none;
+.company-information p {
+    margin-bottom: 0.3rem;
 }
 /*Footer END*/
 

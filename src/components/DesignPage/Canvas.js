@@ -19,20 +19,23 @@ class Canvas extends Component {
   /**
    * In case we need to add more sizes for box, just add it here
    * TODO: Move this to a constants file.
-   * @type {{"20x10": {width: number, height: number}, "30x25": {width: number, height: number}, "40x30": {width: number, height: number}}}
+   * @type {{"20x10": {width: number, height: number}, "30x25": {width: number, height: number}, "45x30": {width: number, height: number}}}
    */
   boxSize = {
     '20x10': {
       width: 20,
-      height: 10
+      height: 13.34,
+      src: '/images/box-20x10.jpg'
     },
     '30x25': {
       width: 30,
-      height: 25
+      height: 25,
+      src: '/images/box-20x10.jpg'
     },
-    '40x30': {
-      width: 40,
-      height: 30
+    '45x30': {
+      width: 45,
+      height: 34.8,
+      src: '/images/box-45x30.jpg'
     }
   };
 
@@ -40,6 +43,7 @@ class Canvas extends Component {
     stageWidth: 1000,
     stageHeight: 1000,
     boxRatio: this.boxSize['20x10'].height / this.boxSize['20x10'].width,
+    boxImage: this.boxSize['20x10'].src,
     selectedShapeName: null
   };
 
@@ -68,17 +72,20 @@ class Canvas extends Component {
     switch (parseInt(e.target.value, 10)) {
       case 1:
         this.setState({
-          boxRatio: this.boxSize['20x10'].height / this.boxSize['20x10'].width
+          boxRatio: this.boxSize['20x10'].height / this.boxSize['20x10'].width,
+          boxImage: this.boxSize['20x10'].src
         }, this.checkSize);
         break;
       case 2:
         this.setState({
-          boxRatio: this.boxSize['30x25'].height / this.boxSize['30x25'].width
+          boxRatio: this.boxSize['30x25'].height / this.boxSize['30x25'].width,
+          boxImage: this.boxSize['30x25'].src
         }, this.checkSize);
         break;
       case 3:
         this.setState({
-          boxRatio: this.boxSize['40x30'].height / this.boxSize['40x30'].width
+          boxRatio: this.boxSize['45x30'].height / this.boxSize['45x30'].width,
+          boxImage: this.boxSize['45x30'].src
         }, this.checkSize);
         break;
       default:
@@ -116,7 +123,10 @@ class Canvas extends Component {
               height={this.state.stageHeight}
               onClick={this.handleStageClick}>
               <Layer>
-                <BoxSurface/>
+                <BoxSurface
+                  width={this.state.stageWidth}
+                  height={this.state.stageHeight}
+                  src={this.state.boxImage}/>
                 {textComponent}
                 {imageComponent}
                 <Handler

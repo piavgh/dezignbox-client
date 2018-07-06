@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Rect} from "react-konva";
+import PropTypes from 'prop-types';
+import {Image} from "react-konva";
 
 class BoxSurface extends Component {
 
@@ -8,19 +9,33 @@ class BoxSurface extends Component {
     this.boxSurface = React.createRef();
   }
 
+  static propTypes = {
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    src: PropTypes.string.isRequired
+  };
+
+  state = {
+    image: null
+  };
+
   componentDidMount() {
-    const stage = this.boxSurface.current.getStage();
-    this.boxSurface.current.width(stage.width());
-    this.boxSurface.current.height(stage.height());
+    const image = new window.Image();
+    image.src = this.props.src;
+    image.onload = () => {
+      // setState will redraw layer
+      // because "image" property is changed
+      this.setState({
+        image: image
+      });
+    };
   }
 
   render() {
-    return <Rect name="box-surface"
-                 x={0}
-                 y={0}
-                 fill="#D7A572"
-                 shadowBlur={5}
-                 ref={this.boxSurface}/>
+    return <Image image={this.state.image}
+                  ref={this.boxSurface}
+                  width={this.props.width}
+                  height={this.props.height}/>;
   }
 }
 

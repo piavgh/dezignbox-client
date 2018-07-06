@@ -21,7 +21,7 @@ export default class BoxSizeSelector extends Component {
               onChange={this.props.onBoxSizeChange}>
               <option value={1}>20cm x 10cm</option>
               <option value={2}>30cm x 25cm</option>
-              <option value={3}>40cm x 30cm</option>
+              <option value={3}>45cm x 30cm</option>
             </Input>
           </Col>
         </FormGroup>

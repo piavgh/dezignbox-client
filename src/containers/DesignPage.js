@@ -103,10 +103,6 @@ class DesignPage extends Component {
     );
   };
 
-  handleGoBack = () => {
-    this.props.history.goBack();
-  };
-
   toggleLoader = () => {
     if (spinnerService.isShowing('designPageSpinner')) {
       spinnerService.hide('designPageSpinner');
@@ -139,7 +135,6 @@ class DesignPage extends Component {
                   status={campaignsReducer.newCampaign.status}
                   submitButtonTitle="Finalize Design"
                   handleInputChange={this.handleCampaignInfoInputChange}
-                  handleGoBack={this.handleGoBack}
                   handleFormSubmit={this.handleFinalizeDesign}
                 />
               }}/>

@@ -32,10 +32,6 @@ class CheckoutPage extends Component {
     );
   };
 
-  handleGoBack = () => {
-    this.props.history.goBack();
-  };
-
   handlePlaceOrder = (e) => {
     e.preventDefault();
     this.props.createTransaction(
@@ -81,7 +77,6 @@ class CheckoutPage extends Component {
               shippingMethod={transactionsReducer.checkout.shippingMethod}
               paymentMethod={transactionsReducer.checkout.paymentMethod}
               handleInputChange={this.handleCheckoutInfoInputChange}
-              handleGoBack={this.handleGoBack}
               handleFormSubmit={this.handlePlaceOrder}/>
           </Col>
 

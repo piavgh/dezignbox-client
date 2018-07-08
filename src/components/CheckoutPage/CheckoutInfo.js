@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Row, Col, Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import {withRouter} from 'react-router-dom';
 
 class CheckoutInfo extends Component {
 
@@ -13,12 +14,15 @@ class CheckoutInfo extends Component {
     shippingMethod: PropTypes.number.isRequired,
     paymentMethod: PropTypes.number.isRequired,
     handleInputChange: PropTypes.func.isRequired,
-    handleGoBack: PropTypes.func.isRequired,
     handleFormSubmit: PropTypes.func.isRequired
   };
 
   onChange = (e) => {
     this.props.handleInputChange(e);
+  };
+
+  handleGoBack = () => {
+    this.props.history.goBack();
   };
 
   render() {
@@ -119,7 +123,7 @@ class CheckoutInfo extends Component {
           </FormGroup>
 
           <div className="campaign-detail-buttons-container">
-            <Button className="btn button-back dz-button" onClick={this.props.handleGoBack}>Back</Button>
+            <Button className="btn button-back dz-button" onClick={this.handleGoBack}>Back</Button>
             <Button className="btn button-submit dz-button">Place Order</Button>
           </div>
         </Form>
@@ -128,4 +132,4 @@ class CheckoutInfo extends Component {
   }
 }
 
-export default CheckoutInfo;
+export default withRouter(CheckoutInfo);

@@ -42,10 +42,6 @@ class CampaignDetailPage extends Component {
     );
   };
 
-  handleGoBack = () => {
-    this.props.history.goBack();
-  };
-
   handleDeleteCampaign = (campaignId) => {
     this.props.deleteCampaign(campaignId)
       .then((response) => {
@@ -121,7 +117,6 @@ class CampaignDetailPage extends Component {
                 status={campaignsReducer.detail.status}
                 submitButtonTitle="Save"
                 handleInputChange={this.handleCampaignInfoInputChange}
-                handleGoBack={this.handleGoBack}
                 handleFormSubmit={this.handleSaveDesign}
               />
               <DeleteButton

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Row, Col, Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import {withRouter} from 'react-router-dom';
 
 class CampaignInfo extends Component {
 
@@ -10,7 +11,6 @@ class CampaignInfo extends Component {
     status: PropTypes.number,
     submitButtonTitle: PropTypes.string.isRequired,
     handleInputChange: PropTypes.func.isRequired,
-    handleGoBack: PropTypes.func.isRequired,
     handleFormSubmit: PropTypes.func.isRequired
   };
 
@@ -21,6 +21,10 @@ class CampaignInfo extends Component {
   handleFormSubmit = (e) => {
     e.preventDefault();
     this.props.handleFormSubmit();
+  };
+
+  handleGoBack = () => {
+    this.props.history.goBack();
   };
 
   render() {
@@ -63,7 +67,7 @@ class CampaignInfo extends Component {
             </Input>
           </FormGroup>
           <div className="campaign-detail-buttons-container">
-            <Button className="btn button-back dz-button" onClick={this.props.handleGoBack}>Back</Button>
+            <Button className="btn button-back dz-button" onClick={this.handleGoBack}>Back</Button>
             <Button className="btn button-submit dz-button">{this.props.submitButtonTitle}</Button>
           </div>
         </Form>
@@ -72,4 +76,4 @@ class CampaignInfo extends Component {
   }
 }
 
-export default CampaignInfo;
+export default withRouter(CampaignInfo);

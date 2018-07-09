@@ -48,6 +48,21 @@ export default class HomePage extends Component {
             <img src="/images/box6.jpg" alt="box6"/>
           </Col>
         </Row>
+
+        <Row>
+          <Col xs={12}>
+            <p>Most Viewed</p>
+          </Col>
+          <Col xs={4}>
+            <img src="/images/box7.jpg" alt="box4"/>
+          </Col>
+          <Col xs={4}>
+            <img src="/images/box8.jpg" alt="box5"/>
+          </Col>
+          <Col xs={4}>
+            <img src="/images/box9.jpg" alt="box6"/>
+          </Col>
+        </Row>
       </div>
     );
   }

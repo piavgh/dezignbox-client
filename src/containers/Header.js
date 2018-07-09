@@ -13,7 +13,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
-import {Link, NavLink as RRNavLink} from 'react-router-dom';
+import {NavLink as RRNavLink} from 'react-router-dom';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {logout} from "../redux/actions/auth.actions";

@@ -18,7 +18,6 @@ import Dropzone from 'react-dropzone';
 export default class Tools extends Component {
 
   static propTypes = {
-    files: PropTypes.array.isRequired,
     onTextChange: PropTypes.func.isRequired,
     onFileDrop: PropTypes.func.isRequired
   };

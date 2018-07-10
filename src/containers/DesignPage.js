@@ -34,8 +34,7 @@ class DesignPage extends Component {
 
   state = {
     text: '',
-    image: null,
-    files: []
+    image: null
   };
 
   handleTextChange = e => {
@@ -66,7 +65,6 @@ class DesignPage extends Component {
     axios.all(uploaders).then(() => {
       // ... perform after upload is successful operation
       this.setState({
-        files,
         image: files[0].preview
       }, this.toggleLoader());
     });
@@ -124,7 +122,6 @@ class DesignPage extends Component {
             <Switch>
               <Route path="/start-design/design" render={() => {
                 return <Tools
-                  files={this.state.files}
                   onTextChange={this.handleTextChange}
                   onFileDrop={this.handleFileDrop}/>
               }}/>

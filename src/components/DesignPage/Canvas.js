@@ -8,7 +8,7 @@ import DesignImage from "./Canvas/DesignImage";
 import BoxSurface from "./Canvas/BoxSurface";
 import BoxSizeSelector from "./BoxSizeSelector";
 
-class Canvas extends Component {
+export default class Canvas extends Component {
 
   constructor(props) {
     super(props);
@@ -100,15 +100,24 @@ class Canvas extends Component {
   };
 
   render() {
-    let textComponent = this.props.text ?
-      <UserText text={this.props.text}/> : null;
+    let textComponent =
+      this.props.text
+        ?
+        <UserText
+          text={this.props.text}/>
+        :
+        null;
 
-    let imageComponent = this.props.image ?
-      <DesignImage
-        image={this.props.image}
-        width={this.state.stageWidth * 0.7}
-        height={this.state.stageHeight * 0.7}
-      /> : null;
+    let imageComponent =
+      this.props.image
+        ?
+        <DesignImage
+          image={this.props.image}
+          width={this.state.stageWidth * 0.7}
+          height={this.state.stageHeight * 0.7}
+        />
+        :
+        null;
 
     return (
       <Row>
@@ -139,5 +148,3 @@ class Canvas extends Component {
     );
   }
 }
-
-export default Canvas;

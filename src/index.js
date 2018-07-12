@@ -15,11 +15,18 @@ import Root from './containers/Root';
 const store = createStore(
   reducers,
   process.env.NODE_ENV === 'development' && typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(
-    promiseMiddleware(), // shorter async actions
-    thunkMiddleware, // lets us dispatch() functions
-    loggerMiddleware // neat middleware that logs actions
-  )
+  process.env.NODE_ENV === 'development'
+    ?
+    applyMiddleware(
+      promiseMiddleware(), // shorter async actions
+      thunkMiddleware, // lets us dispatch() functions
+      loggerMiddleware // neat middleware that logs actions
+    )
+    :
+    applyMiddleware(
+      promiseMiddleware(), // shorter async actions
+      thunkMiddleware // lets us dispatch() functions
+    )
 );
 
 render(

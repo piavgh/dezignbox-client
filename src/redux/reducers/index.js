@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux'
+import {combineReducers} from 'redux';
 import authReducer from './auth.reducers';
 import alertReducer from './alert.reducers';
 import campaignsReducer from './campaigns.reducers';

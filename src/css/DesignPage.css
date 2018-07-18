@@ -51,8 +51,32 @@
 /*Canvas Component START*/
 .canvas-container {
     text-align: center;
+    position: relative;
 }
 
+.object-surface {
+    position: absolute;
+}
+
+.editor-area {
+    position: relative;
+    top: 3.5rem;
+    left: 2.5rem;
+}
+
+.user-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20; /* User text must be above user design */
+}
+
+.user-design {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
 /*Canvas Component END*/
 
 /* Design page END */

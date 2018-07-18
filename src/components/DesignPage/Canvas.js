@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import {Row, Col} from 'reactstrap';
-import {Stage, Layer} from 'react-konva';
 
-import Handler from "./Canvas/Handler";
 import UserText from "./Canvas/UserText";
 import DesignImage from "./Canvas/DesignImage";
-import BoxSurface from "./Canvas/BoxSurface";
+import ObjectSurface from "./Canvas/ObjectSurface";
 import BoxSizeSelector from "./BoxSizeSelector";
 
 export default class Canvas extends Component {
@@ -13,7 +11,6 @@ export default class Canvas extends Component {
   constructor(props) {
     super(props);
     this.container = React.createRef();
-    this.stage = React.createRef();
   }
 
   /**
@@ -93,12 +90,6 @@ export default class Canvas extends Component {
     }
   };
 
-  handleStageClick = e => {
-    this.setState({
-      selectedShapeName: e.target.name()
-    });
-  };
-
   render() {
     let textComponent =
       this.props.text
@@ -124,24 +115,16 @@ export default class Canvas extends Component {
         <BoxSizeSelector
           onBoxSizeChange={this.onBoxSizeChange}/>
 
-        <Col xs={12} className="canvas-container">
-          <div className="drawing-area" ref={this.container}>
-            <Stage
-              ref={this.stage}
+        <Col xs={12}>
+          <div className="canvas-container" ref={this.container}>
+            <ObjectSurface
               width={this.state.stageWidth}
               height={this.state.stageHeight}
-              onClick={this.handleStageClick}>
-              <Layer>
-                <BoxSurface
-                  width={this.state.stageWidth}
-                  height={this.state.stageHeight}
-                  src={this.state.boxImage}/>
-                {textComponent}
-                {imageComponent}
-                <Handler
-                  selectedShapeName={this.state.selectedShapeName}/>
-              </Layer>
-            </Stage>
+              src={this.state.boxImage}/>
+            <div className="editor-area">
+              {textComponent}
+              {imageComponent}
+            </div>
           </div>
         </Col>
       </Row>

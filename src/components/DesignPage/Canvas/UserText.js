@@ -1,12 +1,20 @@
-import React from 'react';
-import {Text} from 'react-konva';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
-const UserText = props => {
-  if (props.text) {
-    return <Text text={props.text} draggable={true}/>;
+export default class UserText extends Component {
+
+  static propTypes = {
+    text: PropTypes.string
+  };
+
+  render() {
+    if (this.props.text) {
+      return (
+        <label className="user-text">{this.props.text}</label>
+      );
+    }
+
+    return null;
   }
 
-  return null;
-};
-
-export default UserText;
+}

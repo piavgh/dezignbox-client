@@ -73,7 +73,7 @@ class DesignPage extends Component {
   handleFinalizeDesign = () => {
     this.toggleLoader();
     // 1. Store canvas stage JSON to redux store: newCampaign.canvasObject
-    this.props.saveCanvasDataUrl(this.canvas.current.stage.current.getStage().toDataURL({
+    this.props.saveCanvasDataUrl(this.canvas.current.container.current.toDataURL({
       mimeType: 'image/png'
     }));
 

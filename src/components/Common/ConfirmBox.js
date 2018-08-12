@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
 import {Button} from 'reactstrap';
 
-import '../../css/ConfirmBox.css';
+import './ConfirmBox.css';
 
 ReactModal.setAppElement('#root');
 

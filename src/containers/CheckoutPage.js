@@ -6,7 +6,7 @@ import {
   Col
 } from 'reactstrap';
 
-import "../css/CheckoutPage.css";
+import "../components/CheckoutPage/CheckoutPage.css";
 import Spinner from "../components/Common/Spinner";
 import Utils from "../helpers/utils";
 import CheckoutInfo from "../components/CheckoutPage/CheckoutInfo";

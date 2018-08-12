@@ -7,7 +7,7 @@ import {
   Button
 } from 'reactstrap';
 
-import "../css/TransactionDetailPage.css";
+import "../components/TransactionDetailPage/TransactionDetailPage.css";
 import {fetchTransactionDetail} from '../redux/actions/transactions.actions';
 import Spinner from "../components/Common/Spinner";
 import ShippingDetail from "../components/TransactionDetailPage/ShippingDetail";

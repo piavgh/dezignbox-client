@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
 
-import "../../css/Spinner.css";
+import "./Spinner.css";
 import {spinnerService} from '../../services/spinner.services';
 
 ReactModal.setAppElement('#root');

@@ -6,7 +6,7 @@ import {
   Col
 } from 'reactstrap';
 
-import "../css/CampaignDetailPage.css";
+import "../components/CampaignDetailPage/CampaignDetailPage.css";
 import {
   deleteCampaign,
   fetchCampaignDetail,

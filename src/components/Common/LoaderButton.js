@@ -1,6 +1,6 @@
 import React from "react";
 import {Button} from "reactstrap";
-import "../../css/LoaderButton.css";
+import "./LoaderButton.css";
 
 export default ({
                   isLoading,

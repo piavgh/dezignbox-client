@@ -4,7 +4,7 @@ import {
   Col
 } from 'reactstrap';
 
-import "../css/HomePage.css";
+import "./HomePage.css";
 
 export default class HomePage extends Component {
 

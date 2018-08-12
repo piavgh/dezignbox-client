@@ -6,7 +6,7 @@ import {
   Col
 } from 'reactstrap';
 
-import '../css/ProductsPage.css';
+import '../components/ProductsPage/ProductsPage.css';
 import CampaignList from "../components/ProductsPage/CampaignList";
 import {fetchCampaigns} from "../redux/actions/campaigns.actions";
 import Pagination from "../components/Common/Pagination";

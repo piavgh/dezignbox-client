@@ -6,7 +6,7 @@ import {
   Col
 } from 'reactstrap';
 
-import '../css/TransactionsPage.css';
+import '../components/TransactionsPage/TransactionsPage.css';
 import TransactionList from "../components/TransactionsPage/TransactionList";
 import {fetchTransactions} from "../redux/actions/transactions.actions";
 import Pagination from "../components/Common/Pagination";
